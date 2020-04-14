@@ -22,13 +22,14 @@ sample = read.csv("../../Hefty_Data/vectdyn_fulldata.csv", header = T, nrows = 5
 
 # Find the classes of each column 
 sampleclasses = sapply(sample, class)
-sampleclasses
+
 # Latitude and Longitude are both numeric- switch to factor to better deal with data type errors
 classesswitch = sampleclasses
 classesswitch[10:11] = "factor"
 
 # Read in full data frame as ff data frame with column classes specified
 # Time because it's fun
+print("Reading in abundance data as an ff data frame.")
 start = Sys.time()
 df1 = read.csv.ffdf(file = "../../Hefty_Data/vectdyn_fulldata.csv", sep = ",", colClasses = classesswitch)
 end = Sys.time()
@@ -52,8 +53,7 @@ locs = st_as_sf(locs, coords = c("Longitudes", "Latitudes"), crs = project_crs, 
 rm(points)
 
 # Obtain USA state map from maps package
-# FIX_ME this is not working
-usa = st_as_sf(map("state", fill = TRUE, plot = FALSE))
+usa = st_as_sf(maps::map("state", fill = TRUE, plot = FALSE))
 usa = st_set_crs(usa, project_crs)
 
 # Obtain Florida from the USA map
@@ -80,13 +80,15 @@ tm_shape(usa) +
   tm_dots()
 
 # Now find which study sites are relevant to this subset
-sites = unique(locs_fd$loc)
+sites = unique(locs_fd$Locations)
 
 # Pull data points matching these sites from ffdf
 fd_data = df1[df1$Locations %in% sites,]
 
 # Save as csv
-write.csv(fd_data, "../Data/fdcounts.csv", row.names = F)
+print("Saving subsetted data as csv in ../Data/")
+#write.csv(fd_data, "../Data/fdcounts.csv", row.names = F)
+
 
 
 
