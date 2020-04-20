@@ -9,7 +9,7 @@ library(ncdf4)
 library(chron)
 library(tidyr)
 
-Years_to_download = c(2015, 2016)
+Years_to_download = c(2014, 2015, 2016, 2017)
 
 for (year in Years_to_download){
   print(year)
@@ -25,7 +25,7 @@ for (year in Years_to_download){
 
 # read in the data file without climate data 
 Data_no_climate <- read.csv("../Data/example_import_data.csv")
-Data_no_climate2 = read.csv("../Data/waltondata.csv")
+Data_no_climate2 = read.csv("../../Hefty_Data/waltondata.csv")
 
 Data_climate <- Data_no_climate
 Data_climate2 = Data_no_climate2
