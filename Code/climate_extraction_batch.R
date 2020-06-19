@@ -274,6 +274,7 @@ vector_abun_clim_time_series <-
 
 ### Visualize
 locale = na.omit(vector_abun_clim_time_series$Locations)[1]
+locale = sub("\\(.*", "", locale)
   
 ggplot(vector_abun_clim_time_series, aes(x=date, y=`Specimens collected`)) +
   geom_line() + ggtitle(paste(locale, ", Abundance", sep = ""))

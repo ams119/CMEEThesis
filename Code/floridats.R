@@ -6,7 +6,7 @@
 # Date: 04/16/19
 
 # Read in abundace dataset
-fddata = read.csv("~/Documents/Hefty_Data/mosquitoAbun/fdcounts2.csv", header = T, stringsAsFactors = F)
+fddata = read.csv("~/Documents/Hefty_Data/mosquitoAbun/ndcounts2.csv", header = T, stringsAsFactors = F)
 
 # Create vector of locations
 counties = unique(fddata$Locations)
