@@ -7,7 +7,7 @@
 
 library(tidyverse)
 
-mapped = read.csv("~/Documents/Hefty_Data/Extracted_Data/Saint Johns_clim_TS.csv", header = T, stringsAsFactors = F)
+#mapped = read.csv("~/Documents/Hefty_Data/Extracted_Data/Saint Johns_clim_TS.csv", header = T, stringsAsFactors = F)
 
 # Sort the data
 mapped = arrange(mapped, date, Latitudes, Longitudes)
@@ -18,16 +18,6 @@ locale = sub("\\(.*", "", locale)
 
 # Convert date from character to date format
 mapped$date = as.Date(mapped$date)
-
-# ggplot(mapped, aes(x=date, y=`Specimens.collected`)) +
-#   geom_line(col = "blue") + xlab("") + 
-#   scale_x_date(date_labels = "%Y") +
-#   ggtitle("Daily") + 
-#   theme_bw()
-
-## Correct any NA/zero issues ##
-# If collection happened that day, all NAs should be zero
-# If collection did no happen, all zeroes should be NA
 
 # Create a new data frame which aggregates all species to a single count per trap
 allspecs = 
@@ -285,14 +275,6 @@ allspecs$date_m <- format(as.Date(allspecs$date), "%Y-%m")
 daily$date_m = format(as.Date(daily$date), "%Y-%m")
 
 # Aggregate by month
-# monthly <-
-#   allspecs %>% 
-#   group_by(date_m) %>%
-#   dplyr::select("date_m", "max_temp", "precip", "Specimens.collected") %>%
-#   summarise(precip_mean = mean(precip), precip_sd = sd(precip),
-#             Specimens.collected = mean(Specimens.collected), temp_mean = mean(max_temp), 
-#             temp_sd = sd(max_temp))
-
 monthly <-
   daily %>% 
   group_by(date_m) %>%

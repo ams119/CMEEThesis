@@ -18,7 +18,7 @@ library(tmap)
 library(tmaptools)
 
 # Load in a sample of the vectdyn data
-sample = read.csv("~/Documents/Hefty_Data/vectdyn_fulldata.csv", header = T, nrows = 500)
+sample = read.csv("../Data/vectdyn_fulldata.csv", header = T, nrows = 500)
 
 # Find the classes of each column 
 sampleclasses = sapply(sample, class)
@@ -31,7 +31,7 @@ classesswitch[10:11] = "factor"
 # Time because it's fun
 print("Reading in abundance data as an ff data frame.")
 start = Sys.time()
-df1 = read.csv.ffdf(file = "~/Documents/Hefty_Data/vectdyn_fulldata.csv", sep = ",", colClasses = classesswitch)
+df1 = read.csv.ffdf(file = "../Data/vectdyn_fulldata.csv", sep = ",", colClasses = classesswitch)
 end = Sys.time()
 end-start
 
@@ -60,7 +60,7 @@ usa = st_as_sf(maps::map("state", fill = TRUE, plot = FALSE))
 usa = st_set_crs(usa, project_crs)
 
 # Obtain Florida from the USA map
-state = subset(usa, grepl("california", usa$ID))
+state = subset(usa, grepl("florida", usa$ID))
 usa <- st_buffer(usa, 0)
 
 # Plot locations 
@@ -90,7 +90,7 @@ fd_data = df1[df1$Locations %in% sites,]
 
 # Save as csv
 print("Saving subsetted data as csv in ../Data/")
-write.csv(fd_data, "~/Documents/Hefty_Data/mosquitoAbun/cacounts.csv", row.names = F)
+write.csv(fd_data, "../Data/fdcounts.csv", row.names = F)
 
 
 

@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.18 (TeX Live 2017/Debian) (preloaded format=pdflatex 2020.4.1)  30 APR 2020 10:23
+This is pdfTeX, Version 3.14159265-2.6-1.40.18 (TeX Live 2017/Debian) (preloaded format=pdflatex 2020.5.9)  24 JUN 2020 11:00
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -1181,18 +1181,17 @@ Dictionary: translator-theorem-dictionary, Language: English
 Package caption Info: Begin \AtBeginDocument code.
 Package caption Info: End \AtBeginDocument code.
  (./slides.nav)
-<../../../Pictures/icllogo.jpg, id=37, 448.67625pt x 293.095pt>
-File: ../../../Pictures/icllogo.jpg Graphic file (type jpg)
-<use ../../../Pictures/icllogo.jpg>
-Package pdftex.def Info: ../../../Pictures/icllogo.jpg  used on input line 43.
+<../Images/icllogo.jpg, id=37, 448.67625pt x 293.095pt>
+File: ../Images/icllogo.jpg Graphic file (type jpg)
+<use ../Images/icllogo.jpg>
+Package pdftex.def Info: ../Images/icllogo.jpg  used on input line 43.
 (pdftex.def)             Requested size: 122.91406pt x 80.29054pt.
  [1
 
-{/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map} <../../../Pictures/icllogo.
-jpg>]
-File: ../../../Pictures/icllogo.jpg Graphic file (type jpg)
-<use ../../../Pictures/icllogo.jpg>
-Package pdftex.def Info: ../../../Pictures/icllogo.jpg  used on input line 59.
+{/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map} <../Images/icllogo.jpg>]
+File: ../Images/icllogo.jpg Graphic file (type jpg)
+<use ../Images/icllogo.jpg>
+Package pdftex.def Info: ../Images/icllogo.jpg  used on input line 59.
 (pdftex.def)             Requested size: 122.91406pt x 80.29054pt.
  [2
 
@@ -1207,229 +1206,214 @@ LaTeX Font Info:    Try loading font information for U+msb on input line 73.
 (/usr/share/texlive/texmf-dist/tex/latex/amsfonts/umsb.fd
 File: umsb.fd 2013/01/14 v3.01 AMS symbols B
 )
-<wnv_cases.pdf, id=54, 361.35pt x 289.08pt>
-File: wnv_cases.pdf Graphic file (type pdf)
-<use wnv_cases.pdf>
-Package pdftex.def Info: wnv_cases.pdf  used on input line 73.
+<../Images/wnv_cases.pdf, id=54, 361.35pt x 289.08pt>
+File: ../Images/wnv_cases.pdf Graphic file (type pdf)
+<use ../Images/wnv_cases.pdf>
+Package pdftex.def Info: ../Images/wnv_cases.pdf  used on input line 73.
 (pdftex.def)             Requested size: 184.3758pt x 147.49942pt.
-File: ../../../Pictures/icllogo.jpg Graphic file (type jpg)
-<use ../../../Pictures/icllogo.jpg>
-Package pdftex.def Info: ../../../Pictures/icllogo.jpg  used on input line 73.
+File: ../Images/icllogo.jpg Graphic file (type jpg)
+<use ../Images/icllogo.jpg>
+Package pdftex.def Info: ../Images/icllogo.jpg  used on input line 73.
 (pdftex.def)             Requested size: 122.91406pt x 80.29054pt.
  [3
 
- <./wnv_cases.pdf>]
-File: wnv_cases.pdf Graphic file (type pdf)
-<use wnv_cases.pdf>
-Package pdftex.def Info: wnv_cases.pdf  used on input line 85.
+ <../Images/wnv_cases.pdf>]
+File: ../Images/wnv_cases.pdf Graphic file (type pdf)
+<use ../Images/wnv_cases.pdf>
+Package pdftex.def Info: ../Images/wnv_cases.pdf  used on input line 85.
 (pdftex.def)             Requested size: 184.3758pt x 147.49942pt.
-File: ../../../Pictures/icllogo.jpg Graphic file (type jpg)
-<use ../../../Pictures/icllogo.jpg>
-Package pdftex.def Info: ../../../Pictures/icllogo.jpg  used on input line 85.
+File: ../Images/icllogo.jpg Graphic file (type jpg)
+<use ../Images/icllogo.jpg>
+Package pdftex.def Info: ../Images/icllogo.jpg  used on input line 85.
 (pdftex.def)             Requested size: 122.91406pt x 80.29054pt.
  [4
 
 ]
-<tpc.jpg, id=72, 245.91875pt x 192.72pt>
-File: tpc.jpg Graphic file (type jpg)
-<use tpc.jpg>
-Package pdftex.def Info: tpc.jpg  used on input line 100.
+<../Images/tpc.jpg, id=72, 245.91875pt x 192.72pt>
+File: ../Images/tpc.jpg Graphic file (type jpg)
+<use ../Images/tpc.jpg>
+Package pdftex.def Info: ../Images/tpc.jpg  used on input line 100.
 (pdftex.def)             Requested size: 184.3758pt x 144.49551pt.
 
 Overfull \vbox (0.91226pt too high) detected at line 100
  []
 
-File: ../../../Pictures/icllogo.jpg Graphic file (type jpg)
-<use ../../../Pictures/icllogo.jpg>
-Package pdftex.def Info: ../../../Pictures/icllogo.jpg  used on input line 100.
-
+File: ../Images/icllogo.jpg Graphic file (type jpg)
+<use ../Images/icllogo.jpg>
+Package pdftex.def Info: ../Images/icllogo.jpg  used on input line 100.
 (pdftex.def)             Requested size: 122.91406pt x 80.29054pt.
 [5
 
- <./tpc.jpg>]
-File: ../../../Pictures/icllogo.jpg Graphic file (type jpg)
-<use ../../../Pictures/icllogo.jpg>
-Package pdftex.def Info: ../../../Pictures/icllogo.jpg  used on input line 116.
-
+ <../Images/tpc.jpg>]
+File: ../Images/icllogo.jpg Graphic file (type jpg)
+<use ../Images/icllogo.jpg>
+Package pdftex.def Info: ../Images/icllogo.jpg  used on input line 116.
 (pdftex.def)             Requested size: 122.91406pt x 80.29054pt.
  [6
 
 ]
-File: ../../../Pictures/icllogo.jpg Graphic file (type jpg)
-<use ../../../Pictures/icllogo.jpg>
-Package pdftex.def Info: ../../../Pictures/icllogo.jpg  used on input line 132.
-
+File: ../Images/icllogo.jpg Graphic file (type jpg)
+<use ../Images/icllogo.jpg>
+Package pdftex.def Info: ../Images/icllogo.jpg  used on input line 132.
 (pdftex.def)             Requested size: 122.91406pt x 80.29054pt.
  [7
 
 ]
-File: ../../../Pictures/icllogo.jpg Graphic file (type jpg)
-<use ../../../Pictures/icllogo.jpg>
-Package pdftex.def Info: ../../../Pictures/icllogo.jpg  used on input line 147.
-
+File: ../Images/icllogo.jpg Graphic file (type jpg)
+<use ../Images/icllogo.jpg>
+Package pdftex.def Info: ../Images/icllogo.jpg  used on input line 147.
 (pdftex.def)             Requested size: 122.91406pt x 80.29054pt.
  [8
 
 ]
-<floridamap.pdf, id=96, 289.08pt x 289.08pt>
-File: floridamap.pdf Graphic file (type pdf)
-<use floridamap.pdf>
-Package pdftex.def Info: floridamap.pdf  used on input line 170.
+<../Images/floridamap.pdf, id=96, 289.08pt x 289.08pt>
+File: ../Images/floridamap.pdf Graphic file (type pdf)
+<use ../Images/floridamap.pdf>
+Package pdftex.def Info: ../Images/floridamap.pdf  used on input line 170.
 (pdftex.def)             Requested size: 138.27602pt x 128.03368pt.
-File: ../../../Pictures/icllogo.jpg Graphic file (type jpg)
-<use ../../../Pictures/icllogo.jpg>
-Package pdftex.def Info: ../../../Pictures/icllogo.jpg  used on input line 170.
-
+File: ../Images/icllogo.jpg Graphic file (type jpg)
+<use ../Images/icllogo.jpg>
+Package pdftex.def Info: ../Images/icllogo.jpg  used on input line 170.
 (pdftex.def)             Requested size: 122.91406pt x 80.29054pt.
  [9
 
- <./floridamap.pdf>]
-File: ../../../Pictures/icllogo.jpg Graphic file (type jpg)
-<use ../../../Pictures/icllogo.jpg>
-Package pdftex.def Info: ../../../Pictures/icllogo.jpg  used on input line 194.
-
+ <../Images/floridamap.pdf>]
+File: ../Images/icllogo.jpg Graphic file (type jpg)
+<use ../Images/icllogo.jpg>
+Package pdftex.def Info: ../Images/icllogo.jpg  used on input line 194.
 (pdftex.def)             Requested size: 122.91406pt x 80.29054pt.
  [10
 
 ]
-File: ../../../Pictures/icllogo.jpg Graphic file (type jpg)
-<use ../../../Pictures/icllogo.jpg>
-Package pdftex.def Info: ../../../Pictures/icllogo.jpg  used on input line 216.
-
+File: ../Images/icllogo.jpg Graphic file (type jpg)
+<use ../Images/icllogo.jpg>
+Package pdftex.def Info: ../Images/icllogo.jpg  used on input line 216.
 (pdftex.def)             Requested size: 122.91406pt x 80.29054pt.
- [11
+
+[11
 
 ]
-<temp_extracted.pdf, id=115, 361.35pt x 289.08pt>
-File: temp_extracted.pdf Graphic file (type pdf)
-<use temp_extracted.pdf>
-Package pdftex.def Info: temp_extracted.pdf  used on input line 242.
+<../Images/temp_extracted.pdf, id=115, 361.35pt x 289.08pt>
+File: ../Images/temp_extracted.pdf Graphic file (type pdf)
+<use ../Images/temp_extracted.pdf>
+Package pdftex.def Info: ../Images/temp_extracted.pdf  used on input line 242.
 (pdftex.def)             Requested size: 215.10196pt x 172.08192pt.
 
 Overfull \vbox (8.46593pt too high) detected at line 242
  []
 
-File: ../../../Pictures/icllogo.jpg Graphic file (type jpg)
-<use ../../../Pictures/icllogo.jpg>
-Package pdftex.def Info: ../../../Pictures/icllogo.jpg  used on input line 242.
-
+File: ../Images/icllogo.jpg Graphic file (type jpg)
+<use ../Images/icllogo.jpg>
+Package pdftex.def Info: ../Images/icllogo.jpg  used on input line 242.
 (pdftex.def)             Requested size: 122.91406pt x 80.29054pt.
 [12
 
- <./temp_extracted.pdf>]
-<count_extracted.pdf, id=126, 361.35pt x 289.08pt>
-File: count_extracted.pdf Graphic file (type pdf)
-<use count_extracted.pdf>
-Package pdftex.def Info: count_extracted.pdf  used on input line 266.
+ <../Images/temp_extracted.pdf>]
+<../Images/count_extracted.pdf, id=126, 361.35pt x 289.08pt>
+File: ../Images/count_extracted.pdf Graphic file (type pdf)
+<use ../Images/count_extracted.pdf>
+Package pdftex.def Info: ../Images/count_extracted.pdf  used on input line 266.
+
 (pdftex.def)             Requested size: 215.10196pt x 172.08192pt.
 
 Overfull \vbox (8.46593pt too high) detected at line 266
  []
 
-File: ../../../Pictures/icllogo.jpg Graphic file (type jpg)
-<use ../../../Pictures/icllogo.jpg>
-Package pdftex.def Info: ../../../Pictures/icllogo.jpg  used on input line 266.
-
+File: ../Images/icllogo.jpg Graphic file (type jpg)
+<use ../Images/icllogo.jpg>
+Package pdftex.def Info: ../Images/icllogo.jpg  used on input line 266.
 (pdftex.def)             Requested size: 122.91406pt x 80.29054pt.
 [13
 
- <./count_extracted.pdf>]
-<weekly_agg.pdf, id=138, 361.35pt x 289.08pt>
-File: weekly_agg.pdf Graphic file (type pdf)
-<use weekly_agg.pdf>
-Package pdftex.def Info: weekly_agg.pdf  used on input line 290.
+ <../Images/count_extracted.pdf>]
+<../Images/weekly_agg.pdf, id=138, 361.35pt x 289.08pt>
+File: ../Images/weekly_agg.pdf Graphic file (type pdf)
+<use ../Images/weekly_agg.pdf>
+Package pdftex.def Info: ../Images/weekly_agg.pdf  used on input line 290.
 (pdftex.def)             Requested size: 215.10196pt x 172.08192pt.
 
 Overfull \vbox (8.46593pt too high) detected at line 290
  []
 
-File: ../../../Pictures/icllogo.jpg Graphic file (type jpg)
-<use ../../../Pictures/icllogo.jpg>
-Package pdftex.def Info: ../../../Pictures/icllogo.jpg  used on input line 290.
-
+File: ../Images/icllogo.jpg Graphic file (type jpg)
+<use ../Images/icllogo.jpg>
+Package pdftex.def Info: ../Images/icllogo.jpg  used on input line 290.
 (pdftex.def)             Requested size: 122.91406pt x 80.29054pt.
 [14
 
- <./weekly_agg.pdf>]
-<biweekly_agg.pdf, id=149, 361.35pt x 289.08pt>
-File: biweekly_agg.pdf Graphic file (type pdf)
-<use biweekly_agg.pdf>
-Package pdftex.def Info: biweekly_agg.pdf  used on input line 314.
+ <../Images/weekly_agg.pdf>]
+<../Images/biweekly_agg.pdf, id=149, 361.35pt x 289.08pt>
+File: ../Images/biweekly_agg.pdf Graphic file (type pdf)
+<use ../Images/biweekly_agg.pdf>
+Package pdftex.def Info: ../Images/biweekly_agg.pdf  used on input line 314.
 (pdftex.def)             Requested size: 215.10196pt x 172.08192pt.
 
 Overfull \vbox (8.46593pt too high) detected at line 314
  []
 
-File: ../../../Pictures/icllogo.jpg Graphic file (type jpg)
-<use ../../../Pictures/icllogo.jpg>
-Package pdftex.def Info: ../../../Pictures/icllogo.jpg  used on input line 314.
-
+File: ../Images/icllogo.jpg Graphic file (type jpg)
+<use ../Images/icllogo.jpg>
+Package pdftex.def Info: ../Images/icllogo.jpg  used on input line 314.
 (pdftex.def)             Requested size: 122.91406pt x 80.29054pt.
 [15
 
- <./biweekly_agg.pdf>]
-<monthly_agg.pdf, id=161, 361.35pt x 289.08pt>
-File: monthly_agg.pdf Graphic file (type pdf)
-<use monthly_agg.pdf>
-Package pdftex.def Info: monthly_agg.pdf  used on input line 339.
+ <../Images/biweekly_agg.pdf>]
+<../Images/monthly_agg.pdf, id=161, 361.35pt x 289.08pt>
+File: ../Images/monthly_agg.pdf Graphic file (type pdf)
+<use ../Images/monthly_agg.pdf>
+Package pdftex.def Info: ../Images/monthly_agg.pdf  used on input line 339.
 (pdftex.def)             Requested size: 215.10196pt x 172.08192pt.
 
 Overfull \vbox (8.46593pt too high) detected at line 339
  []
 
-File: ../../../Pictures/icllogo.jpg Graphic file (type jpg)
-<use ../../../Pictures/icllogo.jpg>
-Package pdftex.def Info: ../../../Pictures/icllogo.jpg  used on input line 339.
-
+File: ../Images/icllogo.jpg Graphic file (type jpg)
+<use ../Images/icllogo.jpg>
+Package pdftex.def Info: ../Images/icllogo.jpg  used on input line 339.
 (pdftex.def)             Requested size: 122.91406pt x 80.29054pt.
 [16
 
- <./monthly_agg.pdf>]
-File: ../../../Pictures/icllogo.jpg Graphic file (type jpg)
-<use ../../../Pictures/icllogo.jpg>
-Package pdftex.def Info: ../../../Pictures/icllogo.jpg  used on input line 361.
-
+ <../Images/monthly_agg.pdf>]
+File: ../Images/icllogo.jpg Graphic file (type jpg)
+<use ../Images/icllogo.jpg>
+Package pdftex.def Info: ../Images/icllogo.jpg  used on input line 361.
 (pdftex.def)             Requested size: 122.91406pt x 80.29054pt.
  [17
 
 ]
-File: ../../../Pictures/icllogo.jpg Graphic file (type jpg)
-<use ../../../Pictures/icllogo.jpg>
-Package pdftex.def Info: ../../../Pictures/icllogo.jpg  used on input line 384.
-
+File: ../Images/icllogo.jpg Graphic file (type jpg)
+<use ../Images/icllogo.jpg>
+Package pdftex.def Info: ../Images/icllogo.jpg  used on input line 384.
 (pdftex.def)             Requested size: 122.91406pt x 80.29054pt.
  [18
 
 ]
-<chicken.jpg, id=189, 371.3875pt x 371.3875pt>
-File: chicken.jpg Graphic file (type jpg)
-<use chicken.jpg>
-Package pdftex.def Info: chicken.jpg  used on input line 401.
+<../Images/chicken.jpg, id=189, 371.3875pt x 371.3875pt>
+File: ../Images/chicken.jpg Graphic file (type jpg)
+<use ../Images/chicken.jpg>
+Package pdftex.def Info: ../Images/chicken.jpg  used on input line 401.
 (pdftex.def)             Requested size: 153.64493pt x 153.64691pt.
 
 Overfull \vbox (18.48366pt too high) detected at line 401
  []
 
-File: ../../../Pictures/icllogo.jpg Graphic file (type jpg)
-<use ../../../Pictures/icllogo.jpg>
-Package pdftex.def Info: ../../../Pictures/icllogo.jpg  used on input line 401.
-
+File: ../Images/icllogo.jpg Graphic file (type jpg)
+<use ../Images/icllogo.jpg>
+Package pdftex.def Info: ../Images/icllogo.jpg  used on input line 401.
 (pdftex.def)             Requested size: 122.91406pt x 80.29054pt.
 [19
 
- <./chicken.jpg>]
-File: ../../../Pictures/icllogo.jpg Graphic file (type jpg)
-<use ../../../Pictures/icllogo.jpg>
-Package pdftex.def Info: ../../../Pictures/icllogo.jpg  used on input line 405.
-
+ <../Images/chicken.jpg>]
+File: ../Images/icllogo.jpg Graphic file (type jpg)
+<use ../Images/icllogo.jpg>
+Package pdftex.def Info: ../Images/icllogo.jpg  used on input line 405.
 (pdftex.def)             Requested size: 122.91406pt x 80.29054pt.
  [20
 
 ]
-File: ../../../Pictures/icllogo.jpg Graphic file (type jpg)
-<use ../../../Pictures/icllogo.jpg>
-Package pdftex.def Info: ../../../Pictures/icllogo.jpg  used on input line 416.
-
+File: ../Images/icllogo.jpg Graphic file (type jpg)
+<use ../Images/icllogo.jpg>
+Package pdftex.def Info: ../Images/icllogo.jpg  used on input line 416.
 (pdftex.def)             Requested size: 122.91406pt x 80.29054pt.
  [21
 
@@ -1453,8 +1437,8 @@ Package rerunfilecheck Info: File `slides.out' has not changed.
  ) 
 Here is how much of TeX's memory you used:
  18858 strings out of 494923
- 347211 string characters out of 6180743
- 421256 words of memory out of 5000000
+ 347531 string characters out of 6180743
+ 421248 words of memory out of 5000000
  21690 multiletter control sequences out of 15000+600000
  28446 words of font info for 66 fonts, out of 8000000 for 9000
  14 hyphenation exceptions out of 8191
@@ -1476,7 +1460,7 @@ me/anne_marie/.texlive2017/texmf-var/fonts/pk/ljfour/jknappen/ec/ecsx1440.600pk
 ></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmss10.pfb></usr
 /share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy7.pfb></usr/share/
 texlive/texmf-dist/fonts/type1/public/amsfonts/symbols/msam10.pfb>
-Output written on slides.pdf (21 pages, 779861 bytes).
+Output written on slides.pdf (21 pages, 779911 bytes).
 PDF statistics:
  587 PDF objects out of 1000 (max. 8388607)
  221 compressed objects within 3 object streams

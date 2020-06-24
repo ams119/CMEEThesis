@@ -3,5 +3,9 @@
 *.rda
 *e784096*
 *o784096*
-*.png
-*.pdf
+*/Extracted_Data/*
+*/precip/*
+*/tmax/*
+*vectdyn_fulldata.csv
+*counts*.csv
+*/AggByLocation/*
