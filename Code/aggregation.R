@@ -7,6 +7,7 @@
 
 library(tidyverse)
 
+# Commented out reading in data because this is run with aggregation_batch.R as a wrapper defining the mapped variable
 #mapped = read.csv("~/Documents/Hefty_Data/Extracted_Data/Saint Johns_clim_TS.csv", header = T, stringsAsFactors = F)
 
 # Sort the data
@@ -14,7 +15,8 @@ mapped = arrange(mapped, date, Latitudes, Longitudes)
 
 # Extract the location name, without special characters
 locale = as.character(na.omit(mapped$Locations)[1])
-locale = sub("\\(.*", "", locale)
+locale = sub(" \\(.*", "", locale) # remove special characters
+locale = sub("\\s", "_", locale) # Convert any remaining spaces to underscore
 
 # Convert date from character to date format
 mapped$date = as.Date(mapped$date)
@@ -92,11 +94,29 @@ amd_spec = c("Anopheles.messeae", "Anopheles.daciae")
 amd_morphs = grep(paste(amd_spec, collapse = "|"), colnames(allspecs))
 
 
-# Create a morphological group column that is the mean of these groups
-allspecs$C.pipiens.morphological.group = rowMeans(allspecs[,cp_morphs], na.rm = T)
-allspecs$A.atlanticus.tormentor.morphological.group = rowMeans(allspecs[,aat_morphs], na.rm = T)
-allspecs$A.messeae.daciae.morphological.group = rowMeans(allspecs[,amd_morphs], na.rm = T)
+# If these species are present, create a morphological group column that is the mean of these groups
+if(length(cp_morphs > 0)){
+  allspecs$C.pipiens.morphological.group = rowMeans(allspecs[,cp_morphs], na.rm = T)
+}
 
+
+if(length(aat_morphs > 0)){
+  allspecs$A.atlanticus.tormentor.morphological.group = rowMeans(allspecs[,aat_morphs], na.rm = T)
+}
+
+if(length(amd_morphs > 0)){
+  allspecs$A.messeae.daciae.morphological.group = rowMeans(allspecs[,amd_morphs], na.rm = T)  
+}
+
+
+
+
+# If any morphs were present, remove the species that have been averaged to a morphological group
+if(length(amd_morphs) + length(aat_morphs) + length(cp_morphs) > 0 ){
+  allspecs = allspecs[, -c(amd_morphs, aat_morphs, cp_morphs)]
+  # Also remove these species from the species list: this is offset by 8 from the columns
+  species = species[-(c(amd_morphs, aat_morphs, cp_morphs) - 8)] 
+}
 
 
 ###################

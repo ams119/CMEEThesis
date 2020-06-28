@@ -9,83 +9,23 @@
 # Date: 06/18/20
 
 # Import modules
+import statsmodels.api as sm
 import pandas as pd
 import numpy as np
-import statsmodels.api as sm
-import statsmodels.formula.api as smf
-import matplotlib
-matplotlib.use('Agg')   
-import matplotlib.pyplot as plt
-from os import listdir
-import re
+import matplotlib 
+matplotlib.use('Agg') # Enable plotting as png
+import matplotlib.pyplot as plt # For plotting
+from os import listdir # to access files in system
+import re # For string regex
+#from sklearn.preprocessing import PolynomialFeatures # For predictions during plotting
+from glm_functions import fit_glm, plot_GLM, prep_variables # import functions made for plotting, model fitting, and variable pre-processing
 
-# Define functions
-def plot_GLM(xvar, axs, title, k):
-
-    """ This function takes an array of the x variable, a number representing which subplot to use, a title describing the type of variable, and an iteration step to plot a subplot of the best-fit GLM model"""
-
-    # Do pre-processing for x and y variables
-    abun, xvar2 = prep_variables(dat[species[k]], xvar)
-    
-    # Define the best fit model
-    model = sm.GLM(abun, xvar2, family = sm.families.Gamma(link = sm.genmod.families.links.log()), missing = 'drop').fit()
-
-    # Use the range of the xvar to create an even array of x values    
-    xpred = np.linspace(min(xvar), max(xvar), 60)
-    
-    # Generate polynomial features for these values
-    xpred2 = PolynomialFeatures(2).fit_transform(xpred.reshape(-1,1))
-
-    # Predict abundance using array of x values
-    ypred = model.predict(xpred2)
-
-    sig_title = title + ', p =' + str(round(model.pvalues[1],3)) + ', p2 =' + str(round(model.pvalues[2],3)) + ', R2 = ' + str(round(1- model.deviance/model.null_deviance, 3))
-
-    # Add a subplot to the figure for this x variable
-    axs.scatter(xvar2[:,1], np.log(abun), color = 'gray') # works
-    axs.plot(xpred2[:,1], np.log(ypred), color = 'blue', linewidth = 1)
-    axs.set_title(sig_title)
-    axs.set(ylabel="log(Mean Abundance + 1)", xlabel=title)
-
-# Run analysis on weekly data
-#dat = pd.read_csv("~/Documents/Hefty_Data/Extracted_Data/Aggregated/Collier_weekly.csv")
-#import glm_analysis
-# for i in range(len(output)):
-
-#     if isinstance(output.loc[i, 'Best_TempLag'], str):
-
-#         # Create figure
-#         fig, (ax1, ax2, ax3)= plt.subplots(1, 3)
-#         fig.set_figheight(4)
-#         fig.set_figwidth(21)
-#         fig.suptitle(output.loc[i, 'Species'])
-
-#         xvar = lag_table[output.loc[i, 'Best_TempLag']]
-#         title = 'Max Daily Temp'
-
-#         plot_GLM(xvar, ax1, title, k)
-
-#         xvar = lag_table[output.loc[i, 'Best_PrecipDaysLag']]
-#         title = 'Precipitating Days'
-
-#         plot_GLM(xvar, ax2, title, k)
-
-#         xvar = lag_table[output.loc[i, 'Best_PrecipMeanLag']]
-#         title = 'Mean Daily Precip'
-
-#         plot_GLM(xvar, ax3, title, k)
-
-#         fig.savefig('../Results/GLM_fit_' + scale + '_' + species[k] + '.png', format = 'png')
-
-#         plt.close('all')
-
-# # Save csv of output
-# output.to_csv("../Results/Lee_" + scale + "_output2.csv")
+# use class system?
 
 ##### Main script #####
 
 # Define locations for which to run models
-locations = re.compile("|".join(['Manatee', 'Orange', 'Lee ', 'Saint Johns', 'Walton']))
+locations = re.compile("|".join(['Manatee', 'Orange', 'Lee', 'Saint_Johns', 'Walton']))
 
 # Find filenames of aggregated data
 files = listdir("../Data/Extracted_Data/Aggregated")
@@ -111,14 +51,23 @@ for time_agg in range(files.shape[1]):
     # for each location:
     for location in range(files.shape[0]):
 
+        # Find county name: 
+        county = re.split("_[bwm]", files[location][time_agg])[0]
+
+        # Announce analysis step
+        print('\n***********************************\n***********************************\nNow analysing ' 
+            + scale + ' ' + county 
+            + ' data\n***********************************\n***********************************\n')
+
         # Load in biweekly data
         dat = pd.read_csv("../Data/Extracted_Data/Aggregated/" + files[location][time_agg])
 
         # Create lagged x variables and run glm fits. Returns output table and table of variable lags
-        output, lag_table = fit_glm(dat, scale) 
+        output, lag_table, species = fit_glm(dat, scale) 
 
-        # Assign a column indicating location source of dataset
-        output['Location'] = np.repeat(files[location][time_agg].split("_")[0], output.shape[0]) 
+        # Assign a column indicating location source of dataset. Take this location name from the filename
+        output['Location'] = np.repeat(county, output.shape[0]) 
+        
 
         # Append output to the list of outputs
         outputs_list.append(output)
@@ -127,37 +76,43 @@ for time_agg in range(files.shape[1]):
         #### Plot if desired ####
         #########################
         
-        # for k in range(len(output)):
+        for k in range(len(output)):
 
-        # if isinstance(output.loc[k, 'Best_TempLag'], str):
+            if isinstance(output.loc[k, 'Best_TempLag'], str):
 
-        #     # Create figure
-        #     fig, (ax1, ax2, ax3)= plt.subplots(1, 3)
-        #     fig.set_figheight(4)
-        #     fig.set_figwidth(21)
-        #     fig.suptitle(output.loc[k, 'Species'])
+                # Create figure
+                fig, (ax1, ax2, ax3)= plt.subplots(1, 3)
+                fig.set_figheight(4)
+                fig.set_figwidth(21)
+                fig.suptitle(output.loc[k, 'Species'])
 
-        #     xvar = lag_table[output.loc[k, 'Best_TempLag']]
-        #     title = 'Max Daily Temp'
+                xvar = lag_table[output.loc[k, 'Best_TempLag']]
+                title = 'Max Daily Temp'
 
-        #     plot_GLM(xvar, ax1, title, k)
+                plot_GLM(dat, species, xvar, ax1, title, k)
 
-        #     xvar = lag_table[output.loc[k, 'Best_PrecipDaysLag']]
-        #     title = 'Precipitating Days'
+                abun, xvar = prep_variables(dat[species[k]], xvar)
 
-        #     plot_GLM(xvar, ax2, title, k)
+                xvar = lag_table[output.loc[k, 'Best_PrecipDaysLag']]
+                title = 'Precipitating Days'
 
-        #     xvar = lag_table[output.loc[k, 'Best_PrecipMeanLag']]
-        #     title = 'Mean Daily Precip'
+                plot_GLM(dat, species, xvar, ax2, title, k)
 
-        #     plot_GLM(xvar, ax3, title, k)
+                if k == 30 and scale == 'weekly' and output['Location'][0] == 'Lee':
+                    import ipdb; ipdb.set_trace(context = 20)
 
-        #     fig.savefig('../Results/GLM_fit_' + scale + '_' + species[k] + '.png', format = 'png')
+                xvar = lag_table[output.loc[k, 'Best_PrecipMeanLag']]
+                title = 'Mean Daily Precip'
 
-        #     plt.close('all')
+                plot_GLM(dat, species, xvar, ax3, title, k)
+
+                fig.savefig('../Results/GLM_Plots/  ' + scale + '_' + output['Location'][0] 
+                    + '_' + species[k] + '.png', format = 'png')
+
+                plt.close('all')
 
     # Join each dataset to 1 large data frame
     total_output = pd.concat(outputs_list)
 
     # Save a data frame at each temporal resolution to a csv
-    total_output.to_csv("../Results/" + scale + "_output.csv")
+    total_output.to_csv("../Results/output_" + scale + ".csv", index = False)

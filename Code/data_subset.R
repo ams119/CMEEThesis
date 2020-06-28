@@ -2,7 +2,7 @@
 # Author: Anne Marie Saunders
 # Script: data_subset.R
 # Desc: Using ff to load in giant data and subset to a more workable size
-# Arguments: ../../Hefty_Data/vectdyn_fulldata.csv
+# Arguments: ../Data/vectdyn_fulldata.csv
 # Date: 04/02/19
 
 # Load in packages
@@ -20,7 +20,7 @@ library(tmaptools)
 # Load in a sample of the vectdyn data
 sample = read.csv("../Data/vectdyn_fulldata.csv", header = T, nrows = 500)
 
-# Find the classes of each column 
+# Find the classes of each column
 sampleclasses = sapply(sample, class)
 
 # Latitude and Longitude are both numeric- switch to factor to better deal with data type errors

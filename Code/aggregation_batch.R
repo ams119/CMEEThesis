@@ -19,7 +19,7 @@ for(i in 1:length(files)){
   write.csv(monthly, paste0("../Data/Extracted_Data/Aggregated/", locale, "_monthly.csv"), row.names = F)
   
   ### Plot ###
-  setwd("../Results/AggByLocation/")
+  #setwd("../Results/AggByLocation/")
   
   # Create a directory to store plots
   dir.create(paste0("../Results/AggByLocation/",locale))
@@ -67,7 +67,7 @@ for(i in 1:length(files)){
     name = species[j]
     
     # Weekly
-    jpeg(paste0(directory, "_", name, "_weekly.jpeg"))
+    jpeg(paste0(directory, "/", name, "_weekly.jpeg"))
     print(ggplot(weekly, aes_string(x= "date_dw", y = name)) +
       geom_line(col = "darkgreen") + xlab("") +
       scale_x_date(date_labels = "%Y") +
@@ -77,7 +77,7 @@ for(i in 1:length(files)){
     dev.off()
     
     # Bi-weekly
-    jpeg(paste0(directory, "_", name, "_biweekly.jpeg"))
+    jpeg(paste0(directory, "/", name, "_biweekly.jpeg"))
     print(ggplot(biweekly, aes_string(x= "ids", y = name)) +
       geom_line(col = "blue") + xlab("") +
       scale_x_continuous("Time", breaks = brks, labels = c(yrs, next_year)) +
@@ -86,7 +86,7 @@ for(i in 1:length(files)){
     dev.off()
     
     # Monthly
-    jpeg(paste0(directory, "_", name, "_monthly.jpeg"))
+    jpeg(paste0(directory, "/", name, "_monthly.jpeg"))
     print(ggplot(monthly, aes_string(x="date_dm", y = name)) +
       geom_line(col = "purple") + xlab("") +
       scale_x_date(date_labels = "%Y") +
