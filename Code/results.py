@@ -25,7 +25,7 @@ indexes = list(set(biweekly['Location']))
 
 weekly_means = []
 biweekly_means = []
-monthly_means = 
+monthly_means = []
 
 weekly_days = []
 biweekly_days = []
@@ -47,4 +47,4 @@ for location in range(indexes):
     biweekly_days.append(len(bw_data[bw_data['Best PrecipLag'].str.contains('days', na = False)]))
     monthly_days.append(len(mnth_data[mnth_data['Best PrecipLag'].str.contains('days', na = False)]))
 
-df = pd.DataFrame({"Number of Days Wins":weekly_days})
+wk_df = pd.DataFrame({"Number of Days Wins":weekly_days, "Number of Mean Wins":weekly_means})

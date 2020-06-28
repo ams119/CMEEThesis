@@ -106,7 +106,7 @@ for time_agg in range(files.shape[1]):
 
                 plot_GLM(dat, species, xvar, ax3, title, k)
 
-                fig.savefig('../Results/GLM_Plots/  ' + scale + '_' + output['Location'][0] 
+                fig.savefig('../Results/GLM_Plots/' + scale + '_' + output['Location'][0] 
                     + '_' + species[k] + '.png', format = 'png')
 
                 plt.close('all')
