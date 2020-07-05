@@ -17,8 +17,7 @@ matplotlib.use('Agg') # Enable plotting as png
 import matplotlib.pyplot as plt # For plotting
 from os import listdir # to access files in system
 import re # For string regex
-#from sklearn.preprocessing import PolynomialFeatures # For predictions during plotting
-from glm_functions import fit_glm, plot_GLM, prep_variables, make_laglists # import functions made for plotting, model fitting, and variable pre-processing
+from gam_functions import fit_GAM, prep_variables, make_laglists, plot_GAM # import functions made for plotting, model fitting, and variable pre-processing
 
 # use class system?
 
@@ -38,6 +37,11 @@ files = np.array(files).reshape((len(files)//3, 3))
 
 # Create an array of temporal scale names that matches the files matrix to be accessed by index in the loop
 scale_names = np.array(['biweekly', 'monthly', 'weekly'])
+
+# time_agg, location = 0, 0
+
+# Set the range of penalization factors for gridsearch during gam fitting:
+set_lambda = np.logspace(0, 5, 11)
 
 #  for each temporal aggregation
 for time_agg in range(files.shape[1]):
@@ -63,56 +67,69 @@ for time_agg in range(files.shape[1]):
         dat = pd.read_csv("../Data/Extracted_Data/Aggregated/" + files[location][time_agg])
 
         # Create lagged x variables and run glm fits. Returns output table and table of variable lags
-        output, lag_table, species = fit_glm(dat, scale) 
+        output, lag_table, species = fit_GAM(dat, scale, set_lambda) 
 
         # Assign a column indicating location source of dataset. Take this location name from the filename
         output['Location'] = np.repeat(county, output.shape[0]) 
-        
-
-        # Append output to the list of outputs
-        outputs_list.append(output)
+    
 
         #########################
         #### Plot if desired ####
         #########################
+
+        # Create columns to store lambda values
+        output['Temp_lambda'] = np.repeat(np.NaN, output.shape[0])
+        output['PrecipDays_lambda'] = np.repeat(np.NaN, output.shape[0])
+        output['PrecipMean_lambda'] = np.repeat(np.NaN, output.shape[0])
         
-        for k in range(len(output)):
+        for k in range(output.shape[0]):
 
-            if isinstance(output.loc[k, 'Best_TempLag'], str):
+            if isinstance(output.loc[k, 'Best_TempLag'] or output.loc[k, 'Best_PrecipDaysLag'] or output.loc[k, 'Best_PrecipMeanLag'], str):
 
-                # Create figure
                 fig, (ax1, ax2, ax3)= plt.subplots(1, 3)
                 fig.set_figheight(4)
                 fig.set_figwidth(21)
                 fig.suptitle(output.loc[k, 'Species'])
 
-                xvar = lag_table[output.loc[k, 'Best_TempLag']]
-                title = 'Max Daily Temp'
+                if isinstance(output.loc[k, 'Best_TempLag'], str):
 
-                plot_GLM(dat, species, xvar, ax1, title, k)
+                    # Create figure
+                    xvar = lag_table[output.loc[k, 'Best_TempLag']]
+                    title = 'Max ' + scale + ' Temp'
 
-                abun, xvar = prep_variables(dat[species[k]], xvar)
+                    gam = plot_GAM(dat, species, xvar, ax1, title, k, set_lambda)
+                    output.loc[k, 'Temp_lambda'] = gam.lam[0][0]
 
-                xvar = lag_table[output.loc[k, 'Best_PrecipDaysLag']]
-                title = 'Precipitating Days'
 
-                plot_GLM(dat, species, xvar, ax2, title, k)
+                if isinstance(output.loc[k, 'Best_PrecipDaysLag'], str):
 
-                if k == 30 and scale == 'weekly' and output['Location'][0] == 'Lee':
-                    import ipdb; ipdb.set_trace(context = 20)
+                    xvar = lag_table[output.loc[k, 'Best_PrecipDaysLag']]
+                    title = 'Precipitating Days'
 
-                xvar = lag_table[output.loc[k, 'Best_PrecipMeanLag']]
-                title = 'Mean Daily Precip'
+                    gam = plot_GAM(dat, species, xvar, ax2, title, k, set_lambda)
+                    output.loc[k, 'PrecipDays_lambda'] = gam.lam[0][0]
 
-                plot_GLM(dat, species, xvar, ax3, title, k)
+                if isinstance(output.loc[k, 'Best_PrecipMeanLag'], str):    
 
-                fig.savefig('../Results/GLM_Plots/' + scale + '_' + output['Location'][0] 
-                    + '_' + species[k] + '.png', format = 'png')
+                    xvar = lag_table[output.loc[k, 'Best_PrecipMeanLag']]
+                    title = 'Mean ' + scale + ' Precip'
+
+                    gam = plot_GAM(dat, species, xvar, ax3, title, k, set_lambda)
+                    output.loc[k, 'PrecipMean_lambda'] = gam.lam[0][0]
+
+                fig.savefig('../Results/GAM_Plots/' + scale + '_' + output['Location'][0] 
+                    + '_' + species[k] + '_xcombo.png', format = 'png')
+
 
                 plt.close('all')
+
+        # Append output to the list of outputs
+        outputs_list.append(output)
 
     # Join each dataset to 1 large data frame
     total_output = pd.concat(outputs_list)
 
     # Save a data frame at each temporal resolution to a csv
-    total_output.to_csv("../Results/output_" + scale + ".csv", index = False)
+    total_output.to_csv("../Results/GAM_xcombo_output_" + scale + ".csv", index = False)
+
+    

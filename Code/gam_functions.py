@@ -16,6 +16,7 @@ import statsmodels.api as sm
 import pandas as pd 
 import numpy as np
 import matplotlib.pyplot as plt # move to batch, probably
+from pygam import GammaGAM
 
 #### Functions ####
 
@@ -37,37 +38,46 @@ def make_laglists(variable_str, scale):
     return lags
 
 
-
 def prep_variables(yvar, xvar):
 
-    """ Pre-processes x and y variables for GLM by 
-    removing x and matching y variable NAs, adding 1 
-    to y variable for logging, and creating polynomial 
-    features such as the constant and squared term"""
+    """ Pre-processes x and y variables for GAM by 
+    removing x and y variable NAs and adding 1 
+    to y variable for logging"""
 
-    NaNs = pd.isna(xvar).sum()
-    # Remove the trailing mismatch in xvar and yvar where xvar = NaN
-    if NaNs > 0:
-        yvar, xvar = yvar[:-NaNs,], xvar[:-NaNs,]
+    # Find indexes of NaN values in x and y variables
+    yvar_index = yvar.index[yvar.apply(np.isnan)]
+    xvar_index = xvar.index[xvar.apply(np.isnan)]
 
-    # Generate degree 2 polynomial features- constant and squared term- for the x variable
-    # Create 2d array with columns: constant (1), xvar, and xvar squared
-    xvar = np.column_stack((np.ones(len(xvar)), xvar, xvar**2))
+    # Remove rows in xvar and yvar that are NaN in x and/or y
+    yvar = yvar.drop(yvar_index.union(xvar_index))
+    xvar = xvar.drop(yvar_index.union(xvar_index))
 
     # Add 1 to to yvar to avoid -Inf values when it is logged
-    abun = yvar + 1
+    yvar = yvar + 1
     
-    return abun, xvar
+    return yvar, xvar
 
-def fit_glm(dat, scale):
+def fit_GAM(dat, scale, set_lambda):
 
     """ This function takes a pandas data frame of species and x variable time series data 
     and a "scale" variable describing the temporal aggregation (weekly, biweekly, or monthly).
     A table of lagged x variables is created and univariate quadratic GLMS are 
     run with each lag and species abundance. The function then returns and output 
     table of AIC values of these models and the table of lagged variables. """
-    
+
     #### Create ouput table for AIC values of univariate models ####
+
+    # Obtain row names: list of species from data frame. Columns depend on temporal scale
+
+    if scale == 'weekly':
+        species = dat.columns[9:(dat.shape[1]-4)]
+
+    if scale == 'biweekly':
+        species = dat.columns[9:(dat.shape[1]-3)]
+
+    if scale == 'monthly':
+        species = dat.columns[9:(dat.shape[1]-3)]
+
     # Create column names 
 
     temp_lags = make_laglists('temp', scale)
@@ -78,21 +88,12 @@ def fit_glm(dat, scale):
 
     # Create a matrix of with row for every species and column for every AIC value, populated with NAs
     matrix = np.empty((len(species), len(colnames) + 2))
+
+    # Populate the matrix with NaN
     matrix[:] = np.NaN
 
     # Convert to data frame
     output = pd.DataFrame(matrix, columns = colnames + ['nr_obs'] + ['z_inflation_pct'])
-
-    # Obtain list of species from data frame: columns depend on temporal scale
-
-    if scale == 'weekly':
-        species = dat.columns[9:(dat.shape[1]-4)]
-
-    if scale == 'biweekly':
-        species = dat.columns[9:(dat.shape[1]-3)]
-
-    if scale == 'monthly':
-        species = dat.columns[9:(dat.shape[1]-3)]
 
     # Populate first column with species names
     output['Species'] = species.tolist()
@@ -134,6 +135,8 @@ def fit_glm(dat, scale):
     ############################################
 
     for i in range(len(species)):
+
+        #import ipdb; ipdb.set_trace()
         
         print('\n-------------------------------\n\nNow evaluating species ' 
             + str(i) + ', ' + species[i] + '\n', sep = " ")
@@ -150,14 +153,9 @@ def fit_glm(dat, scale):
 
             abun, temp = prep_variables(dat[species[i]], lag_table[temp_lags[j]])
             
-            try:
-                model = sm.GLM(abun, temp, family = sm.families.Gamma(link = sm.genmod.families.links.log()), 
-                    missing = 'drop').fit()
-
-                output.loc[i, [temp_lags[j]]] = model.aic
-
-            except:
-                output.loc[i, [temp_lags[j]]] = np.NaN
+            gam = GammaGAM(max_iter = 10, lam = 60).gridsearch(temp[:,None], abun, n_splines = np.array([5,10,15,20]))
+                
+            output.loc[i, [temp_lags[j]]] = gam.statistics_['AIC']
 
         # Conduct univariate model for precipitation days
         
@@ -165,15 +163,9 @@ def fit_glm(dat, scale):
 
             abun, precipday = prep_variables(dat[species[i]], lag_table[precipday_lags[j]])
             
-            try: 
-                model = sm.GLM(abun, precipday, family = sm.families.Gamma(link = sm.genmod.families.links.log()), 
-                    missing = 'drop').fit()
-
-                output.loc[i, [precipday_lags[j]]] = model.aic
-
-            except:
-                output.loc[i, [precipday_lags[j]]] = np.NaN
-
+            gam = GammaGAM(max_iter = 10, lam = 60).gridsearch(precipday[:,None], abun, n_splines = np.array([5,10,15,20]))
+                
+            output.loc[i, [precipday_lags[j]]] = gam.statistics_['AIC']
 
         # conduct univariate model for mean precipitation
 
@@ -181,16 +173,11 @@ def fit_glm(dat, scale):
 
             abun, precipmean = prep_variables(dat[species[i]], lag_table[precipmean_lags[j]])
             
-            try:
-                model = sm.GLM(abun, precipmean, family = sm.families.Gamma(link = sm.genmod.families.links.log()), 
-                    missing = 'drop').fit(method = 'ncg')
+            gam = GammaGAM(max_iter = 10, lam = 60).gridsearch(precipmean[:,None], abun, n_splines = np.array([5,10,15,20]))
+                
+            output.loc[i, [precipmean_lags[j]]] = gam.statistics_['AIC']
 
-                output.loc[i, [precipmean_lags[j]]] = model.aic
-
-            except:
-                output.loc[i, [precipmean_lags[j]]] = np.NaN
-
-
+            
     # Find the best fit lags for each type of meteorological variable by choosing the column with the smallest AIC
 
     temp_end = 1 + len(temp_lags)
@@ -208,7 +195,7 @@ def fit_glm(dat, scale):
 
 
 
-def plot_GLM(dat, species, xvar, axs, title, k):
+def plot_GAM(dat, species, xvar, axs, title, k, set_lambda):
 
     """ This function takes an array of the x variable, a number representing which subplot to use, 
     a title describing the type of variable, and an iteration step to plot a subplot of the best-fit GLM model"""
@@ -216,34 +203,26 @@ def plot_GLM(dat, species, xvar, axs, title, k):
     # Do pre-processing for x and y variables
     abun, xvar2 = prep_variables(dat[species[k]], xvar)
     
-    try:
-        # Define the best fit model
-        model = sm.GLM(abun, xvar2, family = sm.families.Gamma(link = sm.genmod.families.links.log()), 
-            missing = 'drop').fit()
+    # Define the best fit model
+    gam = GammaGAM(max_iter = 10, lam = 60).gridsearch(xvar2[:,None], abun, n_splines = np.array([5,10,15,20]))
 
-        # Use the range of the xvar to create an even array of x values    
-        xpred = np.linspace(min(xvar), max(xvar), 60)
+    XX = gam.generate_X_grid(term = 0)
 
-        # Generate degree 2 polynomial features- constant and squared term- for the x variable
-        # Create 2d array with columns: constant (1), xvar, and xvar squared
-        xpred2 = np.column_stack((np.ones(len(xpred)), xpred, xpred**2))
+    sig_title = title + ', lambda = ' + str(gam.lam[0][0]) + ', n_splines = ' + str(gam.n_splines)
 
-        # Predict abundance using array of x values
-        ypred = model.predict(xpred2)
+    # Add a subplot to the figure for this x variable
+    axs.scatter(xvar2, np.log(abun), color = 'gray') 
 
-        sig_title = title + ', p =' + str(round(model.pvalues[1],3)) + ', p2 =' + str(round(model.pvalues[2],3)) + ', R2 = ' + str(round(1- model.deviance/model.null_deviance, 3))
+    # Plot GAM Curve
+    axs.plot(XX, np.log(gam.predict(XX)), color = 'blue', linewidth = 1)
 
-        # Add a subplot to the figure for this x variable
-        axs.scatter(xvar2[:,1], np.log(abun), color = 'gray') 
-        axs.plot(xpred2[:,1], np.log(ypred), color = 'blue', linewidth = 1)
-        axs.set_title(sig_title)
-        axs.set(ylabel="log(Mean Abundance + 1)", xlabel=title)
+    # Plot 95% confidence intervals
+    axs.plot(XX, np.log(gam.confidence_intervals(XX)), color = 'black', ls = '--')
 
-    except ValueError:
-        axs.scatter(xvar2[:,1], np.log(abun), color = 'gray') 
-        axs.set_title(title + " : Model for Plotting Failed")
-        axs.set(ylabel="log(Mean Abundance + 1)", xlabel=title)
+    axs.set_title(sig_title)
+    axs.set(ylabel="log(Mean Abundance + 1)", xlabel=title)
 
+    return gam
 # seaborn seems to create a plot with a beautiful fit but I believe it is doing this with linear regression not GLM (not taking into account gamma dist of data)
 # import seaborn as sns
 # matplotlib.use('TkAgg')
