@@ -145,7 +145,7 @@ def fit_GAM(dat, scale, set_lambda):
         output.loc[i, 'nr_obs'] = np.isfinite(dat[species[i]]).sum()  
 
         # Calculate the degree of zero-inflation in this data
-        output.loc[i, 'z_inflation_pct'] = round((dat[species[i]] == 0).sum()/len(dat[species[i]])*100, 1)
+        output.loc[i, 'z_inflation_pct'] = round((dat[species[i]] == 0).sum()/output.loc[i, 'nr_obs'] *100, 1)
 
         # Conduct univariate models for temperature # 
 
@@ -155,7 +155,11 @@ def fit_GAM(dat, scale, set_lambda):
             
             gam = GammaGAM(max_iter = 10, lam = 60).gridsearch(temp[:,None], abun, n_splines = np.array([5,10,15,20]))
                 
-            output.loc[i, [temp_lags[j]]] = gam.statistics_['AIC']
+            try:
+                output.loc[i, [temp_lags[j]]] = gam.statistics_['AIC']
+
+            except:
+                output.loc[i, [temp_lags[j]]] = np.NaN
 
         # Conduct univariate model for precipitation days
         
@@ -165,7 +169,11 @@ def fit_GAM(dat, scale, set_lambda):
             
             gam = GammaGAM(max_iter = 10, lam = 60).gridsearch(precipday[:,None], abun, n_splines = np.array([5,10,15,20]))
                 
-            output.loc[i, [precipday_lags[j]]] = gam.statistics_['AIC']
+            try:
+                output.loc[i, [precipday_lags[j]]] = gam.statistics_['AIC']
+
+            except:
+                output.loc[i, [precipday_lags[j]]] = np.NaN
 
         # conduct univariate model for mean precipitation
 
@@ -175,8 +183,11 @@ def fit_GAM(dat, scale, set_lambda):
             
             gam = GammaGAM(max_iter = 10, lam = 60).gridsearch(precipmean[:,None], abun, n_splines = np.array([5,10,15,20]))
                 
-            output.loc[i, [precipmean_lags[j]]] = gam.statistics_['AIC']
+            try:
+                output.loc[i, [precipmean_lags[j]]] = gam.statistics_['AIC']
 
+            except:
+                output.loc[i, [precipmean_lags[j]]] = np.NaN
             
     # Find the best fit lags for each type of meteorological variable by choosing the column with the smallest AIC
 

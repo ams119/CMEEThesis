@@ -8,7 +8,7 @@
 library(tidyverse)
 
 # Commented out reading in data because this is run with aggregation_batch.R as a wrapper defining the mapped variable
-#mapped = read.csv("~/Documents/Hefty_Data/Extracted_Data/Saint Johns_clim_TS.csv", header = T, stringsAsFactors = F)
+#mapped = read.csv("~/Documents/Masters_Thesis/Data/Extracted_Data/Saint_Johns_clim_TS.csv", header = T, stringsAsFactors = F)
 
 # Sort the data
 mapped = arrange(mapped, date, Latitudes, Longitudes)
@@ -57,6 +57,9 @@ mapped$Species = gsub("\\W", ".", mapped$Species)
 # Create an alphebetical list of unique species names
 species = sort(unique(mapped$Species[which(!is.na(mapped$Species))]))
 
+# Create a vector to store species indices to remove from species list
+species2rm = vector()
+
 # give each species its own column
 for(j in 1:length(species)){
   
@@ -70,13 +73,22 @@ for(j in 1:length(species)){
     dplyr::select("date", "Latitudes", "Longitudes", "Specimens.collected") %>% 
     summarise(test = mean(Specimens.collected))
   
-  # Change column names so that count column identifies the species
-  names(spec_counts)[names(spec_counts) == 'test'] = species[j]
+  # As long as there is at least 1 non-NA, non-zero recording, assign species name to time series and join
+  if(sum(spec_counts$test, na.rm = T) != 0){
   
-  # join to the daily data frame by date
-  allspecs = left_join(allspecs, spec_counts, by = c("date", "Latitudes", "Longitudes"))
+    # Change column names so that count column identifies the species
+    names(spec_counts)[names(spec_counts) == 'test'] = species[j]
+  
+    # join to the daily data frame by date only if there is at least 1 non-zero count of the data
+    allspecs = left_join(allspecs, spec_counts, by = c("date", "Latitudes", "Longitudes"))}
+  else{
+    species2rm = c(species2rm, j)}
   
 }
+
+# Remove zero count species from species list
+if(length(species2rm) > 0){
+  species = species[-species2rm]}
 
 ########### Merge species morphological groups ################
 
@@ -114,9 +126,10 @@ if(length(amd_morphs > 0)){
 # If any morphs were present, remove the species that have been averaged to a morphological group
 if(length(amd_morphs) + length(aat_morphs) + length(cp_morphs) > 0 ){
   allspecs = allspecs[, -c(amd_morphs, aat_morphs, cp_morphs)]
-  # Also remove these species from the species list: this is offset by 8 from the columns
+  # Also remove these species and earlier species2remove from the species list: this is offset by 8 from the columns
   species = species[-(c(amd_morphs, aat_morphs, cp_morphs) - 8)] 
 }
+
 
 
 ###################

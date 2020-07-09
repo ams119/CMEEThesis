@@ -76,13 +76,6 @@ def fit_glm(dat, scale):
 
     colnames = ["Species"] + temp_lags + precipday_lags + precipmean_lags 
 
-    # Create a matrix of with row for every species and column for every AIC value, populated with NAs
-    matrix = np.empty((len(species), len(colnames) + 2))
-    matrix[:] = np.NaN
-
-    # Convert to data frame
-    output = pd.DataFrame(matrix, columns = colnames + ['nr_obs'] + ['z_inflation_pct'])
-
     # Obtain list of species from data frame: columns depend on temporal scale
 
     if scale == 'weekly':
@@ -94,6 +87,15 @@ def fit_glm(dat, scale):
     if scale == 'monthly':
         species = dat.columns[9:(dat.shape[1]-3)]
 
+
+    # Create a matrix of with row for every species and column for every AIC value, populated with NAs
+    matrix = np.empty((len(species), len(colnames) + 2))
+    matrix[:] = np.NaN
+
+    # Convert to data frame
+    output = pd.DataFrame(matrix, columns = colnames + ['nr_obs'] + ['z_inflation_pct'])
+
+    
     # Populate first column with species names
     output['Species'] = species.tolist()
 

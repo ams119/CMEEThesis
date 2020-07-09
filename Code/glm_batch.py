@@ -72,47 +72,47 @@ for time_agg in range(files.shape[1]):
         # Append output to the list of outputs
         outputs_list.append(output)
 
-        #########################
-        #### Plot if desired ####
-        #########################
+        # #########################
+        # #### Plot if desired ####
+        # #########################
         
-        for k in range(len(output)):
+        # for k in range(len(output)):
 
-            if isinstance(output.loc[k, 'Best_TempLag'], str):
+        #     if isinstance(output.loc[k, 'Best_TempLag'], str):
 
-                # Create figure
-                fig, (ax1, ax2, ax3)= plt.subplots(1, 3)
-                fig.set_figheight(4)
-                fig.set_figwidth(21)
-                fig.suptitle(output.loc[k, 'Species'])
+        #         # Create figure
+        #         fig, (ax1, ax2, ax3)= plt.subplots(1, 3)
+        #         fig.set_figheight(4)
+        #         fig.set_figwidth(21)
+        #         fig.suptitle(output.loc[k, 'Species'])
 
-                xvar = lag_table[output.loc[k, 'Best_TempLag']]
-                title = 'Max Daily Temp'
+        #         xvar = lag_table[output.loc[k, 'Best_TempLag']]
+        #         title = 'Max Daily Temp'
 
-                plot_GLM(dat, species, xvar, ax1, title, k)
+        #         plot_GLM(dat, species, xvar, ax1, title, k)
 
-                abun, xvar = prep_variables(dat[species[k]], xvar)
+        #         abun, xvar = prep_variables(dat[species[k]], xvar)
 
-                xvar = lag_table[output.loc[k, 'Best_PrecipDaysLag']]
-                title = 'Precipitating Days'
+        #         xvar = lag_table[output.loc[k, 'Best_PrecipDaysLag']]
+        #         title = 'Precipitating Days'
 
-                plot_GLM(dat, species, xvar, ax2, title, k)
+        #         plot_GLM(dat, species, xvar, ax2, title, k)
 
-                if k == 30 and scale == 'weekly' and output['Location'][0] == 'Lee':
-                    import ipdb; ipdb.set_trace(context = 20)
+        #         if k == 30 and scale == 'weekly' and output['Location'][0] == 'Lee':
+        #             import ipdb; ipdb.set_trace(context = 20)
 
-                xvar = lag_table[output.loc[k, 'Best_PrecipMeanLag']]
-                title = 'Mean Daily Precip'
+        #         xvar = lag_table[output.loc[k, 'Best_PrecipMeanLag']]
+        #         title = 'Mean Daily Precip'
 
-                plot_GLM(dat, species, xvar, ax3, title, k)
+        #         plot_GLM(dat, species, xvar, ax3, title, k)
 
-                fig.savefig('../Results/GLM_Plots/' + scale + '_' + output['Location'][0] 
-                    + '_' + species[k] + '.png', format = 'png')
+        #         fig.savefig('../Results/GLM_Plots/' + scale + '_' + output['Location'][0] 
+        #             + '_' + species[k] + '.png', format = 'png')
 
-                plt.close('all')
+        #         plt.close('all')
 
     # Join each dataset to 1 large data frame
     total_output = pd.concat(outputs_list)
 
     # Save a data frame at each temporal resolution to a csv
-    total_output.to_csv("../Results/output_" + scale + ".csv", index = False)
+    total_output.to_csv("../Results/GLM_output_" + scale + ".csv", index = False)

@@ -96,6 +96,6 @@ for(i in 1:length(files)){
     dev.off()
   }
   
-  rm(list=setdiff(ls(), c("i", "files", "continue")))
+  rm(list=setdiff(ls(), c("i", "files")))
 }
 
