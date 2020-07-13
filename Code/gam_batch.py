@@ -77,10 +77,15 @@ for time_agg in range(files.shape[1]):
         #### Plot if desired ####
         #########################
 
-        # Create columns to store lambda values
-        output['Temp_lambda'] = np.repeat(np.NaN, output.shape[0])
-        output['PrecipDays_lambda'] = np.repeat(np.NaN, output.shape[0])
-        output['PrecipMean_lambda'] = np.repeat(np.NaN, output.shape[0])
+        # Create columns to store GCV values of best fit model
+        output['Temp_GCV'] = np.repeat(np.NaN, output.shape[0])
+        output['PrecipDays_GCV'] = np.repeat(np.NaN, output.shape[0])
+        output['PrecipMean_GCV'] = np.repeat(np.NaN, output.shape[0])
+
+        # Create columns to store estimated degrees of freedom of best fit model
+        output['Temp_edof'] = np.repeat(np.NaN, output.shape[0])
+        output['PrecipDays_edof'] = np.repeat(np.NaN, output.shape[0])
+        output['PrecipMean_edof'] = np.repeat(np.NaN, output.shape[0])
         
         for k in range(output.shape[0]):
 
@@ -98,7 +103,8 @@ for time_agg in range(files.shape[1]):
                     title = 'Max ' + scale + ' Temp'
 
                     gam = plot_GAM(dat, species, xvar, ax1, title, k, set_lambda)
-                    output.loc[k, 'Temp_lambda'] = gam.lam[0][0]
+                    output.loc[k, 'Temp_GCV'] = gam.statistics_['GCV']
+                    output.loc[k, 'Temp_edof'] = gam.statistics_['edof']
 
 
                 if isinstance(output.loc[k, 'Best_PrecipDaysLag'], str):
@@ -107,7 +113,8 @@ for time_agg in range(files.shape[1]):
                     title = 'Precipitating Days'
 
                     gam = plot_GAM(dat, species, xvar, ax2, title, k, set_lambda)
-                    output.loc[k, 'PrecipDays_lambda'] = gam.lam[0][0]
+                    output.loc[k, 'PrecipDays_GCV'] = gam.statistics_['GCV']
+                    output.loc[k, 'PrecipDays_edof'] = gam.statistics_['edof']
 
                 if isinstance(output.loc[k, 'Best_PrecipMeanLag'], str):    
 
@@ -115,10 +122,11 @@ for time_agg in range(files.shape[1]):
                     title = 'Mean ' + scale + ' Precip'
 
                     gam = plot_GAM(dat, species, xvar, ax3, title, k, set_lambda)
-                    output.loc[k, 'PrecipMean_lambda'] = gam.lam[0][0]
+                    output.loc[k, 'PrecipMean_GCV'] = gam.statistics_['GCV']
+                    output.loc[k, 'PrecipMean_edof'] = gam.statistics_['edof']
 
                 fig.savefig('../Results/GAM_Plots/' + scale + '_' + output['Location'][0] 
-                    + '_' + species[k] + '_xcombo.png', format = 'png')
+                    + '_' + species[k] + '.png', format = 'png')
 
 
                 plt.close('all')
@@ -130,6 +138,6 @@ for time_agg in range(files.shape[1]):
     total_output = pd.concat(outputs_list)
 
     # Save a data frame at each temporal resolution to a csv
-    total_output.to_csv("../Results/GAM_xcombo_output_" + scale + ".csv", index = False)
+    total_output.to_csv("../Results/GAM_output_" + scale + ".csv", index = False)
 
     
