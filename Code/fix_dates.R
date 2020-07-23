@@ -73,9 +73,12 @@ sum(dates$diff != probs$Collection.duration..days.) == 0
 allspecs = 
   dates %>%
   dplyr::select("to", "from", "diff", "Specimens.collected", "Latitudes", "Locations", "Longitudes", "Collection.protocols", "Attractants") %>%
-  group_by(Locations, Latitudes, Longitudes, from, to, diff, Collection.protocols, Attractants) %>%
-  summarise(Specimens.collected = mean(Specimens.collected)) %>%
-  arrange(Latitudes, Longitudes, from, to)
+  dplyr::group_by(Locations, Latitudes, Longitudes, from, to, diff, Collection.protocols, Attractants) %>%
+  dplyr::summarise(Specimens.collected = mean(Specimens.collected)) %>%
+  dplyr::arrange(Latitudes, Longitudes, from, to)
+
+# Check how many trapping events were attributed to each trap type
+table(allspecs$Collection.protocols)
 
 # Check frequencies of different interval lengths
 freqs = table(allspecs$diff)

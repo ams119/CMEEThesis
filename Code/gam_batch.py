@@ -86,6 +86,11 @@ for time_agg in range(files.shape[1]):
         output['Temp_edof'] = np.repeat(np.NaN, output.shape[0])
         output['PrecipDays_edof'] = np.repeat(np.NaN, output.shape[0])
         output['PrecipMean_edof'] = np.repeat(np.NaN, output.shape[0])
+
+        # Create columns to store p values of best fit model
+        output['Temp_p'] = np.repeat(np.NaN, output.shape[0])
+        output['PrecipDays_p'] = np.repeat(np.NaN, output.shape[0])
+        output['PrecipMean_p'] = np.repeat(np.NaN, output.shape[0])
         
         for k in range(output.shape[0]):
 
@@ -105,6 +110,7 @@ for time_agg in range(files.shape[1]):
                     gam = plot_GAM(dat, species, xvar, ax1, title, k, set_lambda)
                     output.loc[k, 'Temp_GCV'] = gam.statistics_['GCV']
                     output.loc[k, 'Temp_edof'] = gam.statistics_['edof']
+                    output.loc[k, 'Temp_p'] = gam.statistics_['p_values'][0]
 
 
                 if isinstance(output.loc[k, 'Best_PrecipDaysLag'], str):
@@ -115,6 +121,7 @@ for time_agg in range(files.shape[1]):
                     gam = plot_GAM(dat, species, xvar, ax2, title, k, set_lambda)
                     output.loc[k, 'PrecipDays_GCV'] = gam.statistics_['GCV']
                     output.loc[k, 'PrecipDays_edof'] = gam.statistics_['edof']
+                    output.loc[k, 'PrecipDays_p'] = gam.statistics_['p_values'][0]
 
                 if isinstance(output.loc[k, 'Best_PrecipMeanLag'], str):    
 
@@ -124,6 +131,7 @@ for time_agg in range(files.shape[1]):
                     gam = plot_GAM(dat, species, xvar, ax3, title, k, set_lambda)
                     output.loc[k, 'PrecipMean_GCV'] = gam.statistics_['GCV']
                     output.loc[k, 'PrecipMean_edof'] = gam.statistics_['edof']
+                    output.loc[k, 'PrecipMean_p'] = gam.statistics_['p_values'][0]
 
                 fig.savefig('../Results/GAM_Plots/' + scale + '_' + output['Location'][0] 
                     + '_' + species[k] + '.png', format = 'png')

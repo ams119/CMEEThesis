@@ -1,0 +1,82 @@
+\section{Methods}
+
+\subsection{Mosquito Abundance Data}
+
+Mosquito count data was obtained from the VectDyn database (\textbf{HOW TO CITE?}). VectDyn is a global database containing spatially and temporally explicit abundance data of mosquitoes and other arthropod vectors. Mosquito abundance from 205 global locations was narrowed down to 7 data-rich counties in Florida, U.S.A. From these 7 counties, 5 counties were determined to have nearly year-round sampling from which fairly continuous time series of mosquito abundances could be formed. 
+
+\begin{center}
+	\begin{tabularx}{4in}{ | L{1.4} | C{0.6} | }
+		\hline
+		\textbf{County} & \textbf{Years of Data} \\\hline
+		Lee & 11 \\\hline
+		Manatee & 5 \\\hline
+		Orange & 6 \\\hline
+		Saint Johns & 13.5 \\\hline
+		Walton & 3 \\\hline 
+		\multicolumn{1}{|r|}{\textbf{Average}} & \textbf{7.7} \\\hline
+	\end{tabularx}\\
+	\captionof{table}{\label{Tab:Locs} Locations of abundance data and associated length of data location at each location. Individual species in these locations may have abundance records that are shorter than the overall collection duration of each location. }
+\end{center}	
+
+Each location contained multiple trap sites. A variety of trap types were used, including BG-Sentinel traps, CDC light traps, animal-baited traps, CDC gravid traps, and \textbf{collection of arthropods}. Because I was only concerned with relative changes in abundance and not absolute abundance across species or locations, I included all trap types in my data. Abundance was recorded in integer count values and usually identified to the species level. 
+
+
+\subsection{Meteorological Data}
+
+Temperature and precipitation datasets were obtained from the NOAA Climate Data Online database as NetCDF raster files at a spatial resolution of 0.50 degrees latitude and 0.50 degrees longitude. Maximum temperature in Celsius and total daily precipitation in millimetres were used based on availability of data. Rasters were rotated 180 degrees to match coordinate rotation of trap locations. Maximum daily temperature and total precipitation values were then extracted by taking the mean of the bilinear interpolation of the 4 closest raster cells to each trap location. I then mapped extracted maximum temperature and total precipitation values to corresponding mosquito abundances by date and trap location. 
+
+\textbf{Number of days of rainfall has been shown to be a more effective predictor of mosquito-borne disease incidence than cumulative precipitation \citep{Xu2017}. This is likely due to the maintenance of humid conditions over time with frequent rainfall. Humidity has been independently assessed as a significant predictor of abundance dynamics \citep{Trawinski2008}, and so this representation of precipitation may capture both humidity and precipitation effects.}
+
+\subsection{Data Pre-Processing}
+
+In order to account for discrepancies between true zero count instances and NA values in abundance data, I set abundance for each species to zero where at least one mosquito of any species had been caught at the same trap on the same day. 
+
+I then spatially and temporally aggregated meteorological data and species-level abundance data. At the spatial level, I averaged the maximum temperature, total precipitation, and species-specific abundance from trap-specific to county-wide. This transformed integer count values to averaged indicators of overall abundance for the county-level spatial scale. I aggregated morphological groups of non-differentiable species that could be easily mis-identified (\textbf{list in SI}). I then removed species that had only zero or NA abundance values. Species counts that were identified only to the genus or family level were also removed. I then temporally aggregated maximum temperature, total precipitation, and species-specific abundance by averaging at weekly, biweekly, and monthly scales. Consequently, temperature refers to the average maximum daily temperature across respective temporal scales and precipitation refers to average daily precipitation across the respective temporal scales. Finally, I removed rows of data with missing values in response or explanatory variables. 
+
+\textbf{include paragraph on preprocessing for GAM: dealing with NAs, interpolation for autoregressive model}
+
+\subsection{Model Structure}
+
+I used univariate generalized additive models for each species at each location to determine the best-fit temporal lags between abundance and maximum temperature as well as between abundance and precipitation. Because aggregated abundance values are positive, non-integer, and non-normally distributed, I used a Gamma family distribution with a log-link function. These models had the form:
+\begin{equation}
+	ln(V_t + 1) = a_0 + f_1(T_{t-l_T}) + \epsilon_t
+	\label{eq: univariateT}
+\end{equation}
+\begin{equation}
+	ln(V_t + 1) = a_0 + f_1(P_{t-l_P}) + \epsilon_t
+	\label{eq: univariateP}
+\end{equation}
+
+
+$V_t$ is abundance at time $t$, $a_0$ is the intercept, $T_{t-l_T}$ and $P_{t-l_P}$ are the temperature and precipitation at $l_T$ and $l_P$, respectively, time periods prior to time $t$. One is added to abundance at time $t$ in order to prevent undefined values from the logarithm of zero abundance values. $f_1$ is a smooth function comprised of cubic polynomial basis functions. I set the number of basis functions for each smooth function to four throughout this analysis in order to control overfitting of the GAM. 
+
+Each dataset was also fit with two multivariate models, each incorporating temperature and precipitation, and one of which incorporating an autoregressive term. 
+
+\begin{equation}
+	ln(V_t + 1) = a_0 + f_1(T_{t-l_T}) + f_2(P_{t-l_P}) + \epsilon_t
+	\label{eq: multivariate1}
+\end{equation}
+\begin{equation}
+	ln(V_t + 1) = a_0 + f_1(T_{t-l_T}) + f_2(P_{t-l_P}) + f_3(V_{t-1} + 1) + \epsilon_t
+	\label{eq: multivariate2}
+\end{equation}
+
+In Equation \ref{eq: multivariate2}, $V_{t-1}$ is the abundance one time step prior to abundance at time $t$. 
+
+\subsection{Model Selection and Evaluation}
+
+Models \ref{eq: univariateT} and \ref{eq: univariateP} were used to determine the best-fit lags of temperature and precipitation for each dataset at each temporal aggregation. At the weekly and biweekly scale, lags between zero and six weeks were considered. At the monthly scale, lags between zero and two months were considered. Best-fit lags for each temporal scale were chosen by finding the minimum Akaike's Information Criterion (AIC) value among models fit with each possible lag length. 
+
+\begin{equation}
+	AIC = -2ln[L(\hat{\theta_{p}}|y)] + 2p
+	\label{eq: AIC}
+\end{equation}
+
+AIC is a method for determining the likelihood of a given model while penalizing model complexity \citep{JOHNSON2004101}. 
+
+\textbf{I have just realized that this is an inappropriate use of AIC. These univariate models are not nested and are based on different datasets- different lagged meteorological data. I should actually use GCV- generalized cross validation}.
+
+Once best-fit lags of meteorological variables for each dataset and temporal scale were determined, these lags were incorporated into multivariate models \ref{eq: multivariate1} and \ref{eq: multivariate2}. The generalized cross-validation (GCV) score and deviance explained of these multivariate models were compared. 
+
+%GCV is a form of cross-validation procedure which quantifies the predictive capability of a model \citep{Chaves2019}. 
+

@@ -1,0 +1,49 @@
+This is BibTeX, Version 0.99d (TeX Live 2017/Debian)
+Capacity: max_strings=100000, hash_size=100000, hash_prime=85009
+The top-level auxiliary file: main.aux
+The style file: apalike.bst
+Database file #1: ../../../Dropbox/BibFiles/Thesis.bib.bib
+Warning--to sort, need author or key in WHOreport
+Warning--empty author in WHOreport
+You've used 18 entries,
+            1935 wiz_defined-function locations,
+            612 strings with 8431 characters,
+and the built_in function-call counts, 8454 in all, are:
+= -- 780
+> -- 523
+< -- 7
++ -- 190
+- -- 190
+* -- 833
+:= -- 1518
+add.period$ -- 54
+call.type$ -- 18
+change.case$ -- 186
+chr.to.int$ -- 18
+cite$ -- 21
+duplicate$ -- 246
+empty$ -- 486
+format.name$ -- 215
+if$ -- 1567
+int.to.chr$ -- 1
+int.to.str$ -- 0
+missing$ -- 17
+newline$ -- 93
+num.names$ -- 51
+pop$ -- 143
+preamble$ -- 1
+purify$ -- 185
+quote$ -- 0
+skip$ -- 188
+stack$ -- 0
+substring$ -- 501
+swap$ -- 17
+text.length$ -- 0
+text.prefix$ -- 0
+top$ -- 0
+type$ -- 108
+warning$ -- 2
+while$ -- 59
+width$ -- 0
+write$ -- 236
+(There were 2 warnings)

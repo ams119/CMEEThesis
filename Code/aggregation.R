@@ -11,7 +11,7 @@ library(tidyverse)
 #mapped = read.csv("~/Documents/Masters_Thesis/Data/Extracted_Data/Saint_Johns_clim_TS.csv", header = T, stringsAsFactors = F)
 
 # Sort the data
-mapped = arrange(mapped, date, Latitudes, Longitudes)
+mapped = dplyr::arrange(mapped, date, Latitudes, Longitudes)
 
 # Extract the location name, without special characters
 locale = as.character(na.omit(mapped$Locations)[1])
@@ -25,9 +25,9 @@ mapped$date = as.Date(mapped$date)
 allspecs = 
   mapped %>%
   dplyr::select("date", "Specimens.collected", "Latitudes", "Longitudes", "Year", "precip", "max_temp") %>%
-  group_by(Latitudes, Longitudes, date, Year, precip, max_temp) %>%
-  summarise(Specimens.collected = mean(Specimens.collected)) %>%
-  arrange(date, Latitudes, Longitudes)
+  dplyr::group_by(Latitudes, Longitudes, date, Year, precip, max_temp) %>%
+  dplyr::summarise(Specimens.collected = mean(Specimens.collected)) %>%
+  dplyr::arrange(date, Latitudes, Longitudes)
 
 # Find where at least some species had specimens collected
 allspecs$real = allspecs$Specimens.collected > 0 # where SC = NA, this will = NA so:
@@ -37,7 +37,7 @@ allspecs$real[which(is.na(allspecs$real))] = FALSE
 to_join = allspecs[,-c(4:7)]
 
 # Join this to mapped data frame
-mapped = left_join(mapped, to_join, by = c("date", "Latitudes", "Longitudes"))
+mapped = dplyr::left_join(mapped, to_join, by = c("date", "Latitudes", "Longitudes"))
 
 # First set all NA values to zero
 mapped$Specimens.collected[is.na(mapped$Specimens.collected)] = 0

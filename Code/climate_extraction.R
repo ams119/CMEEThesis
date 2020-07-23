@@ -128,10 +128,11 @@ for (y in 1:length(years))
     for (i in 1:nlayers(tmax))
     {
       print (paste(Sys.time(),"extracting-", "dateset:", f, ",year",year, ",Day:",i))
-      #print(c(i, f))
+      
+      # Extract values from tmax raster matching trap locations
       tmaxEx <- raster::extract(tmax[[i]], 
                                 as_Spatial(shp),
-                                method = 'bilinear', 
+                                method = 'bilinear', # interpolates from values of 4 closest cells
                                 fun = mean,
                                 na.rm = T)
       # create a dataframe out of the extracted data 

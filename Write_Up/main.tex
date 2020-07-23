@@ -1,0 +1,97 @@
+\documentclass[11pt, a4paper]{report}
+\usepackage[margin = 2cm]{geometry}
+\usepackage[utf8]{inputenc}
+\usepackage{graphicx} %import graphics
+% import pdf :\includegraphics[<options>]{filename.pdf}
+\graphicspath{../../Results}
+\usepackage{setspace}
+\onehalfspacing % sets spacing to 1.5
+\usepackage{titlesec}
+\usepackage{caption}
+\usepackage{subcaption}
+\usepackage{fixltx2e} % subscripts in text
+\usepackage{natbib} %check out citation styles: https://www.economics.utoronto.ca/osborne/latex/BIBTEX.HTM
+\setcounter{secnumdepth}{0} %removes numbering from all sections and levels below
+\setlength{\parindent}{4em}
+\usepackage{setspace}
+\doublespacing
+\usepackage[left]{lineno}
+\usepackage{array}
+\usepackage{ltxtable}
+\usepackage[table]{xcolor} 
+\arrayrulecolor{gray}
+\newcolumntype{L}[1]{>{\hsize=#1\hsize\raggedright\arraybackslash}X}
+\newcolumntype{C}[1]{>{\hsize=#1\hsize\centering\arraybackslash}X}
+\newcolumntype{R}[1]{>{\hsize=#1\hsize\raggedleft\arraybackslash}X}
+
+
+\titleformat{\section}{\normalfont\bfseries\LARGE}{}{0pt}{}
+%\titleformat{\section}
+%{\bfseries\Large} %formatting
+%{} %numbering
+%{0em} % distance between numbering and subtitle
+%{} % anything to appear between # and title
+
+\titleformat{\subsection}{\normalfont\bfseries\large}{}{0pt}{}
+
+\title{Put Title Here} 
+
+\author{Anne Marie Saunders\\
+Imperial College London\\
+MSc Computational Methods in Ecology and Evolution\\}
+
+\date{March 6th, 2020\\ 
+%Word Count: \input{sum.txt} words
+}
+
+
+
+
+\begin{document}
+%\setcounter{page}{1}
+%\pagenumbering{roman}
+
+\begin{titlepage}
+	\maketitle
+\end{titlepage}
+
+
+%\addcontentsline{toc}{section}{Declaration}
+\renewcommand{\abstractname}{Declaration}
+\begin{abstract}
+This is the declaration.
+\end{abstract}
+
+%\addcontentsline{toc}{section}{Abstract}
+\renewcommand{\abstractname}{Abstract}
+\begin{abstract}
+This is the abstract
+\end{abstract}
+
+\clearpage\tableofcontents %creates page without page number
+\thispagestyle{empty}
+
+\pagebreak %also try \newpage
+
+\begin{linenumbers}
+\input{introduction.tex}
+\pagebreak
+
+\input{methods.tex}
+\pagebreak
+
+\input{results.tex}
+\pagebreak
+
+\input{discussion.tex}
+\end{linenumbers}
+
+\bibliographystyle{apalike}
+\bibliography{../../../Dropbox/BibFiles/Thesis.bib}
+
+%TC:ignore
+%\pagebreak
+%\input{appendix.tex}
+%TC:endignore
+
+\end{document}

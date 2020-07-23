@@ -1,0 +1,13 @@
+\contentsline {section}{Introduction}{1}
+\contentsline {subsubsection}{Introduce}{1}
+\contentsline {subsubsection}{Gaps}{2}
+\contentsline {subsubsection}{Novelty of Research}{2}
+\contentsline {subsubsection}{Clear-cut Questions}{2}
+\contentsline {section}{Methods}{3}
+\contentsline {subsection}{Mosquito Abundance Data}{3}
+\contentsline {subsection}{Meteorological Data}{3}
+\contentsline {subsection}{Data Pre-Processing}{4}
+\contentsline {subsection}{Model Structure}{4}
+\contentsline {subsection}{Model Selection and Evaluation}{5}
+\contentsline {section}{Results}{6}
+\contentsline {section}{Discussion}{7}
