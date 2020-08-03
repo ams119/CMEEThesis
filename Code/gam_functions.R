@@ -179,6 +179,8 @@ fit_multivariate_GAMs = function(data, output, lags, lag_table, species, scale){
       output$Multi_DevianceExplained[i] = round(100*summary(multi_gam)$dev.expl, 1)
       # Record which predictive terms are significant according p-value with alpha = 0.05
       output$Multi_SignifVariables[i] = paste0(c('temp', 'precip')[which(summary(multi_gam)$s.pv <= 0.05)], collapse = ",")
+      # Perform k-fold cross validation to get CV score
+      output$Multi_CV[i] = k_fold_cross_validate(vars = vars, precip_k = precip_k, type = "nonAR")
     }
   
     # Fit autoregressive multivariate model where smooth terms can be penalized out
@@ -201,6 +203,78 @@ fit_multivariate_GAMs = function(data, output, lags, lag_table, species, scale){
   return(output)
 }
 
+
+# Create a function to perform k fold cross validation for AR and non AR models
+k_fold_cross_validate = function(vars, precip_k, type, nr_folds){
+  
+  ## Create the folds ##
+  # Calculate the size of each fold
+  fold_size = length(vars$abundance)%/%nr_folds
+  # And calculate how many remainder data points there will be that don't fit evenly in folds
+  fold_remainder = length(vars$abundance)%%nr_folds
+  
+  # Shuffle the indexes of the datasets
+  shuffle = sample(1:length(vars$abundance), size = length(vars$abundance), replace = FALSE)
+  
+  # Divide up the indexes into rows for each fold, evenly distributing remainders
+  indexes = matrix(c(shuffle, rep(NA, nr_folds-fold_remainder)), nrow = nr_folds, ncol = fold_size + 1)
+  
+  ## Do k-fold cross validation
+  # Create vector to store deviance explained in each test
+  deviance = rep(NA, nr_folds)
+  
+  for(i in 1:nr_folds){
+    
+    # Split vars into test and train by using the ith row of indexes to find the testing set of data
+    test = vars[na.omit(indexes[i,]),]
+    train = vars[-na.omit(indexes[i,]), ]
+    
+    if(type == "AR"){
+      # Train AR gam model using training set
+      gam = try(gam(abundance ~ s(temp, k = 10, bs = 'cr') + s(precip, k = precip_k, bs = 'cr') + s(log(AR1), k = 10, bs = 'cr'), 
+              select = F, data = train, family = Gamma(link = "log"),  method = "REML"), silent = T)
+    }
+    
+    if(type == "nonAR"){
+      # Train a non-AR gam model using the training set of data
+      gam = try(gam(abundance ~ s(temp, k = 10, bs = 'cr') + s(precip, k = precip_k, bs = 'cr'), 
+                    select = F, data = train, family = Gamma(link = "log"),  method = "REML"), silent = T)
+    }
+    
+    
+    pred = predict.gam(gam, test, se.fit = T)
+    
+    ## How to assess prediction error? ##
+    # R^2:
+    cor(pred$fit, test$abundance)
+    
+    # RMSE:
+    
+    
+    # Record deviance of this test/train set in the vector
+    deviance[i] = round(100*summary(gam)$dev.expl, 1)
+  }
+  
+  return(mean(deviance))
+  
+}
+
+# library(mgcv)
+# library(caret)
+# 
+# set.seed(0)
+# 
+# dat <- gamSim(1, n = 400, dist = "normal", scale = 2)
+# 
+# b <- train(y ~ x0 + x1 + x2 + x3, 
+#            data = dat,
+#            method = "gam",
+#            trControl = trainControl(method = "LOOCV", number = 1, repeats = 1),
+#            tuneGrid = data.frame(method = "GCV.Cp", select = FALSE)
+# )
+# 
+# print(b)
+# summary(b$finalModel)
 
 # plot best fit temp and precip plots to check
 # output = fit_univariate_GAM(data = data, scale = scale)
