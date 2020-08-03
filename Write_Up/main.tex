@@ -17,12 +17,27 @@
 \doublespacing
 \usepackage[left]{lineno}
 \usepackage{array}
+\usepackage{gensymb} % For degree symbol
 \usepackage{ltxtable}
 \usepackage[table]{xcolor} 
 \arrayrulecolor{gray}
 \newcolumntype{L}[1]{>{\hsize=#1\hsize\raggedright\arraybackslash}X}
 \newcolumntype{C}[1]{>{\hsize=#1\hsize\centering\arraybackslash}X}
 \newcolumntype{R}[1]{>{\hsize=#1\hsize\raggedleft\arraybackslash}X}
+
+% Change Figure to Fig.
+\renewcommand{\figurename}{Fig.}
+
+%Caption format
+\captionsetup{
+	width=\textwidth, % width of caption is 90% of current textwidth
+	labelfont={bf, sc},        % the label, e.g. figure 12, is bold
+	font=normalsize,          
+	%format=hang,         % no caption text under the label
+	justification=raggedright,
+	singlelinecheck=false,
+	labelsep=period
+}
 
 
 \titleformat{\section}{\normalfont\bfseries\LARGE}{}{0pt}{}
@@ -40,7 +55,7 @@
 Imperial College London\\
 MSc Computational Methods in Ecology and Evolution\\}
 
-\date{March 6th, 2020\\ 
+\date{August 27th, 2020\\ 
 %Word Count: \input{sum.txt} words
 }
 

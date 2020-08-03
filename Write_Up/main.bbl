@@ -3,7 +3,11 @@
 \bibitem[WHO, 2017]{WHOreport}
  (2017).
 \newblock {Global vector control response 2017–2030}.
-\newblock Technical report, World Health Organizatio, Geneva.
+\newblock Technical report, World Health Organization, Geneva.
+
+\bibitem[Dis, 2020]{DiseaseSurveillance}
+ (2020).
+\newblock {Mosquito-Borne Disease Surveillance}.
 
 \bibitem[Beck-Johnson et~al., 2013]{Beck-Johnson2013}
 Beck-Johnson, L.~M., Nelson, W.~A., Paaijmans, K.~P., Read, A.~F., Thomas,
@@ -11,6 +15,12 @@ Beck-Johnson, L.~M., Nelson, W.~A., Paaijmans, K.~P., Read, A.~F., Thomas,
 \newblock {The effect of temperature on Anopheles mosquito population dynamics
   and the potential for malaria transmission}.
 \newblock {\em PLoS ONE}, 8(11).
+
+\bibitem[Dominici et~al., 2002]{Dominici2002}
+Dominici, F., McDermott, A., Zeger, S.~L., and Samet, J.~M. (2002).
+\newblock {On the use of generalized additive models in time-series studies of
+  air pollution and health}.
+\newblock {\em American Journal of Epidemiology}, 156(3):193--203.
 
 \bibitem[Gubler, 1998]{Gubler1998}
 Gubler, D.~J. (1998).
@@ -57,6 +67,11 @@ Li, Y., Su, X., Zhou, G., Zhang, H., Puthiyakunnon, S., Shuai, S., Cai, S., Gu,
   mosquitoes}.
 \newblock {\em Parasites {\&} Vectors}, 9(1):446.
 
+\bibitem[Paaijmans et~al., 2007]{Paaijmans2007}
+Paaijmans, K.~P., Wandago, M.~O., Githeko, A.~K., and Takken, W. (2007).
+\newblock {Unexpected High Losses of Anopheles gambiae Larvae Due to Rainfall}.
+\newblock {\em PLoS ONE}, 2(11):e1146.
+
 \bibitem[Parham et~al., 2015]{Parham2015}
 Parham, P.~E., Waldock, J., Christophides, G.~K., Hemming, D., Agusto, F.,
   Evans, K.~J., Fefferman, N., Gaff, H., Gumel, A., Ladeau, S., Lenhart, S.,
@@ -73,6 +88,12 @@ Poh, K.~C., Chaves, L.~F., Reyna-Nava, M., Roberts, C.~M., Fredregill, C.,
 \newblock {The influence of weather and weather variability on mosquito
   abundance and infection with West Nile virus in Harris County, Texas, USA}.
 \newblock {\em Science of the Total Environment}, 675:260--272.
+
+\bibitem[Ramsay et~al., 2003]{Ramsay2003}
+Ramsay, T.~O., Burnett, R.~T., and Krewski, D. (2003).
+\newblock {The Effect of Concurvity in Generalized Additive Models Linking
+  Mortality to Ambient Particulate Matter}.
+\newblock {\em Epidemiology}, 14(1):18--23.
 
 \bibitem[Roiz et~al., 2014]{Roiz2014}
 Roiz, D., Ruiz, S., Soriguer, R., and Figuerola, J. (2014).

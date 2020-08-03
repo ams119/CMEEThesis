@@ -3,11 +3,92 @@
 Figures/Charts: 
 
 1. time series of abundance, temp, and precipitation
+\begin{figure}[p]
 
-2. partial dependency spot of multivariate GAM of a sample species 
+		\begin{minipage}[]{.51\textwidth}
+			\includegraphics[height = 3in, width=3.2in]{../Images/temp_ts.pdf}
+			
+			\hspace{4.3cm}\textbf{A.}\\
+		\end{minipage}
+		\begin{minipage}[]{.47\textwidth}
+			\includegraphics[height = 3in, width=3.2in]{../Images/precip_ts.pdf}
+			
+			\hspace{4.4cm}\textbf{B.}\\
+		\end{minipage}
+	
+	
+		\begin{minipage}[]{.5\textwidth}
+			\includegraphics[height = 3in, width=3.2in]{../Images/aedes_abun_ts.pdf}
+			
+			\hspace{4.3cm}\textbf{C.}\\
+		\end{minipage}
+		\begin{minipage}[]{.5\textwidth}
+			\includegraphics[height = 3in, 			width=3.2in]{../Images/culex_abun_ts.pdf}
+			
+			\hspace{4.5cm}\textbf{D.}\\
+		\end{minipage}
+		
+	\label{fig: ts_plots}
+	\caption{Sample time series data of temperature, precipitation, and two vector species from Manatee County, Florida, 2012-2012. Data shown here are aggregated at the weekly scale. In \textbf{A.}, average daily maximum temperature per week shows regular seasonality with a range of about 15 \degree C. In \textbf{B.}, precipitation is very frequent during during a summer rainy season. This is common in all locations.\textbf{C.} and \textbf{D.} show patterns of abundance for two vector species, \textit{Aedes albopictus} and \textit{Culex nigripalpus}. Abundance datasets were non-continuous over winter periods where abundances are assumed to be low so traps are not employed.}
+
+\end{figure}
+
+2. partial dependency plot of multivariate GAM of a sample species 
+
+\begin{figure}
+	\begin{minipage}[]{0.5\textwidth}
+		\includegraphics[height = 3.5in, width=3.5in]{../Images/multi_plotAQ.png}
+		
+		\hspace{4.5cm}\textbf{A.}\\
+	\end{minipage}
+	\begin{minipage}[]{0.5\textwidth}
+	\includegraphics[height = 3.5in, width=3.5in]{../Images/multi_plotAA.png}
+	
+	\hspace{4.5cm}\textbf{B.}\\
+	\end{minipage}
+
+	\label{fig: 3Dmulti}
+	\caption{This a sample of datasets fit with  multivariate models of temperature and precipitation at the best fit lags (Equation \ref{eq: multivariate1}). In \textbf{A.}, average \textit{Anopheles quadrimaculatus} count per trap at a weekly resolution was best fit according to univariate model comparison (Equations \ref{eq: univariateT} and \ref{eq: univariateP}) with temperature at a lag of six weeks and precipitation with a lag of four weeks. Both temperature and precipitation were significant. In \textbf{B.}, a Aedes albopictus abundance at a monthly resolution was best fit with temperature at a lag of one month  and precipitation in the contemporary month. In this dataset, only precipitation was significant.}
+
+\end{figure}
+
+
+\begin{figure}
+	\centering
+	\includegraphics[height = 3.5in, width=7in]{../Images/multi_plot2.png}
+	\caption{This is my second option for demonstrating multivariate model fits (versus Fig. \ref{fig: 3Dmulti})}
+\end{figure}
 
 3. Table comparing deviance explained of different temporal resolutions
 
-4. Table showing significance of temperature and precipitation
+\begin{table}[h]
+\begin{center}
+\begin{tabularx}{.8\textwidth}{| L{0.5}  C{0.5}  C{.5}  C{0.5} | }
+	\hline
+	\multicolumn{4}{|l|}{Median Deviance Explained at Various Temporal Resolutions}\\
+	\hline
+	County & Weekly & Biweekly & Monthly \\
+	\hline
+	Lee & 31.9\% & 42.2\% & *52.2\% \\
+	Manatee & 24.8\% & 21.6\% & *34.1\% \\
+	Orange & 17.0\% & 15.8\% & *21.3\% \\
+	Saint Johns & *8.5\% & 7.4\% & 8.4\% \\
+	Walton & 23.3\% & 40.0\% & *49.9\% \\
+	\hline
+	All Counties & 20.0\% & 22.2\% & *31.9\% \\
+	\hline
+	
+\end{tabularx}
+\label{tab: bestres}
+\caption{This table makes me hate Saint Johns}
 
-5. Table showing effect of autoregressive term
+\end{center}
+\end{table}
+
+
+5. Plot showing effect of autoregressive term. Also include in words what the AIC difference was between AR and non-AR model
+
+\begin{figure}
+	\centering
+	\includegraphics[width= 5in, height = 3in]{../Images/devcomp.pdf}
+\end{figure}

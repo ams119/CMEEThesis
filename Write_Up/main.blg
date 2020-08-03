@@ -4,46 +4,47 @@ The top-level auxiliary file: main.aux
 The style file: apalike.bst
 Database file #1: ../../../Dropbox/BibFiles/Thesis.bib.bib
 Warning--to sort, need author or key in WHOreport
+Warning--to sort, need author or key in DiseaseSurveillance
 Warning--empty author in WHOreport
-You've used 18 entries,
+You've used 22 entries,
             1935 wiz_defined-function locations,
-            612 strings with 8431 characters,
-and the built_in function-call counts, 8454 in all, are:
-= -- 780
-> -- 523
+            638 strings with 9167 characters,
+and the built_in function-call counts, 9945 in all, are:
+= -- 924
+> -- 587
 < -- 7
-+ -- 190
-- -- 190
-* -- 833
-:= -- 1518
-add.period$ -- 54
-call.type$ -- 18
-change.case$ -- 186
-chr.to.int$ -- 18
-cite$ -- 21
-duplicate$ -- 246
-empty$ -- 486
-format.name$ -- 215
-if$ -- 1567
++ -- 212
+- -- 212
+* -- 974
+:= -- 1777
+add.period$ -- 65
+call.type$ -- 22
+change.case$ -- 217
+chr.to.int$ -- 22
+cite$ -- 27
+duplicate$ -- 298
+empty$ -- 590
+format.name$ -- 240
+if$ -- 1850
 int.to.chr$ -- 1
 int.to.str$ -- 0
-missing$ -- 17
-newline$ -- 93
-num.names$ -- 51
-pop$ -- 143
+missing$ -- 20
+newline$ -- 112
+num.names$ -- 60
+pop$ -- 168
 preamble$ -- 1
-purify$ -- 185
+purify$ -- 216
 quote$ -- 0
-skip$ -- 188
+skip$ -- 225
 stack$ -- 0
-substring$ -- 501
-swap$ -- 17
+substring$ -- 609
+swap$ -- 20
 text.length$ -- 0
 text.prefix$ -- 0
 top$ -- 0
-type$ -- 108
-warning$ -- 2
-while$ -- 59
+type$ -- 132
+warning$ -- 3
+while$ -- 70
 width$ -- 0
-write$ -- 236
-(There were 2 warnings)
+write$ -- 284
+(There were 3 warnings)

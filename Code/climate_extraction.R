@@ -260,18 +260,7 @@ vector_abun_clim_time_series <-
   dplyr::select(Species, Latitudes, Longitudes, date, Year, Locations, `Specimens collected`)  %>%
   dplyr::right_join(clim_df, by = c("Latitudes" = "Latitudes", "Longitudes" = "Longitudes", "date" = "date"))
 
-### Visualize
-
-# Define which location this data is for
-locale = na.omit(vector_abun_clim_time_series$Locations)[1]
+locale = as.character(na.omit(vector_abun_clim_time_series$Locations)[1])
 locale = sub(" \\(.*", "", locale) # remove special characters
 locale = sub("\\s", "_", locale) # Convert any remaining spaces to underscore
-  
-ggplot(vector_abun_clim_time_series, aes(x=date, y=`Specimens collected`)) +
-  geom_line() + ggtitle(paste(locale, ", Abundance", sep = ""))
 
-ggplot(vector_abun_clim_time_series, aes(x=date, y=max_temp)) +
-  geom_line() + ggtitle(paste(locale, ", Temp", sep = ""))
-
-ggplot(vector_abun_clim_time_series, aes(x=date, y=precip)) +
-  geom_line() + ggtitle(paste(locale, ", Precip", sep = ""))

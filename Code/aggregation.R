@@ -21,29 +21,34 @@ locale = sub("\\s", "_", locale) # Convert any remaining spaces to underscore
 # Convert date from character to date format
 mapped$date = as.Date(mapped$date)
 
+# NA in Year column indicates this is interpolated meteorological data
+# Use Year column to indicate whether this row is 'real' or interpolated
+mapped$real = !is.na(mapped$Year)
+
 # Create a new data frame which aggregates all species to a single count per trap
 allspecs = 
   mapped %>%
-  dplyr::select("date", "Specimens.collected", "Latitudes", "Longitudes", "Year", "precip", "max_temp") %>%
+  dplyr::select("date", "Specimens.collected", "Latitudes", "Longitudes", "Year", "precip", "max_temp", "real") %>%
   dplyr::group_by(Latitudes, Longitudes, date, Year, precip, max_temp) %>%
-  dplyr::summarise(Specimens.collected = mean(Specimens.collected)) %>%
+  dplyr::summarise(Specimens.collected = sum(Specimens.collected, na.rm = T), real = mean(real, na.rm = T)) %>%
   dplyr::arrange(date, Latitudes, Longitudes)
 
-# Find where at least some species had specimens collected
-allspecs$real = allspecs$Specimens.collected > 0 # where SC = NA, this will = NA so:
-allspecs$real[which(is.na(allspecs$real))] = FALSE 
+# # Find where at least some species had specimens collected and set these values to True
+# allspecs$real = allspecs$Specimens.collected > 0 # where SC = NA, this will = NA so:
+# allspecs$real[which(is.na(allspecs$real))] = FALSE 
+# 
+# # Keep only real and columns needed for join
+# to_join = allspecs[,-c(4:7)]
+# 
+# # Join this to mapped data frame
+#allspecs2 = dplyr::left_join(allspecs, mapped, by = c("date", "Latitudes", "Longitudes"))
+# 
+# # First set all NA values to zero
+# mapped$Specimens.collected[is.na(mapped$Specimens.collected)] = 0
+# 
+# # But on days where no samples were taken, set all zeroes to NA: likely to have zero species collected and NA for year 
+# mapped$Specimens.collected = replace(mapped$Specimens.collected, mapped$real == FALSE & is.na(mapped$Year), NA)
 
-# Keep only real and columns needed for join
-to_join = allspecs[,-c(4:7)]
-
-# Join this to mapped data frame
-mapped = dplyr::left_join(mapped, to_join, by = c("date", "Latitudes", "Longitudes"))
-
-# First set all NA values to zero
-mapped$Specimens.collected[is.na(mapped$Specimens.collected)] = 0
-
-# But on days where no samples were taken, set all zeroes to NA: likely to have zero species collected and NA for year 
-mapped$Specimens.collected = replace(mapped$Specimens.collected, mapped$real == FALSE & is.na(mapped$Year), NA)
 
 # Create a data frame with each species as column instead of in rows. 
 ### Add species specific columns to trap counts ###
@@ -56,6 +61,14 @@ mapped$Species = gsub("\\W", ".", mapped$Species)
 
 # Create an alphebetical list of unique species names
 species = sort(unique(mapped$Species[which(!is.na(mapped$Species))]))
+
+## Remove species that are actually genus or family groups ##
+# First find indexes of these groups #
+non_species = c("genus", "Culicidae", "Culicinae")
+non_species = grep(paste(non_species, collapse = "|"), species)
+
+# Now only keep actual species in species list
+if(length(non_species) > 0){species = species[-non_species]}
 
 # Create a vector to store species indices to remove from species list
 species2rm = vector()
@@ -71,11 +84,11 @@ for(j in 1:length(species)){
     spec_counts %>% 
     group_by(Latitudes, Longitudes, date) %>% 
     dplyr::select("date", "Latitudes", "Longitudes", "Specimens.collected") %>% 
-    summarise(test = mean(Specimens.collected))
+    summarise(test = mean(Specimens.collected, na.rm = T))
   
   # As long as there is at least 1 non-NA, non-zero recording, assign species name to time series and join
   if(sum(spec_counts$test, na.rm = T) != 0){
-  
+    
     # Change column names so that count column identifies the species
     names(spec_counts)[names(spec_counts) == 'test'] = species[j]
   
@@ -86,7 +99,7 @@ for(j in 1:length(species)){
   
 }
 
-# Remove zero count species from species list
+# Remove zero count species
 if(length(species2rm) > 0){
   species = species[-species2rm]}
 
@@ -120,16 +133,12 @@ if(length(amd_morphs > 0)){
   allspecs$A.messeae.daciae.morphological.group = rowMeans(allspecs[,amd_morphs], na.rm = T)  
 }
 
-
-
-
 # If any morphs were present, remove the species that have been averaged to a morphological group
 if(length(amd_morphs) + length(aat_morphs) + length(cp_morphs) > 0 ){
   allspecs = allspecs[, -c(amd_morphs, aat_morphs, cp_morphs)]
-  # Also remove these species and earlier species2remove from the species list: this is offset by 8 from the columns
+  # Also remove these species from the species list: this is offset by 8 from the columns
   species = species[-(c(amd_morphs, aat_morphs, cp_morphs) - 8)] 
 }
-
 
 
 ###################
@@ -138,9 +147,6 @@ if(length(amd_morphs) + length(aat_morphs) + length(cp_morphs) > 0 ){
 
 # Create Year for every row
 allspecs$Year = as.numeric(format(as.Date(allspecs$date, format="%Y-%U-%u"),"%Y"))
-
-# Convert trap instances to numbers for easy summation
-allspecs$real = as.numeric(allspecs$real)
 
 # Summarize the non species specific columns
 daily = 

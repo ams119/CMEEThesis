@@ -11,30 +11,40 @@ Surveillance of mosquito populations is a successful and cost-effective method t
 %\citep{Yang2009}. 
 Mosquito abundances are affected by many factors, including land-use, elevation, and vegetation cover, but meteorological variables, such as temperature and precipitation, are particularly predictive of population dynamics \citep{Yoo2016} 
 
-Precipitation could have mixed effects on mosquito abundance dynamics. Precipitation raises near-surface humidity, which increases adult mosquito activity and host-seeking behaviour \citep{Shaman2007}. This increased reproductive activity would lead to lagged effects on mosquito abundance, but would also cause immediate increases in mosquito trap counts. Many trap types are designed to attract host-seeking or gravid females and are consequently also attractive to mate-seeking male mosquitoes \citep{Li2016}. Rainfall also affects many of the aquatic habitats important for early life stages \citep{Shaman2007}. Container-breeding species that use man-made containers for oviposition may experience increased breeding sites when precipitation creates habitats in otherwise dry containers \citep{Keith2005}. Precipitation can also expand suitable habitats for mosquitoes breeding in natural water bodies \citep{Koenraadt2008}. While some rainfall seems likely to have positive effects on mosquito abundance, the effect of heavy rainfall is less clear. Heavy rainfall can flush immature mosquito from aquatic habitats, but the extent of this effect varies among species \citep{Koenraadt2008}. For example, specialist container-breeding \textit{Aedes aegypti} has been found to have a stronger protective diving response to rainfall compared to generalist habitat breeding \textit{Culex pipiens} \citep{Koenraadt2008}. 
-	
-Temperature effects on mosquitoes is well studied. 
+Precipitation could have mixed effects on mosquito abundance dynamics. Precipitation raises near-surface humidity, which increases adult mosquito activity and host-seeking behaviour \citep{Shaman2007}. This increased reproductive activity would lead to lagged effects on mosquito abundance, but would also cause immediate increases in mosquito trap counts. Many trap types are designed to attract host-seeking or gravid females and are consequently also attractive to mate-seeking male mosquitoes \citep{Li2016}. Rainfall also affects many of the aquatic habitats important for early life stages \citep{Shaman2007}. Container-breeding species that use man-made containers for oviposition may experience increased breeding sites when precipitation creates habitats in otherwise dry containers \citep{Keith2005}. Precipitation can also expand suitable habitats for mosquitoes breeding in natural water bodies \citep{Koenraadt2008}. While some rainfall seems likely to have positive effects on mosquito abundance, the effect of heavy rainfall is less clear. Heavy rainfall can flush immature mosquitoes from aquatic habitats, but the extent of this effect varies among species \citep{Koenraadt2008, Paaijmans2007}. For example, specialist container-breeding \textit{Aedes aegypti} has been found to have a stronger protective diving response to rainfall compared to generalist habitat breeding \textit{Culex pipiens} \citep{Koenraadt2008}. %\textbf{Add sentence about changing (increasing) precipitation with climate change}.
 	
 Cover:
 - temperature effects
 - lags
 - GAMS
-non-linear relationship between climate and mosquito abundance \citep{Roiz2014}
+- non-linear relationship between climate and mosquito abundance \citep{Roiz2014}
 
 \subsubsection{Gaps}
 - many species/locations
 - use of autoregressive term or not
-Previous research has found t-1 autoregressive terms to be significantly associated with mosquito abundance \cite{Poh2019}(1 month), \citep{Xu2017} (1 month), 
+%Previous research has found t-1 autoregressive terms to be significantly associated with mosquito abundance \cite{Poh2019}(1 month), \citep{Xu2017} (1 month), 
 
-- different temporal resolutions
+- different temporal resolutions (so far restricted)
 - lag determination across species/location
-- what kind of precipitation measure to use
+
 
 \subsubsection{Novelty of Research}
 
-Florida in particular
+Justify choice of Florida
+
+\begin{figure}[h]
+	\centering
+	\includegraphics[width= 6in, height = 4in]{../Images/arboviralcases.pdf}
+	\caption{Number of locally transmitted cases of mosquito-borne disease in humans in Florida between 2014 and 2019, as reported by the Florida Department of Health in  \citeyear{DiseaseSurveillance}. Zika was also locally transmitted in 2016 (300 confirmed cases) and 2017 (2 confirmed cases) but are not shown due to the limited scale of the y axis. Imported cases, where infection was contracted elsewhere but reported in Florida, are not included as these were not contracted from Florida mosquitoes. %Imported cases are a threat to public health, however, as they can continue the disease transmission cycle and are a major concern for dengue and Zika.
+	}
+	\label{fig:FDcases}
+\end{figure}
 
 More sustainable systems are needed for vector-borne disease surveillance \citep{Vazquez-Prokopec2010}
+
+Many species, many locations
+
+assessing practical application by comparing predictive power of autoregressive vs non autoregressive model
 
 \subsubsection{Clear-cut Questions}
 \begin{enumerate}
@@ -42,11 +52,11 @@ More sustainable systems are needed for vector-borne disease surveillance \citep
 	
 	%\item Which temporal lags of temperature and precipitation are most appropriate for the prediction of mosquito abundances?
 
-	\item \textbf{Which level of temporal resolution of temperature and precipitation is best able to predict mosquito abundances?}
+	\item \textbf{Which level of temporal resolution of temperature and precipitation data is best able to predict mosquito abundances?}
 	
-	\item \textbf{What is the relative importance of temperature and precipitation in predicting mosquito abundances across species and locations?}
+	\item \textbf{To what extent can species-specific abundance models be predictive at multiple locations?}
 	
-	%\item \textbf{What effect does incorporation of an auto-regressive term have on the predictive ability of temperature and precipitation driven models of mosquito abundance?}
+	\item \textbf{How does incorporation of an auto-regressive term affect the predictive ability of temperature and precipitation driven models of mosquito abundance?}
 \end{enumerate}
 
 %At the end of the 20th century, the world experienced a rising global threat of vector-borne diseases (VBD) \citep{Gubler}. The incidence of many VBDs, such as malaria, yellow fever, and dengue, that had been locally eradicated in the early-to-mid 1900s, resurged under complacent public health policies and a lack of research funding \citep{Gubler1998} Of the many diseases threatening human health, mosquito borne diseases such as malaria, yellow fever, dengue, West Nile Virus, and Rift Valley fever take millions of lives every year \citep{Yang2009}. Mosquito abundances are affected by many factors, including land-use, elevation, and vegetation cover, but meteorological variables such as temperature and precipitation in particular can be predictors of population dynamics \citep{Yoo2016}. Rainfall produces basins of water for breeding while temperature mediates life-history processes at all life stages \citep{Yang2009, Beck-Johnson2013}. 

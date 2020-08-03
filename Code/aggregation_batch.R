@@ -10,6 +10,9 @@
 ## Begin loop to aggregate files
 files = list.files(path = "../Data/Extracted_Data/", pattern = "_TS.csv")
 
+# Remove Collier data- only records 1 family group
+files = files[-grep(pattern = "Collier", files)]
+
 for(i in 1:length(files)){
   cat(paste("Now aggregating data for", sub(".csv", "", files[i]), "\n"))
   mapped = read.csv(paste0("../Data/Extracted_Data/", files[i]), header = T, stringsAsFactors = F)
@@ -19,8 +22,7 @@ for(i in 1:length(files)){
   write.csv(monthly, paste0("../Data/Extracted_Data/Aggregated/", locale, "_monthly.csv"), row.names = F)
   
   ### Plot ###
-  #setwd("../Results/AggByLocation/")
-  
+
   # Create a directory to store plots
   dir.create(paste0("../Results/AggByLocation/",locale))
   directory = paste0("../Results/AggByLocation/", locale)

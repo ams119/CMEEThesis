@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.18 (TeX Live 2017/Debian) (preloaded format=pdflatex 2020.5.9)  23 JUL 2020 15:04
+This is pdfTeX, Version 3.14159265-2.6-1.40.18 (TeX Live 2017/Debian) (preloaded format=pdflatex 2020.5.9)  3 AUG 2020 15:24
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -471,6 +471,9 @@ Package: array 2016/10/06 v2.4d Tabular extension package (FMi)
 \extratabsurround=\skip47
 \backup@length=\skip48
 )
+(/usr/share/texlive/texmf-dist/tex/latex/was/gensymb.sty
+Package: gensymb 2003/07/02 v1.0 (WaS)
+)
 (/usr/share/texlive/texmf-dist/tex/latex/carlisle/ltxtable.sty
 Package: ltxtable 1995/12/11 v0.2 longtable/tabularx merge (DPC)
 
@@ -528,18 +531,18 @@ Package xcolor Info: Model `wave' substituted by `hsb' on input line 1371.
 ) (./main.aux)
 \openout1 = `main.aux'.
 
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 50.
-LaTeX Font Info:    ... okay on input line 50.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 50.
-LaTeX Font Info:    ... okay on input line 50.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 50.
-LaTeX Font Info:    ... okay on input line 50.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 50.
-LaTeX Font Info:    ... okay on input line 50.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 50.
-LaTeX Font Info:    ... okay on input line 50.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 50.
-LaTeX Font Info:    ... okay on input line 50.
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 65.
+LaTeX Font Info:    ... okay on input line 65.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 65.
+LaTeX Font Info:    ... okay on input line 65.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 65.
+LaTeX Font Info:    ... okay on input line 65.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 65.
+LaTeX Font Info:    ... okay on input line 65.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 65.
+LaTeX Font Info:    ... okay on input line 65.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 65.
+LaTeX Font Info:    ... okay on input line 65.
 
 *geometry* driver: auto-detecting
 *geometry* detected driver: pdftex
@@ -647,13 +650,25 @@ Package caption Info: longtable package is loaded.
 Package: ltcaption 2013/06/09 v1.4-94 longtable captions (AR)
 )
 Package caption Info: End \AtBeginDocument code.
+LaTeX Info: Redefining \celsius on input line 65.
+Package gensymb Info: Faking symbols for \degree and \celsius on input line 65.
+
+
+
+Package gensymb Warning: Not defining \perthousand.
+
+LaTeX Info: Redefining \ohm on input line 65.
+Package gensymb Info: Using \Omega for \ohm on input line 65.
+
+Package gensymb Warning: Not defining \micro.
+
 LaTeX Font Info:    External font `cmex10' loaded for size
-(Font)              <12> on input line 55.
+(Font)              <12> on input line 70.
 LaTeX Font Info:    External font `cmex10' loaded for size
-(Font)              <8> on input line 55.
+(Font)              <8> on input line 70.
 LaTeX Font Info:    External font `cmex10' loaded for size
-(Font)              <6> on input line 55.
- [1
+(Font)              <6> on input line 70.
+[1
 
 {/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map}] [1] [1] (./main.toc
 LaTeX Font Info:    External font `cmex10' loaded for size
@@ -662,39 +677,172 @@ LaTeX Font Info:    External font `cmex10' loaded for size
 \tf@toc=\write3
 \openout3 = `main.toc'.
 
- [1
 
+[1
+
+
+] (./introduction.tex [1]
+<../Images/arboviralcases.pdf, id=24, 433.62pt x 289.08pt>
+File: ../Images/arboviralcases.pdf Graphic file (type pdf)
+<use ../Images/arboviralcases.pdf>
+Package pdftex.def Info: ../Images/arboviralcases.pdf  used on input line 37.
+(pdftex.def)             Requested size: 433.63878pt x 289.09251pt.
+
+
+LaTeX Font Warning: Font shape `OT1/cmr/bx/sc' undefined
+(Font)              using `OT1/cmr/bx/n' instead on input line 39.
+
+[2 <../Images/arboviralcases.pdf>]) [3] (./methods.tex
+Overfull \hbox (22.19313pt too wide) in paragraph at lines 22--22
+ [] 
+ []
+
+[4] [5] [6]) [7] (./results.tex
+<../Images/temp_ts.pdf, id=60, 325.215pt x 289.08pt>
+File: ../Images/temp_ts.pdf Graphic file (type pdf)
+<use ../Images/temp_ts.pdf>
+Package pdftex.def Info: ../Images/temp_ts.pdf  used on input line 9.
+(pdftex.def)             Requested size: 231.27147pt x 216.80946pt.
+
+Underfull \hbox (badness 10000) in paragraph at lines 11--12
+
+ []
+
+<../Images/precip_ts.pdf, id=61, 325.215pt x 289.08pt>
+File: ../Images/precip_ts.pdf Graphic file (type pdf)
+<use ../Images/precip_ts.pdf>
+Package pdftex.def Info: ../Images/precip_ts.pdf  used on input line 14.
+(pdftex.def)             Requested size: 231.27147pt x 216.80946pt.
+
+Overfull \hbox (3.93336pt too wide) in paragraph at lines 14--15
+[][] 
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 16--17
+
+ []
+
+<../Images/aedes_abun_ts.pdf, id=62, 325.215pt x 289.08pt>
+File: ../Images/aedes_abun_ts.pdf Graphic file (type pdf)
+<use ../Images/aedes_abun_ts.pdf>
+Package pdftex.def Info: ../Images/aedes_abun_ts.pdf  used on input line 21.
+(pdftex.def)             Requested size: 231.27147pt x 216.80946pt.
+
+Underfull \hbox (badness 10000) in paragraph at lines 23--24
+
+ []
+
+<../Images/culex_abun_ts.pdf, id=63, 325.215pt x 289.08pt>
+File: ../Images/culex_abun_ts.pdf Graphic file (type pdf)
+<use ../Images/culex_abun_ts.pdf>
+Package pdftex.def Info: ../Images/culex_abun_ts.pdf  used on input line 26.
+(pdftex.def)             Requested size: 231.27147pt x 216.80946pt.
+
+Underfull \hbox (badness 10000) in paragraph at lines 28--29
+
+ []
+
+
+Overfull \hbox (2.43333pt too wide) in paragraph at lines 20--30
+[]$[]$ $[]$ 
+ []
+
+<../Images/multi_plotAQ.png, id=64, 433.62pt x 433.62pt>
+File: ../Images/multi_plotAQ.png Graphic file (type png)
+<use ../Images/multi_plotAQ.png>
+Package pdftex.def Info: ../Images/multi_plotAQ.png  used on input line 40.
+(pdftex.def)             Requested size: 252.94879pt x 252.94879pt.
+
+Overfull \hbox (11.10036pt too wide) in paragraph at lines 40--41
+[][] 
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 42--43
+
+ []
+
+<../Images/multi_plotAA.png, id=65, 433.62pt x 433.62pt>
+File: ../Images/multi_plotAA.png Graphic file (type png)
+<use ../Images/multi_plotAA.png>
+Package pdftex.def Info: ../Images/multi_plotAA.png  used on input line 45.
+(pdftex.def)             Requested size: 252.94879pt x 252.94879pt.
+
+Overfull \hbox (11.10036pt too wide) in paragraph at lines 45--46
+[][] 
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 47--48
+
+ []
+
+
+Overfull \hbox (2.43333pt too wide) in paragraph at lines 39--49
+[]$[]$ $[]$ 
+ []
+
+<../Images/multi_plot2.png, id=66, 867.24pt x 433.62pt>
+File: ../Images/multi_plot2.png Graphic file (type png)
+<use ../Images/multi_plot2.png>
+Package pdftex.def Info: ../Images/multi_plot2.png  used on input line 58.
+(pdftex.def)             Requested size: 505.89758pt x 252.94879pt.
+
+Overfull \hbox (22.20071pt too wide) in paragraph at lines 58--59
+ [][] 
+ []
+
+
+Package caption Warning: \label without proper reference on input line 50.
+See the caption package documentation for explanation.
+
+
+LaTeX Warning: Reference `fig: 3Dmulti' on page 8 undefined on input line 59.
+
+<../Images/devcomp.pdf, id=67, 361.35pt x 216.81pt>
+File: ../Images/devcomp.pdf Graphic file (type pdf)
+<use ../Images/devcomp.pdf>
+Package pdftex.def Info: ../Images/devcomp.pdf  used on input line 93.
+(pdftex.def)             Requested size: 361.35463pt x 216.81938pt.
+) [8] [9 <../Images/temp_ts.pdf> <../Images/precip_ts.pdf> <../Images/aedes_abu
+n_ts.pdf> <../Images/culex_abun_ts.pdf>] [10 <../Images/multi_plotAQ.png (PNG c
+opy)> <../Images/multi_plotAA.png (PNG copy)> <../Images/multi_plot2.png (PNG c
+opy)>] (./discussion.tex) (./main.bbl [11 <../Images/devcomp.pdf>] [12
 
 ]
-(./introduction.tex [1]) [2] (./methods.tex [3] [4]) [5] (./results.tex)
-[6] (./discussion.tex) (./main.bbl [7] [8
+[13]) [14] (./main.aux)
 
-]) [9] (./main.aux) ) 
+LaTeX Font Warning: Some font shapes were not available, defaults substituted.
+
+
+LaTeX Warning: There were undefined references.
+
+ ) 
 Here is how much of TeX's memory you used:
- 5031 strings out of 494923
- 71972 string characters out of 6180743
- 145363 words of memory out of 5000000
- 8258 multiletter control sequences out of 15000+600000
+ 5146 strings out of 494923
+ 74328 string characters out of 6180743
+ 151812 words of memory out of 5000000
+ 8358 multiletter control sequences out of 15000+600000
  9765 words of font info for 34 fonts, out of 8000000 for 9000
  14 hyphenation exceptions out of 8191
- 41i,9n,39p,1474b,334s stack positions out of 5000i,500n,10000p,200000b,80000s
-</usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts
-/cm/cmbx10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cm
-bx12.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.p
-fb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi6.pfb></us
-r/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi8.pfb></usr/share
-/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/share/texliv
-e/texmf-dist/fonts/type1/public/amsfonts/cm/cmr12.pfb></usr/share/texlive/texmf
--dist/fonts/type1/public/amsfonts/cm/cmr17.pfb></usr/share/texlive/texmf-dist/f
-onts/type1/public/amsfonts/cm/cmr8.pfb></usr/share/texlive/texmf-dist/fonts/typ
-e1/public/amsfonts/cm/cmss8.pfb></usr/share/texlive/texmf-dist/fonts/type1/publ
-ic/amsfonts/cm/cmsy10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/ams
-fonts/cm/cmsy8.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/c
-m/cmti10.pfb>
-Output written on main.pdf (13 pages, 173826 bytes).
+ 41i,11n,43p,1577b,438s stack positions out of 5000i,500n,10000p,200000b,80000s
+</usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx10.pfb></us
+r/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx12.pfb></usr/shar
+e/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb></usr/share/texl
+ive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi6.pfb></usr/share/texlive/tex
+mf-dist/fonts/type1/public/amsfonts/cm/cmmi8.pfb></usr/share/texlive/texmf-dist
+/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/share/texlive/texmf-dist/fonts/
+type1/public/amsfonts/cm/cmr12.pfb></usr/share/texlive/texmf-dist/fonts/type1/p
+ublic/amsfonts/cm/cmr17.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/a
+msfonts/cm/cmr8.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/
+cm/cmss8.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy
+10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy8.pfb>
+</usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmti10.pfb>
+Output written on main.pdf (18 pages, 4233288 bytes).
 PDF statistics:
- 99 PDF objects out of 1000 (max. 8388607)
- 70 compressed objects within 1 object stream
+ 160 PDF objects out of 1000 (max. 8388607)
+ 110 compressed objects within 2 object streams
  0 named destinations out of 1000 (max. 500000)
- 1 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 46 words of extra memory for PDF output out of 10000 (max. 10000000)
 
