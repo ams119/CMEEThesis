@@ -225,8 +225,66 @@ weekly$date_dw = as.Date(weekly$date_dw, format = "%Y-%U-%u")
 # Create biweekly aggregation
 ##################################
 
+# Create a column to store bimonth number:
+daily$bw_num = rep(NA, nrow(daily))
+
+# Create month date column in daily data
+daily$month = as.numeric(format(as.Date(daily$date), "%m"))
+
+# Create day column in daily data
+daily$day = as.numeric(format(as.Date(daily$date), "%d"))
+
+# Assign bw_num based on dates- Months with 31 will have extra day (15 days + 1) randomly assigned
+# February will be dealt with independently
+
+# pick 0 or 1 randomly to use to assign extra day in long months
+random = sample(c(0,1), size = 1)
+
+# If the month has 31 days:
+# Find the first half of the month, perhaps plus an extra day
+months_firsthalf = which(daily$month %in% c(1, 3, 5, 7, 8, 10, 12) &
+                      daily$day %in% 1:(15 + random))
+  
+# Assign the biweek number as month number x 2, -1 (example- early jan would be month (1) x 2 = 2, - 1 = 1)
+daily$bw_num[months_firsthalf] = daily$month[months_firsthalf] * 2 - 1
+
+# Find the second half of the month, perhaps minus an extra day
+months_secondhalf = which(daily$month %in% c(1, 3, 5, 7, 8, 10, 12) &
+                                daily$day %in% (16 + random):31)
+
+# Assign the biweek number as month number times 2
+daily$bw_num[months_secondhalf] = daily$month[months_secondhalf] * 2
+
+# Do the same but for 30-day months: find the first half of the month:
+months_firsthalf = which(daily$month %in% c(4, 6, 9, 11) &
+                           daily$day %in% 1:15)
+
+# Assign the biweek number as month number times 2 minus 1
+daily$bw_num[months_firsthalf] = daily$month[months_firsthalf] * 2 - 1
+
+# Find the second half of the month
+months_secondhalf = which(daily$month %in% c(4, 6, 9, 11) &
+                           daily$day %in% 16:30)
+
+# Assign the biweek number as month number times 2
+daily$bw_num[months_secondhalf] = daily$month[months_secondhalf] * 2
+  
+# Now finally deal with february: If it's a leap year just add that to the second half
+months_firsthalf = which(daily$month == 2 &
+                           daily$day %in% 1:14)
+
+# Assign the biweek number as month number times 2 minus 1
+daily$bw_num[months_firsthalf] = daily$month[months_firsthalf] * 2 - 1
+
+# Find the second half of the month
+months_secondhalf = which(daily$month == 2 &
+                            daily$day %in% 15:29)
+
+# Assign the biweek number as month number times 2
+daily$bw_num[months_secondhalf] = daily$month[months_secondhalf] * 2
+
 # Create a column to populate with bi-week number
-weekly$bw_num = rep(NA, nrow(weekly))
+#weekly$bw_num = rep(NA, nrow(weekly))
 
 # Find rows with NA dates- hopefully using date_w instead of dat_dw will fix this
 # trash = which(is.na(weekly$date_dw))
@@ -239,16 +297,16 @@ weekly$bw_num = rep(NA, nrow(weekly))
 #   weekly = weekly[-trash,]
 # }  
 
-# Obtain vector of unique years
+# Obtain vector of unique years for later biweek plotting
 yrs = unique(weekly$Year)
 
 ## Assign a bi-week number, restarting at 1 with every year
-for(j in 1:length(yrs)){
-  sub = which(weekly$Year == yrs[j],)
-  nums = 1:length(sub)
-  bi_week = ((nums - 1) %/% 2) + 1
-  weekly$bw_num[sub] = bi_week
-}
+# for(j in 1:length(yrs)){
+#   sub = which(weekly$Year == yrs[j],)
+#   nums = 1:length(sub)
+#   bi_week = ((nums - 1) %/% 2) + 1
+#   weekly$bw_num[sub] = bi_week
+# }
 
 # Assign bi-week number to sepspecs by joining through week date
 # biweekly =
@@ -258,19 +316,19 @@ for(j in 1:length(yrs)){
 
 # Aggregate by bi-week
 biweekly =
-  weekly %>% 
+  daily %>% 
   group_by(bw_num, Year) %>%
-  dplyr::select("bw_num", "Year", "temp_mean", "precip_mean", "Specimens.collected", "precip_days", "obs") %>%
-  summarise(precip_sd = sd(precip_mean), precip_mean = mean(precip_mean), 
+  dplyr::select("bw_num", "Year", "temp_mean", "precip", "Specimens.collected", "precip_days", "obs") %>%
+  summarise(precip_sd = sd(precip), precip_mean = mean(precip), 
             temp_sd = sd(temp_mean), temp_mean = mean(temp_mean), precip_days = sum(precip_days, na.rm = T),
             obs = sum(obs, na.rm = T), Specimens.collected = mean(Specimens.collected, na.rm = T), ) %>%
   arrange(Year, bw_num)
 
 # Aggregate counts to week and join
 biweek_species = 
-  weekly %>%
+  daily %>%
   group_by(bw_num, Year) %>%
-  dplyr::select(c(bw_num, Year, 10:(ncol(weekly)-4))) %>%
+  dplyr::select(c(bw_num, Year, 8:(ncol(daily)-4))) %>%
   summarise_all(mean, na.rm = T)
 
 biweekly = left_join(biweekly, biweek_species, by = c("bw_num", "Year"))  
@@ -326,7 +384,7 @@ monthly <-
 monthly_species = 
   daily %>%
   group_by(date_m) %>%
-  dplyr::select(date_m, 8:(ncol(daily)-2)) %>%
+  dplyr::select(date_m, 8:(ncol(daily)-5)) %>%
   summarise_all(mean, na.rm = T)
 
 monthly = left_join(monthly, monthly_species, by = "date_m")

@@ -36,13 +36,15 @@ for(i in 1:ncol(files)){
     data = read.csv(paste0(path, files[j,i]), header = T, stringsAsFactors = F)
     
     # Extract a vector of all species at this location. Column numbers change based on temporal scale.
-    if(scale == 'weekly'){
-      species = colnames(data[10:(dim(data)[2]-4)])
-    }
+    # if(scale == 'weekly'){
+    #   species = colnames(data[10:(dim(data)[2]-4)])
+    # }
+    # 
+    # if(scale == 'biweekly' | scale == 'monthly'){
+    #   species = colnames(data[10:(dim(data)[2]-3)])
+    # }
     
-    if(scale == 'biweekly' | scale == 'monthly'){
-      species = colnames(data[10:(dim(data)[2]-3)])
-    }
+    species = colnames(data[10:(dim(data)[2]-3)])
     
     # Create vectors identifying the lags at this temporal scale
     lags = make_laglists(scale = scale)
@@ -70,7 +72,7 @@ for(i in 1:ncol(files)){
   output_df  = bind_rows(output_list)
   
   # Save as csv
-  write.csv(output_df, file = paste0("../Results/GAM_", scale, ".csv"), row.names = F)
+  write.csv(output_df, file = paste0("../Results/GAM2_", scale, ".csv"), row.names = F)
   
   
 }

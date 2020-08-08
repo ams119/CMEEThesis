@@ -8,19 +8,19 @@ Each location contained multiple trap sites. A variety of trap types were used, 
 
 %In order to account for discrepancies in data entry between true zero count instances and NA values in abundance data, I set abundance for each species to zero where at least one mosquito of any species had been caught at the same trap on the same day. 
 
-I averaged species-specific count data in each location and at weekly, biweekly, and monthly temporal resolutions. This transformed integer count values to averaged indicators of county-level abundance and allowed me to account for frequent variation in the number of traps deployed for each location. I aggregated species that are morphologically indistinguishable from one another according to the \textbf{ontology used by VectorBase- FIXME CITE/REFERENCE} (\textbf{list in SI}). I then removed species that had only zero or NA abundance values. Species counts that were identified only to the genus or family level were also removed. After this processing, I had 163 datasets of unique species and location combinations aggregated at weekly, biweekly, and monthly resolutions. Table \ref{Tab:Locs} summarises the results of this processing at my five focal locations.
+I averaged species-specific count data in each location and at weekly, biweekly, and monthly temporal resolutions. This transformed integer count values to averaged indicators of county-level abundance and allowed me to account for frequent variation in the number of traps deployed for each location. I aggregated species that are morphologically indistinguishable from one another according to the \textbf{ontology used by VectorBase- FIXME CITE/REFERENCE} (\textbf{list in SI}). I then removed species that had only zero or NA abundance values. Species counts that were identified only to the genus or family level were also removed. After this processing, I had 163 datasets of unique species and location combinations aggregated at weekly, biweekly, and monthly resolutions). Table \ref{Tab:Locs} summarises the results of this processing at my five focal locations.
 
 \begin{center}
-	\begin{tabularx}{7in}{ | L{0.4} | L{0.4} | L{0.4} | L{0.4} | L{0.4} |}
+	\begin{tabularx}{7in}{ | L{0.5} | C{0.5} | C{0.5} | C{0.5} |}
 		\hline
-		\textbf{County} & \textbf{Trap Type} &\textbf{Years of Data} & \textbf{Observations} & \textbf{Number of Species}\\\hline
-		Lee & CDC Light Trap &11 & & 18\\\hline
-		Manatee & CDC Light Trap & 5 & & 48\\\hline
-		Orange & CDC Light Trap & 6 & & 31\\\hline
-		Saint Johns & baited light trap & 13.5 & & 38\\\hline
-		Walton & New Jersey Trap &3 & & 28\\\hline 
+		\textbf{County} & \textbf{Trap Type} &\textbf{Years of Data} & \textbf{Number of Species}\\\hline
+		Lee & CDC Light Trap & 2008 - 2017 & 18\\
+		Manatee & CDC Light Trap & 2012 - 2016 & 48\\
+		Orange & CDC Light Trap & 2012 - 2017 & 31\\
+		Saint Johns & baited light trap & 2004 - 2015 & 38\\
+		Walton & New Jersey Trap & 2014 - 2017 & 28\\\hline 
 	\end{tabularx}\\
-	\captionof{table}{\label{Tab:Locs} Locations of abundance data and associated length of data collection, trap type, and number of species-level observations at each location. Individual species in these locations may have abundance records that are shorter than the overall years of data of each location. \textbf{FIXME table formatting}}
+	\captionof{table}{\label{Tab:Locs} Locations of abundance data and associated length of data collection, trap type, and number of species at each location. Individual species in these locations may have abundance records that are shorter than the overall years of data of each location.}
 \end{center}	
 
 \subsection{Meteorological Data}
@@ -73,6 +73,15 @@ Models \ref{eq: univariateT} and \ref{eq: univariateP} were used to determine th
 	AIC = -2ln[L(\hat{\theta_{p}}|y)] + 2p
 	\label{eq: AIC}
 \end{equation}
+
+\begin{figure}
+	\centering
+	\includegraphics[height = 2in, width= 5 in]{../Images/Lags.pdf}
+	\caption{Lags of temperature ($l_T$) and precipitation ($l_P$) considered at each temporal resolution. The numbers in each box represent the values of $l_T$ and $l_P$. A two month lag, for example, would include data from two to three months prior or, on average, about 61 to 91 days prior. The most equivalent weekly lags (lags 9 through 12) contain data from 63 to 91 days prior. A wide range of lags were tested for model selection in order to avoid making strict assumptions about the relationship of meteorological variables with abundance and to account for wide variation in mosquito development time \citep{Barrera1996, Beck-Johnson2013}}
+	\label{fig:lags}
+\end{figure}
+
+
 
 AIC is a method for determining the likelihood of a given model while penalizing model complexity \citep{JOHNSON2004101}. 
 

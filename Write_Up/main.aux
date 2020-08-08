@@ -27,30 +27,38 @@
 \citation{Li2016}
 \@writefile{toc}{\contentsline {section}{Methods}{4}}
 \@writefile{toc}{\contentsline {subsection}{Mosquito Abundance Data}{4}}
+\@writefile{lot}{\contentsline {table}{\numberline {1}{\ignorespaces  Locations of abundance data and associated length of data collection, trap type, and number of species at each location. Individual species in these locations may have abundance records that are shorter than the overall years of data of each location.\relax }}{4}}
 \citation{Xu2017}
 \citation{Trawinski2008}
-\@writefile{lot}{\contentsline {table}{\numberline {1}{\ignorespaces  Locations of abundance data and associated length of data collection, trap type, and number of species-level observations at each location. Individual species in these locations may have abundance records that are shorter than the overall years of data of each location. \textbf  {FIXME table formatting}\relax }}{5}}
 \newlabel{Tab:Locs}{{1}{5}}
 \@writefile{toc}{\contentsline {subsection}{Meteorological Data}{5}}
 \@writefile{toc}{\contentsline {subsection}{Data Pre-Processing}{5}}
+\@writefile{toc}{\contentsline {subsection}{Model Structure}{5}}
 \citation{Dominici2002,Ramsay2003}
 \citation{Ramsay2003}
-\@writefile{toc}{\contentsline {subsection}{Model Structure}{6}}
+\citation{Barrera1996,Beck-Johnson2013}
+\citation{JOHNSON2004101}
 \newlabel{eq: univariateT}{{1}{6}}
 \newlabel{eq: univariateP}{{2}{6}}
 \newlabel{eq: multivariate1}{{3}{6}}
 \newlabel{eq: multivariate2}{{4}{6}}
 \@writefile{toc}{\contentsline {subsection}{Model Selection and Evaluation}{6}}
+\newlabel{eq: AIC}{{5}{6}}
+\@writefile{lof}{\contentsline {figure}{\numberline {2}{\ignorespaces Lags of temperature ($l_T$) and precipitation ($l_P$) considered at each temporal resolution. The numbers in each box represent the values of $l_T$ and $l_P$. A two month lag, for example, would include data from two to three months prior or, on average, about 61 to 91 days prior. The most equivalent weekly lags (lags 9 through 12) contain data from 63 to 91 days prior. A wide range of lags were tested for model selection in order to avoid making strict assumptions about the relationship of meteorological variables with abundance and to account for wide variation in mosquito development time \citep  {Barrera1996, Beck-Johnson2013}\relax }}{7}}
+\newlabel{fig:lags}{{2}{7}}
 \citation{JOHNSON2004101}
-\newlabel{eq: AIC}{{5}{7}}
 \@writefile{toc}{\contentsline {section}{Results}{8}}
-\newlabel{tab: bestres}{{\caption@xref {tab: bestres}{ on input line 82}}{8}}
-\@writefile{lot}{\contentsline {table}{\numberline {2}{\ignorespaces This table makes me hate Saint Johns\relax }}{8}}
-\newlabel{fig: ts_plots}{{\caption@xref {fig: ts_plots}{ on input line 31}}{9}}
-\@writefile{lof}{\contentsline {figure}{\numberline {2}{\ignorespaces Sample time series data of temperature, precipitation, and two vector species from Manatee County, Florida, 2012-2012. Data shown here are aggregated at the weekly scale. In \textbf  {A.}, average daily maximum temperature per week shows regular seasonality with a range of about 15 \ensuremath  {^\circ }C. In \textbf  {B.}, precipitation is very frequent during during a summer rainy season. This is common in all locations.\textbf  {C.} and \textbf  {D.} show patterns of abundance for two vector species, \textit  {Aedes albopictus} and \textit  {Culex nigripalpus}. Abundance datasets were non-continuous over winter periods where abundances are assumed to be low so traps are not employed.\relax }}{9}}
-\newlabel{fig: 3Dmulti}{{\caption@xref {fig: 3Dmulti}{ on input line 50}}{10}}
-\@writefile{lof}{\contentsline {figure}{\numberline {3}{\ignorespaces This a sample of datasets fit with multivariate models of temperature and precipitation at the best fit lags (Equation 3\hbox {}). In \textbf  {A.}, average \textit  {Anopheles quadrimaculatus} count per trap at a weekly resolution was best fit according to univariate model comparison (Equations 1\hbox {} and 2\hbox {}) with temperature at a lag of six weeks and precipitation with a lag of four weeks. Both temperature and precipitation were significant. In \textbf  {B.}, a Aedes albopictus abundance at a monthly resolution was best fit with temperature at a lag of one month and precipitation in the contemporary month. In this dataset, only precipitation was significant.\relax }}{10}}
-\@writefile{lof}{\contentsline {figure}{\numberline {4}{\ignorespaces This is my second option for demonstrating multivariate model fits (versus Fig. \caption@xref  {fig: 3Dmulti}{ on input line 50}\hbox {})\relax }}{10}}
+\newlabel{fig: ts_plots}{{\caption@xref {fig: ts_plots}{ on input line 29}}{8}}
+\@writefile{lof}{\contentsline {figure}{\numberline {3}{\ignorespaces Time series data of temperature, precipitation, and two vector species from Manatee County, Florida, 2012-2016. Data shown here are aggregated at the weekly scale. In \textbf  {A.}, average daily maximum temperature per week shows regular seasonality with a range of about 15 \ensuremath  {^\circ }C. In \textbf  {B.}, precipitation is very frequent during during a summer rainy season. This is common in all locations. \textbf  {C.} and \textbf  {D.} show patterns of abundance for two vector species, \textit  {Aedes albopictus} and \textit  {Culex nigripalpus}. Abundance datasets were non-continuous over winter periods where abundances are assumed to be low so traps are not employed.\relax }}{8}}
+\@writefile{lof}{\contentsline {figure}{\numberline {4}{\ignorespaces Sample of multivariate model fitting (Equation 3\hbox {}) showing the partial dependency of \textit  {Anopheles quadrimaculatus} abundance in Lee County, Florida on temperature and precipitation (Equation 3\hbox {}) at the monthly temporal aggregation. Both temperature and precipitation are significant and best fit at a lag of two months.\relax }}{9}}
+\newlabel{fig: 3Dmulti}{{4}{9}}
+\@writefile{lot}{\contentsline {table}{\numberline {2}{\ignorespaces Deviance explained by the best fit multivariate model of temperature and precipitation for each dataset summarised by the median value at each location and temporal resolution. Median was used because the distribution of deviance explained was left skewed. The best-performing temporal resolution in each row is marked with an asterisk.\relax }}{9}}
+\newlabel{tab: bestresdevexplained}{{2}{9}}
+\@writefile{lot}{\contentsline {table}{\numberline {3}{\ignorespaces This table is an alternative to Table 2\hbox {}. Deviance is a relative measure that summarises the percent of deviance of the dataset that is explained by the model. MAE (Mean Absolute Error), on the other hand, is an absolute measure that can be interpreted as the average error in the mosquitoes predicted for each dataset. It is non-directional. I chose MAE over RMSE because RMSE would be larger for datasets with more data points (weekly level), fit nonwithstanding. This info will be in methods. The real caption will mirror the caption of the alternative Deviance Explained table. \relax }}{9}}
+\newlabel{tab: bestresMAE}{{3}{9}}
+\@writefile{lot}{\contentsline {table}{\numberline {4}{\ignorespaces Significance of temperature and precipitation in seven major vector species across Florida locations according to a multivariate GAM (Equation 3\hbox {}) constructed with the best fit lags of each variable at a monthly resolution. Each species was present in every location. Significance is marked with by the presence of a T for temperature and P for precipitation. Total locations with significant temperature and precipitation are summed for each species\relax }}{10}}
+\newlabel{tab: compare_sites}{{4}{10}}
+\@writefile{lof}{\contentsline {figure}{\numberline {5}{\ignorespaces Comparison of the fit of autoregressive versus non-autoregressive meteorological models of mosquito abundance for each monthly dataset (Equations 3\hbox {} and 4\hbox {}, respectively). After removing 8 datasets where the autoregressive model did not converge, 121 datasets were compared. In \textbf  {A.} a histogram of the difference in deviance explained between the autoregressive and non-autoregressive model for each dataset is shown. Mean change in deviance explained with the incorporation of an autoregressive term was \textbf  {+18.7\%} across all locations. Four datasets had a decrease (range of [-2.1\%, -0.2\%]) in deviance explained with incorporation of an autoregressive term. In \textbf  {B.}, the number of datasets where the autoregressive model was a better, equal, and worse fit than the non-autoregressive model is shown. Models were selected using AIC. AIC differences of less than 2 were considered to be equally best fit \citep  {JOHNSON2004101} \relax }}{10}}
 \citation{Parham2015}
 \citation{Koenraadt2008}
 \bibstyle{apalike}
@@ -58,23 +66,24 @@
 \@writefile{toc}{\contentsline {section}{Discussion}{11}}
 \bibcite{WHOreport}{{1}{2017}{{WHO}}{{}}}
 \bibcite{DiseaseSurveillance}{{2}{2020}{{Dis}}{{}}}
-\bibcite{Beck-Johnson2013}{{3}{2013}{{Beck-Johnson et~al.}}{{}}}
-\bibcite{Dominici2002}{{4}{2002}{{Dominici et~al.}}{{}}}
-\bibcite{Gubler1998}{{5}{1998}{{Gubler}}{{}}}
-\bibcite{Gubler}{{6}{2001}{{Gubler}}{{}}}
-\bibcite{JOHNSON2004101}{{7}{2004}{{Johnson and Omland}}{{}}}
-\bibcite{Keith2005}{{8}{2005}{{Keith}}{{}}}
-\bibcite{Koenraadt2008}{{9}{2008}{{Koenraadt and Harrington}}{{}}}
-\bibcite{Li2019}{{10}{2019}{{Li et~al.}}{{}}}
-\bibcite{Li2016}{{11}{2016}{{Li et~al.}}{{}}}
-\bibcite{Paaijmans2007}{{12}{2007}{{Paaijmans et~al.}}{{}}}
-\bibcite{Parham2015}{{13}{2015}{{Parham et~al.}}{{}}}
-\bibcite{Poh2019}{{14}{2019}{{Poh et~al.}}{{}}}
-\bibcite{Ramsay2003}{{15}{2003}{{Ramsay et~al.}}{{}}}
-\bibcite{Roiz2014}{{16}{2014}{{Roiz et~al.}}{{}}}
-\bibcite{Shaman2007}{{17}{2007}{{Shaman and Day}}{{}}}
-\bibcite{Tomerini2011}{{18}{2011}{{Tomerini et~al.}}{{}}}
-\bibcite{Trawinski2008}{{19}{2008}{{Trawinski and MacKay}}{{}}}
-\bibcite{Vazquez-Prokopec2010}{{20}{2010}{{Vazquez-Prokopec et~al.}}{{}}}
-\bibcite{Xu2017}{{21}{2017}{{Xu et~al.}}{{}}}
-\bibcite{Yoo2016}{{22}{2016}{{Yoo et~al.}}{{}}}
+\bibcite{Barrera1996}{{3}{1996}{{Barrera and Medialdea}}{{}}}
+\bibcite{Beck-Johnson2013}{{4}{2013}{{Beck-Johnson et~al.}}{{}}}
+\bibcite{Dominici2002}{{5}{2002}{{Dominici et~al.}}{{}}}
+\bibcite{Gubler1998}{{6}{1998}{{Gubler}}{{}}}
+\bibcite{Gubler}{{7}{2001}{{Gubler}}{{}}}
+\bibcite{JOHNSON2004101}{{8}{2004}{{Johnson and Omland}}{{}}}
+\bibcite{Keith2005}{{9}{2005}{{Keith}}{{}}}
+\bibcite{Koenraadt2008}{{10}{2008}{{Koenraadt and Harrington}}{{}}}
+\bibcite{Li2019}{{11}{2019}{{Li et~al.}}{{}}}
+\bibcite{Li2016}{{12}{2016}{{Li et~al.}}{{}}}
+\bibcite{Paaijmans2007}{{13}{2007}{{Paaijmans et~al.}}{{}}}
+\bibcite{Parham2015}{{14}{2015}{{Parham et~al.}}{{}}}
+\bibcite{Poh2019}{{15}{2019}{{Poh et~al.}}{{}}}
+\bibcite{Ramsay2003}{{16}{2003}{{Ramsay et~al.}}{{}}}
+\bibcite{Roiz2014}{{17}{2014}{{Roiz et~al.}}{{}}}
+\bibcite{Shaman2007}{{18}{2007}{{Shaman and Day}}{{}}}
+\bibcite{Tomerini2011}{{19}{2011}{{Tomerini et~al.}}{{}}}
+\bibcite{Trawinski2008}{{20}{2008}{{Trawinski and MacKay}}{{}}}
+\bibcite{Vazquez-Prokopec2010}{{21}{2010}{{Vazquez-Prokopec et~al.}}{{}}}
+\bibcite{Xu2017}{{22}{2017}{{Xu et~al.}}{{}}}
+\bibcite{Yoo2016}{{23}{2016}{{Yoo et~al.}}{{}}}

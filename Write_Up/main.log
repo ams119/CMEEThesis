@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.18 (TeX Live 2017/Debian) (preloaded format=pdflatex 2020.5.9)  3 AUG 2020 15:24
+This is pdfTeX, Version 3.14159265-2.6-1.40.18 (TeX Live 2017/Debian) (preloaded format=pdflatex 2020.5.9)  8 AUG 2020 09:05
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -531,18 +531,18 @@ Package xcolor Info: Model `wave' substituted by `hsb' on input line 1371.
 ) (./main.aux)
 \openout1 = `main.aux'.
 
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 65.
-LaTeX Font Info:    ... okay on input line 65.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 65.
-LaTeX Font Info:    ... okay on input line 65.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 65.
-LaTeX Font Info:    ... okay on input line 65.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 65.
-LaTeX Font Info:    ... okay on input line 65.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 65.
-LaTeX Font Info:    ... okay on input line 65.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 65.
-LaTeX Font Info:    ... okay on input line 65.
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 66.
+LaTeX Font Info:    ... okay on input line 66.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 66.
+LaTeX Font Info:    ... okay on input line 66.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 66.
+LaTeX Font Info:    ... okay on input line 66.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 66.
+LaTeX Font Info:    ... okay on input line 66.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 66.
+LaTeX Font Info:    ... okay on input line 66.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 66.
+LaTeX Font Info:    ... okay on input line 66.
 
 *geometry* driver: auto-detecting
 *geometry* detected driver: pdftex
@@ -650,24 +650,24 @@ Package caption Info: longtable package is loaded.
 Package: ltcaption 2013/06/09 v1.4-94 longtable captions (AR)
 )
 Package caption Info: End \AtBeginDocument code.
-LaTeX Info: Redefining \celsius on input line 65.
-Package gensymb Info: Faking symbols for \degree and \celsius on input line 65.
+LaTeX Info: Redefining \celsius on input line 66.
+Package gensymb Info: Faking symbols for \degree and \celsius on input line 66.
 
 
 
 Package gensymb Warning: Not defining \perthousand.
 
-LaTeX Info: Redefining \ohm on input line 65.
-Package gensymb Info: Using \Omega for \ohm on input line 65.
+LaTeX Info: Redefining \ohm on input line 66.
+Package gensymb Info: Using \Omega for \ohm on input line 66.
 
 Package gensymb Warning: Not defining \micro.
 
 LaTeX Font Info:    External font `cmex10' loaded for size
-(Font)              <12> on input line 70.
+(Font)              <12> on input line 71.
 LaTeX Font Info:    External font `cmex10' loaded for size
-(Font)              <8> on input line 70.
+(Font)              <8> on input line 71.
 LaTeX Font Info:    External font `cmex10' loaded for size
-(Font)              <6> on input line 70.
+(Font)              <6> on input line 71.
 [1
 
 {/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map}] [1] [1] (./main.toc
@@ -693,140 +693,126 @@ LaTeX Font Warning: Font shape `OT1/cmr/bx/sc' undefined
 (Font)              using `OT1/cmr/bx/n' instead on input line 39.
 
 [2 <../Images/arboviralcases.pdf>]) [3] (./methods.tex
+Underfull \hbox (badness 10000) in alignment at lines 22--22
+[][][][] 
+ []
+
+
 Overfull \hbox (22.19313pt too wide) in paragraph at lines 22--22
  [] 
  []
 
-[4] [5] [6]) [7] (./results.tex
-<../Images/temp_ts.pdf, id=60, 325.215pt x 289.08pt>
+[4] [5]
+<../Images/Lags.pdf, id=48, 578.16pt x 216.81pt>
+File: ../Images/Lags.pdf Graphic file (type pdf)
+<use ../Images/Lags.pdf>
+Package pdftex.def Info: ../Images/Lags.pdf  used on input line 79.
+(pdftex.def)             Requested size: 361.3491pt x 144.54735pt.
+ [6]) [7 <../Images/Lags.pdf>] (./results.tex
+<../Images/temp_ts.pdf, id=79, 325.215pt x 289.08pt>
 File: ../Images/temp_ts.pdf Graphic file (type pdf)
 <use ../Images/temp_ts.pdf>
-Package pdftex.def Info: ../Images/temp_ts.pdf  used on input line 9.
+Package pdftex.def Info: ../Images/temp_ts.pdf  used on input line 7.
 (pdftex.def)             Requested size: 231.27147pt x 216.80946pt.
 
-Underfull \hbox (badness 10000) in paragraph at lines 11--12
+Underfull \hbox (badness 10000) in paragraph at lines 9--10
 
  []
 
-<../Images/precip_ts.pdf, id=61, 325.215pt x 289.08pt>
+<../Images/precip_ts.pdf, id=80, 325.215pt x 289.08pt>
 File: ../Images/precip_ts.pdf Graphic file (type pdf)
 <use ../Images/precip_ts.pdf>
-Package pdftex.def Info: ../Images/precip_ts.pdf  used on input line 14.
+Package pdftex.def Info: ../Images/precip_ts.pdf  used on input line 12.
 (pdftex.def)             Requested size: 231.27147pt x 216.80946pt.
 
-Overfull \hbox (3.93336pt too wide) in paragraph at lines 14--15
+Overfull \hbox (3.93336pt too wide) in paragraph at lines 12--13
 [][] 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 16--17
+Underfull \hbox (badness 10000) in paragraph at lines 14--15
 
  []
 
-<../Images/aedes_abun_ts.pdf, id=62, 325.215pt x 289.08pt>
+<../Images/aedes_abun_ts.pdf, id=81, 325.215pt x 289.08pt>
 File: ../Images/aedes_abun_ts.pdf Graphic file (type pdf)
 <use ../Images/aedes_abun_ts.pdf>
-Package pdftex.def Info: ../Images/aedes_abun_ts.pdf  used on input line 21.
+Package pdftex.def Info: ../Images/aedes_abun_ts.pdf  used on input line 19.
 (pdftex.def)             Requested size: 231.27147pt x 216.80946pt.
 
-Underfull \hbox (badness 10000) in paragraph at lines 23--24
+Underfull \hbox (badness 10000) in paragraph at lines 21--22
 
  []
 
-<../Images/culex_abun_ts.pdf, id=63, 325.215pt x 289.08pt>
+<../Images/culex_abun_ts.pdf, id=82, 325.215pt x 289.08pt>
 File: ../Images/culex_abun_ts.pdf Graphic file (type pdf)
 <use ../Images/culex_abun_ts.pdf>
-Package pdftex.def Info: ../Images/culex_abun_ts.pdf  used on input line 26.
+Package pdftex.def Info: ../Images/culex_abun_ts.pdf  used on input line 24.
 (pdftex.def)             Requested size: 231.27147pt x 216.80946pt.
 
-Underfull \hbox (badness 10000) in paragraph at lines 28--29
+Underfull \hbox (badness 10000) in paragraph at lines 26--27
 
  []
 
 
-Overfull \hbox (2.43333pt too wide) in paragraph at lines 20--30
+Overfull \hbox (2.43333pt too wide) in paragraph at lines 18--28
 []$[]$ $[]$ 
  []
 
-<../Images/multi_plotAQ.png, id=64, 433.62pt x 433.62pt>
-File: ../Images/multi_plotAQ.png Graphic file (type png)
-<use ../Images/multi_plotAQ.png>
-Package pdftex.def Info: ../Images/multi_plotAQ.png  used on input line 40.
-(pdftex.def)             Requested size: 252.94879pt x 252.94879pt.
+<../Images/multi_plotAQ.pdf, id=83, 578.16pt x 289.08pt>
+File: ../Images/multi_plotAQ.pdf Graphic file (type pdf)
+<use ../Images/multi_plotAQ.pdf>
+Package pdftex.def Info: ../Images/multi_plotAQ.pdf  used on input line 39.
+(pdftex.def)             Requested size: 433.61893pt x 216.80946pt.
 
-Overfull \hbox (11.10036pt too wide) in paragraph at lines 40--41
-[][] 
+LaTeX Warning: `!h' float specifier changed to `!ht'.
+
+
+LaTeX Warning: `!h' float specifier changed to `!ht'.
+
+
+Underfull \hbox (badness 10000) in alignment at lines 149--149
+[][][][][][][] 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 42--43
+LaTeX Warning: `!h' float specifier changed to `!ht'.
 
- []
-
-<../Images/multi_plotAA.png, id=65, 433.62pt x 433.62pt>
-File: ../Images/multi_plotAA.png Graphic file (type png)
-<use ../Images/multi_plotAA.png>
-Package pdftex.def Info: ../Images/multi_plotAA.png  used on input line 45.
-(pdftex.def)             Requested size: 252.94879pt x 252.94879pt.
-
-Overfull \hbox (11.10036pt too wide) in paragraph at lines 45--46
-[][] 
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 47--48
-
- []
-
-
-Overfull \hbox (2.43333pt too wide) in paragraph at lines 39--49
-[]$[]$ $[]$ 
- []
-
-<../Images/multi_plot2.png, id=66, 867.24pt x 433.62pt>
-File: ../Images/multi_plot2.png Graphic file (type png)
-<use ../Images/multi_plot2.png>
-Package pdftex.def Info: ../Images/multi_plot2.png  used on input line 58.
-(pdftex.def)             Requested size: 505.89758pt x 252.94879pt.
-
-Overfull \hbox (22.20071pt too wide) in paragraph at lines 58--59
- [][] 
- []
-
-
-Package caption Warning: \label without proper reference on input line 50.
-See the caption package documentation for explanation.
-
-
-LaTeX Warning: Reference `fig: 3Dmulti' on page 8 undefined on input line 59.
-
-<../Images/devcomp.pdf, id=67, 361.35pt x 216.81pt>
+<../Images/devcomp.pdf, id=84, 230.8625pt x 216.81pt>
 File: ../Images/devcomp.pdf Graphic file (type pdf)
 <use ../Images/devcomp.pdf>
-Package pdftex.def Info: ../Images/devcomp.pdf  used on input line 93.
-(pdftex.def)             Requested size: 361.35463pt x 216.81938pt.
-) [8] [9 <../Images/temp_ts.pdf> <../Images/precip_ts.pdf> <../Images/aedes_abu
-n_ts.pdf> <../Images/culex_abun_ts.pdf>] [10 <../Images/multi_plotAQ.png (PNG c
-opy)> <../Images/multi_plotAA.png (PNG copy)> <../Images/multi_plot2.png (PNG c
-opy)>] (./discussion.tex) (./main.bbl [11 <../Images/devcomp.pdf>] [12
+Package pdftex.def Info: ../Images/devcomp.pdf  used on input line 163.
+(pdftex.def)             Requested size: 231.2635pt x 216.81938pt.
+<../Images/AICcomp.pdf, id=85, 216.81pt x 216.81pt>
+File: ../Images/AICcomp.pdf Graphic file (type pdf)
+<use ../Images/AICcomp.pdf>
+Package pdftex.def Info: ../Images/AICcomp.pdf  used on input line 167.
+(pdftex.def)             Requested size: 216.81938pt x 216.81938pt.
 
-]
-[13]) [14] (./main.aux)
+Overfull \hbox (2.43333pt too wide) in paragraph at lines 161--176
+[]$[]$ $[]$
+ []
+
+) [8 <../Images/temp_ts.pdf> <../Images/precip_ts.pdf> <../Images/aedes_abun_ts
+.pdf> <../Images/culex_abun_ts.pdf>] [9 <../Images/multi_plotAQ.pdf>] [10 <../I
+mages/devcomp.pdf> <../Images/AICcomp.pdf>] (./discussion.tex) (./main.bbl
+[11
+
+] [12
+
+] [13]) [14] (./main.aux)
 
 LaTeX Font Warning: Some font shapes were not available, defaults substituted.
 
-
-LaTeX Warning: There were undefined references.
-
  ) 
 Here is how much of TeX's memory you used:
- 5146 strings out of 494923
- 74328 string characters out of 6180743
- 151812 words of memory out of 5000000
- 8358 multiletter control sequences out of 15000+600000
- 9765 words of font info for 34 fonts, out of 8000000 for 9000
+ 5158 strings out of 494923
+ 74533 string characters out of 6180743
+ 169061 words of memory out of 5000000
+ 8369 multiletter control sequences out of 15000+600000
+ 10812 words of font info for 37 fonts, out of 8000000 for 9000
  14 hyphenation exceptions out of 8191
- 41i,11n,43p,1577b,438s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 41i,15n,43p,1577b,544s stack positions out of 5000i,500n,10000p,200000b,80000s
 </usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx10.pfb></us
 r/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx12.pfb></usr/shar
 e/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb></usr/share/texl
@@ -838,11 +824,13 @@ ublic/amsfonts/cm/cmr17.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/a
 msfonts/cm/cmr8.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/
 cm/cmss8.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy
 10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy8.pfb>
-</usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmti10.pfb>
-Output written on main.pdf (18 pages, 4233288 bytes).
+</usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmti10.pfb></usr/
+share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmti7.pfb></usr/share/t
+exlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmti8.pfb>
+Output written on main.pdf (18 pages, 263248 bytes).
 PDF statistics:
- 160 PDF objects out of 1000 (max. 8388607)
- 110 compressed objects within 2 object streams
+ 197 PDF objects out of 1000 (max. 8388607)
+ 139 compressed objects within 2 object streams
  0 named destinations out of 1000 (max. 500000)
  46 words of extra memory for PDF output out of 10000 (max. 10000000)
 

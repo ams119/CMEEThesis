@@ -38,13 +38,13 @@ prep_variables = function(temp, precip, abundance){
 # This function makes appropriate column names with length according to the temporal scale
 make_laglists = function(scale){
   if(scale == 'weekly'){
-    templags = paste0(rep('temp_lag', 7), 0:6)
-    preciplags = paste0(rep('precip_lag', 7), 0:6)
+    templags = paste0(rep('temp_lag', 13), 0:12)
+    preciplags = paste0(rep('precip_lag', 13), 0:12)
   }
   
   if(scale == 'biweekly'){
-    templags = paste0(rep('temp_lag', 4), 0:3)
-    preciplags = paste0(rep('precip_lag', 4), 0:3)
+    templags = paste0(rep('temp_lag', 6), 0:5)
+    preciplags = paste0(rep('precip_lag', 6), 0:5)
   }
   
   if(scale == 'monthly'){
@@ -59,7 +59,10 @@ make_laglists = function(scale){
 make_output = function(lags, species){
   
   # Create desired column names
-  columns = c("Species", lags$temp, lags$precip, "nr_obs", "nr_nonzero_obs", "z_inflation_pct", "Best_Temp", "Best_Precip", "Multi_DevianceExplained", "Multi_AIC", "Multi_SignifVariables", "MultiAR_DevianceExplained", "MultiAR_AIC", "MultiAR_SignifVariables")
+  columns = c("Species", lags$temp, lags$precip, "nr_total_obs", "nr_bestfit_obs", "nr_nonzero_obs", 
+              "z_inflation_pct", "Best_Temp", "Best_Precip", "Multi_DevianceExplained", "Multi_AIC", 
+              "Multi_MAE", "Multi_NMAE", "Multi_MB", "Multi_Folds","Multi_SignifVariables", "MultiAR_DevianceExplained", 
+              "MultiAR_AIC", "MultiAR_MAE", "MultiAR_NMAE", "MultiAR_MB", "MultiAR_Folds","MultiAR_SignifVariables")
   
   # Create an empty dataframe with of appropriate size
   output = data.frame(matrix(NA, nrow = length(species), ncol = length(columns)))
@@ -100,18 +103,20 @@ make_lag_table = function(temp, precip, lags){
   return(lag_table)
 }
 
-fit_univariate_GAMs = function(data, output, lags, lag_table, species, scale){
+fit_univariate_GAMs = function(ts_data, output, lags, lag_table, species, scale){
   
   ## Fit univariate models with each species abundance vector ##
   for(i in 1:length(species)){
     
     cat(paste0("\n*********************************************************\n\nNow evaluating univariate GAMs for species ", i, ', ', species[i], '\n'))
     
+    output$nr_total_obs[i] = sum(!is.na(ts_data[[species[i]]]))
+    
     # Conduct univariate GAMs for each lags of each meteorological variable
     for(j in 1:length(lags$temp)){
       
       # Prepare all x and y variables
-      vars = prep_variables(temp = lag_table[,j], precip = lag_table[,length(lags$temp) + j], abundance = data[[species[i]]])
+      vars = prep_variables(temp = lag_table[,j], precip = lag_table[,length(lags$temp) + j], abundance = ts_data[[species[i]]])
       
       # Max number of knots (k) is = to the number of unique data points (discrete days of rainfall) 
       # Max number of basis functions is equal to k-1
@@ -145,24 +150,24 @@ fit_univariate_GAMs = function(data, output, lags, lag_table, species, scale){
   return(output)
 }
 
-fit_multivariate_GAMs = function(data, output, lags, lag_table, species, scale){
+fit_multivariate_GAMs = function(ts_data, output, lags, lag_table, species, scale){
   
-  ## Fit univariate models with each species abundance vector ##
+  ## Fit multiivariate models with each species abundance vector ##
   for(i in 1:length(species)){
     
     cat(paste0("\n*********************************************************\n\nNow evaluating multivariate GAMs for species ", i, ', ', species[i], '\n'))
     
     # Prepare x and y variables. We'll use the best fit lags of temp and precip for each species 
-    vars = prep_variables(temp = lag_table[[output$Best_Temp[i]]], precip = lag_table[[output$Best_Precip[i]]], abundance = data[[species[i]]])
+    vars = prep_variables(temp = lag_table[[output$Best_Temp[i]]], precip = lag_table[[output$Best_Precip[i]]], abundance = ts_data[[species[i]]])
     
     # Record the minimum number of observations in this dataset with this best fit lag
-    output$nr_obs[i] = sum(!is.na(vars$abundance))
+    output$nr_bestfit_obs[i] = length(vars$abundance)
     
     # Record the number of non-zero observations
-    output$nr_nonzero_obs = length(which(!is.na(vars$abundance) != 0))
+    output$nr_nonzero_obs[i] = length(which(vars$abundance != 1))
     
     # Record the zero inflation of this dataset with this best fit lag
-    output$z_inflation_pct[i] = round(sum(vars$abundance -1  == 0)/output$nr_obs[i]*100)
+    output$z_inflation_pct[i] = round(sum(vars$abundance -1  == 0)/output$nr_bestfit_obs[i]*100)
     
     # Max number of basis splines is = to the number of unique data points (discrete days of rainfall) 
     # Thus max k (number of knots) is equal to nr of unique values + 1. 
@@ -179,8 +184,12 @@ fit_multivariate_GAMs = function(data, output, lags, lag_table, species, scale){
       output$Multi_DevianceExplained[i] = round(100*summary(multi_gam)$dev.expl, 1)
       # Record which predictive terms are significant according p-value with alpha = 0.05
       output$Multi_SignifVariables[i] = paste0(c('temp', 'precip')[which(summary(multi_gam)$s.pv <= 0.05)], collapse = ",")
-      # Perform k-fold cross validation to get CV score
-      output$Multi_CV[i] = k_fold_cross_validate(vars = vars, precip_k = precip_k, type = "nonAR")
+      # Perform k-fold cross validation to get CV scores (MAE and MAAPE)
+      cv_scores = k_fold_cross_validate(vars = vars, precip_k = precip_k, type = "nonAR", nr_folds = 10)
+      output$Multi_MAE[i] = cv_scores[1]
+      output$Multi_NMAE[i] = cv_scores[2]
+      output$Multi_MB[i] = cv_scores[3]
+      output$Multi_Folds[i] = cv_scores[4]
     }
   
     # Fit autoregressive multivariate model where smooth terms can be penalized out
@@ -192,6 +201,12 @@ fit_multivariate_GAMs = function(data, output, lags, lag_table, species, scale){
       output$MultiAR_DevianceExplained[i] = round(100*summary(multiAR_gam)$dev.expl, 1)
       # Record which predictive terms are significant according p-value with alpha = 0.05
       output$MultiAR_SignifVariables[i] = paste0(c('temp', 'precip', 'AR1')[which(summary(multiAR_gam)$s.pv <= 0.05)], collapse = ",")
+      # Perform k-fold cross validation to get CV scores
+      cv_scores = k_fold_cross_validate(vars = vars,  precip_k = precip_k, type = "nonAR", nr_folds = 10)
+      output$MultiAR_MAE[i] = cv_scores[1]
+      output$MultiAR_NMAE[i] = cv_scores[2]
+      output$MultiAR_MB[i] = cv_scores[3]
+      output$MultiAR_Folds[i] = cv_scores[4]
       
       # Plot
       png(filename = paste0("../Results/GAM_Plots/", scale, output$Location[i], species[i], ".png"), height = 900, width = 900, units = 'px')
@@ -213,21 +228,34 @@ k_fold_cross_validate = function(vars, precip_k, type, nr_folds){
   # And calculate how many remainder data points there will be that don't fit evenly in folds
   fold_remainder = length(vars$abundance)%%nr_folds
   
+  # Set seed so that I'll have the same (random) shuffling every time
+  set.seed(27082020)
+  
   # Shuffle the indexes of the datasets
   shuffle = sample(1:length(vars$abundance), size = length(vars$abundance), replace = FALSE)
   
   # Divide up the indexes into rows for each fold, evenly distributing remainders
   indexes = matrix(c(shuffle, rep(NA, nr_folds-fold_remainder)), nrow = nr_folds, ncol = fold_size + 1)
   
-  ## Do k-fold cross validation
-  # Create vector to store deviance explained in each test
-  deviance = rep(NA, nr_folds)
+  # Create vector to store MAE explained in each test
+  MAE = rep(NA, nr_folds)
   
+  # Create vector to store NMAE explained in each test
+  NMAE = rep(NA, nr_folds)
+  
+  # Create vector to store MB explained in each test
+  MB = rep(NA, nr_folds)
+  
+  ## Do k-fold cross validation
   for(i in 1:nr_folds){
     
     # Split vars into test and train by using the ith row of indexes to find the testing set of data
     test = vars[na.omit(indexes[i,]),]
     train = vars[-na.omit(indexes[i,]), ]
+    
+    # Set precip knots to the max possible for this testing set
+    #precip_knots = 10
+    #if(length(unique(train$precip)) < 10){precip_knots = length(unique(train$precip))}
     
     if(type == "AR"){
       # Train AR gam model using training set
@@ -241,21 +269,23 @@ k_fold_cross_validate = function(vars, precip_k, type, nr_folds){
                     select = F, data = train, family = Gamma(link = "log"),  method = "REML"), silent = T)
     }
     
+    if(class(gam)[1] != "try-error"){
+      pred = predict.gam(gam, test, se.fit = T)
+      
+      # Record MAE of this test/train set in the vector
+      MAE[i] = sum(abs(exp(pred$fit) - test$abundance))/length(pred$fit)
+      
+      # Record the mean bias
+      MB[i] = sum(exp(pred$fit) - test$abundance)/length(test$abundance)
+      
+      # Record NMAE
+      NMAE[i] = sum(abs(exp(pred$fit) - test$abundance))/sum(log(test$abundance))
+    }
     
-    pred = predict.gam(gam, test, se.fit = T)
-    
-    ## How to assess prediction error? ##
-    # R^2:
-    cor(pred$fit, test$abundance)
-    
-    # RMSE:
-    
-    
-    # Record deviance of this test/train set in the vector
-    deviance[i] = round(100*summary(gam)$dev.expl, 1)
   }
   
-  return(mean(deviance))
+  # Return a vector of the MAE, NMAE, MB, and number of folds used in averaging
+  return(c(round(mean(MAE, na.rm = T), 3), round(mean(NMAE, na.rm = T), 3), round(mean(MB, na.rm = T), 3), sum(!is.na(MAE))))
   
 }
 

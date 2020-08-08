@@ -6,45 +6,45 @@ Database file #1: ../../../Dropbox/BibFiles/Thesis.bib.bib
 Warning--to sort, need author or key in WHOreport
 Warning--to sort, need author or key in DiseaseSurveillance
 Warning--empty author in WHOreport
-You've used 22 entries,
+You've used 23 entries,
             1935 wiz_defined-function locations,
-            638 strings with 9167 characters,
-and the built_in function-call counts, 9945 in all, are:
-= -- 924
-> -- 587
-< -- 7
-+ -- 212
-- -- 212
-* -- 974
-:= -- 1777
-add.period$ -- 65
-call.type$ -- 22
-change.case$ -- 217
-chr.to.int$ -- 22
-cite$ -- 27
-duplicate$ -- 298
-empty$ -- 590
-format.name$ -- 240
-if$ -- 1850
+            647 strings with 9349 characters,
+and the built_in function-call counts, 10349 in all, are:
+= -- 966
+> -- 600
+< -- 8
++ -- 216
+- -- 216
+* -- 1011
+:= -- 1845
+add.period$ -- 68
+call.type$ -- 23
+change.case$ -- 224
+chr.to.int$ -- 23
+cite$ -- 28
+duplicate$ -- 312
+empty$ -- 620
+format.name$ -- 247
+if$ -- 1929
 int.to.chr$ -- 1
 int.to.str$ -- 0
-missing$ -- 20
-newline$ -- 112
-num.names$ -- 60
-pop$ -- 168
+missing$ -- 21
+newline$ -- 117
+num.names$ -- 63
+pop$ -- 172
 preamble$ -- 1
-purify$ -- 216
+purify$ -- 223
 quote$ -- 0
-skip$ -- 225
+skip$ -- 236
 stack$ -- 0
-substring$ -- 609
-swap$ -- 20
+substring$ -- 646
+swap$ -- 21
 text.length$ -- 0
 text.prefix$ -- 0
 top$ -- 0
-type$ -- 132
+type$ -- 138
 warning$ -- 3
-while$ -- 70
+while$ -- 74
 width$ -- 0
-write$ -- 284
+write$ -- 297
 (There were 3 warnings)

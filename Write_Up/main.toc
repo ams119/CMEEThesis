@@ -7,7 +7,7 @@
 \contentsline {subsection}{Mosquito Abundance Data}{4}
 \contentsline {subsection}{Meteorological Data}{5}
 \contentsline {subsection}{Data Pre-Processing}{5}
-\contentsline {subsection}{Model Structure}{6}
+\contentsline {subsection}{Model Structure}{5}
 \contentsline {subsection}{Model Selection and Evaluation}{6}
 \contentsline {section}{Results}{8}
 \contentsline {section}{Discussion}{11}

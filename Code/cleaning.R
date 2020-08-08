@@ -1,17 +1,20 @@
 #!/bin/env Rscript
 # Author: Anne Marie Saunders
 # Script: cleaning.R
-# Desc: reformat irregular date ranges and exclude data from uncommon trap types.
+# Desc: restrict to adult mosquitoes, reformat irregular date ranges and exclude data from uncommon trap types.
 # Arguments: ~/Documents/Hefty_Data/mosquitoAbun/fdcounts.csv
 # Date: 04/17/20
 
 # Import libraries
-library(stringr)
 library(tidyverse)
 
 # Load in dataset
 fddata = read.csv("../Data/fdcounts.csv", stringsAsFactors = F)
 
+# Filter by the development stage of captured mosquitoes- only keep adults
+fddata = fddata %>% filter(Developmental.stage == "adult")
+
+## Examine strange date entries ##
 # Check the date column is character
 class(fddata$Collection.date.range) == 'character'
 
