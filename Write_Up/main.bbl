@@ -72,6 +72,18 @@ Li, Y., Su, X., Zhou, G., Zhang, H., Puthiyakunnon, S., Shuai, S., Cai, S., Gu,
   mosquitoes}.
 \newblock {\em Parasites {\&} Vectors}, 9(1):446.
 
+\bibitem[Magbity and Lines, 2002]{MagbityLines2002}
+Magbity, E. and Lines, J. (2002).
+\newblock {Spatial and temporal distribution of Anopheles gambiae s.l.
+  (Diptera: Culicidae) in two Tanzanian villages: implication for designing
+  mosquito sampling routines}.
+\newblock {\em Bulletin of Entomological Research}, 92(6):483--488.
+
+\bibitem[Marra and Wood, 2011]{Marra2011}
+Marra, G. and Wood, S.~N. (2011).
+\newblock {Practical variable selection for generalized additive models}.
+\newblock {\em Computational Statistics and Data Analysis}, 55(7):2372--2387.
+
 \bibitem[Paaijmans et~al., 2007]{Paaijmans2007}
 Paaijmans, K.~P., Wandago, M.~O., Githeko, A.~K., and Takken, W. (2007).
 \newblock {Unexpected High Losses of Anopheles gambiae Larvae Due to Rainfall}.
@@ -104,6 +116,14 @@ Ramsay, T.~O., Burnett, R.~T., and Krewski, D. (2003).
 Roiz, D., Ruiz, S., Soriguer, R., and Figuerola, J. (2014).
 \newblock {Climatic effects on mosquito abundance in Mediterranean wetlands}.
 \newblock {\em Parasites and Vectors}, 7(1):1--13.
+
+\bibitem[Sedda et~al., 2019]{Sedda2019}
+Sedda, L., Lucas, E.~R., Djogb{\'{e}}nou, L.~S., Edi, A. V.~C., Egyir-Yawson,
+  A., Kabula, B.~I., Midega, J., Ochomo, E., Weetman, D., and Donnelly, M.~J.
+  (2019).
+\newblock {Improved spatial ecological sampling using open data and
+  standardization: an example from malaria mosquito surveillance}.
+\newblock {\em Journal of The Royal Society Interface}, 16(153):20180941.
 
 \bibitem[Shaman and Day, 2007]{Shaman2007}
 Shaman, J. and Day, J.~F. (2007).
@@ -139,10 +159,10 @@ Xu, L., Stige, L.~C., Chan, K.~S., Zhou, J., Yang, J., Sang, S., Wang, M.,
 \newblock {\em Proceedings of the National Academy of Sciences of the United
   States of America}, 114(1):113--118.
 
-\bibitem[Yoo et~al., 2016]{Yoo2016}
-Yoo, E.~H., Chen, D., and Diao, C. (2016).
-\newblock {The effects of weather and environmental factors on west nile virus
-  mosquito abundance in greater toronto area}.
-\newblock {\em Earth Interactions}, 20(3).
+\bibitem[Yang et~al., 2009]{Yang2009}
+Yang, G.~J., Brook, B.~W., and Bradshaw, C.~J. (2009).
+\newblock {Predicting the timing and magnitude of tropical mosquito population
+  peaks for maximizing control efficiency}.
+\newblock {\em PLoS Neglected Tropical Diseases}, 3(2):1--9.
 
 \end{thebibliography}

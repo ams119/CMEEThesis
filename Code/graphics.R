@@ -30,23 +30,23 @@ ggplot(diseases[which(diseases$Disease != "Zika"),], aes(x = Year, y = Count, co
 dev.off()
 
 #### Create sample time series plots of temperature, precipitation, and abundance
-data = read.csv("../Data/Extracted_Data/Aggregated/Manatee_weekly.csv", header = T, stringsAsFactors = F)
+ts_data = read.csv("../Data/Extracted_Data/Aggregated/Manatee_monthly.csv", header = T, stringsAsFactors = F)
 
 # Keep only biggest VBD threat mosquitoes
 threats = c("Aedes.aegypti", "Aedes.albopictus", "Culex.nigripalpus", "Anopheles.quadrimaculatus")
-data = data[,colnames(data) %in% c(threats, "temp_mean", "precip_days", "date_dw")]
-
-# Gather this into long shape
-data = data %>% gather(Species, Value, -c(date_dw, precip_days, temp_mean))
+ts_data = ts_data[,colnames(ts_data) %in% c(threats, "temp_mean", "precip_days", "date_dm", "Year")]
 
 # Convert date to date format
-data$date_dw = paste0(weekly$date_w, "-1")
-data$date_dw = as.Date(data$date_dw, format = "%Y-%m-%d")
+ts_data$date_dm = as.Date(ts_data$date_dm, format = "%Y-%m-%d") # weekly
+#ts_data$date = seq(1:nrow(ts_data))
+
+# Gather this into long shape
+ts_data = ts_data %>% gather(Species, Value, -c(date_dm, precip_days, temp_mean, Year))
 
 # Plot
 title <- expression(paste(italic("Aedes albopictus"), " Abundance"))
-aedes_abun_plot = ggplot(data[data$Species == "Aedes.albopictus",], aes(x=date_dw, y = Value)) +
-  geom_line(color = "black") + xlab("") +
+aedes_abun_plot = ggplot(ts_data[ts_data$Species == "Aedes.albopictus",], aes(x=date_dm, y = Value)) +
+  geom_line(color = "darkorchid4") + xlab("") +
   scale_x_date(date_labels = "%Y", date_breaks = "1 year") +
   ggtitle(title) +
   theme_bw() + labs(y = "Abundance (average count per trap)", x = "Time", cex = 0.9) + 
@@ -54,14 +54,15 @@ aedes_abun_plot = ggplot(data[data$Species == "Aedes.albopictus",], aes(x=date_d
           legend.title = element_blank(), panel.grid.minor = element_blank(),
           axis.text.x = element_text(size = 11), axis.text.y = element_text(size = 11),
           axis.title.x = element_text(size = 11), axis.title.y = element_text(size = 11),
-          plot.title = element_text(size = 12))
+          plot.title = element_text(size = 12)) +
+  #scale_x_continuous(labels = unique(ts_data$Year), breaks = c(1:length(unique(ts_data$Year)))*25)
 pdf("../Images/aedes_abun_ts.pdf", height = 4, width = 4.5)
 aedes_abun_plot
 dev.off()
 
 title <- expression(paste(italic("Culex nigripalpus"), " Abundance"))
-culex_abun_plot = ggplot(data[data$Species == "Culex.nigripalpus",], aes(x=date_dw, y = Value)) +
-  geom_line(color = "black") + xlab("") +
+culex_abun_plot = ggplot(ts_data[ts_data$Species == "Culex.nigripalpus",], aes(x=date_dm, y = Value)) +
+  geom_line(color = "darkorchid4") + xlab("") +
   scale_x_date(date_labels = "%Y", date_breaks = "1 year") +
   ggtitle(title) +
   theme_bw() + labs(y = "Abundance (average count per trap)", x = "Time", cex = 0.9) + 
@@ -74,8 +75,8 @@ pdf("../Images/culex_abun_ts.pdf", height = 4, width = 4.5)
 culex_abun_plot
 dev.off()
 
-temp_plot = ggplot(data[data$Species == "Aedes.albopictus",], aes(x=date_dw, y = temp_mean)) +
-  geom_line(color = "black") + xlab("") + scale_x_date(date_labels = "%Y", date_breaks = "1 year") + 
+temp_plot = ggplot(ts_data[ts_data$Species == "Aedes.albopictus",], aes(x=date_dm, y = temp_mean)) +
+  geom_line(color = "darkorange4") + xlab("") + scale_x_date(date_labels = "%Y", date_breaks = "1 year") + 
   ggtitle("Average Maximum Temperature") +
   theme_bw() + labs(y = "Temperature (°C)", x = "Time", cex = 0.9) + 
   theme(legend.position = c(0.2, 0.75), 
@@ -88,15 +89,16 @@ temp_plot
 dev.off()
 
 
-precip_plot = ggplot(data[data$Species == "Aedes.albopictus",], aes(x=date_dw, y = precip_days)) +
-  geom_line(color = "black") + xlab("") + scale_x_date(date_labels = "%Y", date_breaks = "1 year") +
-  ggtitle("Precipitation") + scale_y_continuous(breaks = 0:7) +
-  theme_bw() + labs(y = "Days of Rainfall per Week", x = "Time", cex = 0.9) + 
+precip_plot = ggplot(ts_data[ts_data$Species == "Aedes.albopictus",], aes(x=date_dm, y = precip_days)) +
+  geom_bar(stat = "identity", fill = "turquoise4", color = "turquoise4") + xlab("") + scale_x_date(date_labels = "%Y", date_breaks = "1 year") +
+  ggtitle("Precipitation") + scale_y_continuous(breaks = seq(0,31,5)) +
+  theme_bw() + labs(y = "Days of Rainfall per Month", x = "Time", cex = 0.9) + 
   theme(legend.position = c(0.2, 0.75), 
         legend.title = element_blank(), panel.grid.minor = element_blank(),
         axis.text.x = element_text(size = 11), axis.text.y = element_text(size = 11),
         axis.title.x = element_text(size = 11), axis.title.y = element_text(size = 11),
-        plot.title = element_text(size = 12))
+        plot.title = element_text(size = 12)) +
+  #scale_x_continuous(labels = c(unique(ts_data$Year), max(ts_data$Year) + 1), breaks = c(0:length(unique(ts_data$Year)))*25)
 pdf("../Images/precip_ts.pdf", height = 4, width = 4.5)
 precip_plot
 dev.off()
@@ -109,7 +111,7 @@ dev.off()
 # Create function to fit GAM and plot
 fit_multi = function(scale, locale, pick_spec, filename){
   # Load output data
-  output = read.csv(file = paste0("../Results/GAM2_", scale, ".csv"), header = T, stringsAsFactors = F)
+  output = read.csv(file = paste0("../Results/GAM_", scale, ".csv"), header = T, stringsAsFactors = F)
   
   # Load dataset with time series data
   ts_data = read.csv(file = paste0("../Data/Extracted_Data/Aggregated/", locale, "_", scale, ".csv"), header = T, stringsAsFactors = F)
@@ -152,8 +154,8 @@ fit_multi = function(scale, locale, pick_spec, filename){
   multi_gam = try(gam(abundance ~ s(temp, bs = 'cr', k = 10) + s(precip, k = precip_k, bs = 'cr'), data = vars, family = Gamma(link = "log"), method = "REML", select = T), silent = T)
   
   print(summary(multi_gam))
-  
-  return(multi_gam)
+
+  return(list(gam = multi_gam, y = vars$abundance, temp = vars$temp, precip = vars$precip))
 }
 
 
@@ -163,20 +165,21 @@ AQ_gam = fit_multi(scale = 'monthly', locale = 'Lee',
 
 pdf("../Images/multi_plotAQ.pdf", height = 4, width = 8)
 par(mfrow = c(1,2), mar = c(4,4,3,1))
-plot(AQ_gam, rug = FALSE, #shift = coef(multi_gam)[1],
+test = plot(AQ_gam$gam, rug = T, #shift = coef(AQ_gam$gam)[1], ylim = c(0,5),
      seWithMean = T, select = c(1), ylim = c(-1.5,1.5),
-     shade = T, shade.col = "orange", 
+     shade = T, shade.col = "darkorange3", yaxt = "n",
      ylab = "Partial Dependency of Abundance", xlab = "Maximum Temperature (°C)", 
      panel.first = grid(col = "cornsilk3"))
+axis(side = 2, at= c(-1,0,1), labels = c("-1", "0", "1"))
 title("Temperature", adj = 0)
 
-plot(AQ_gam, rug = FALSE, #shift = coef(multi_gam)[1],
+plot(AQ_gam$gam, rug = T, #shift = coef(multi_gam)[1],
      ylim = c(-1.5,1.5), seWithMean = T, select = c(2),
-     shade = T, shade.col = "lightblue", #main = "Precipitation", 
+     shade = T, shade.col = "turquoise4", #main = "Precipitation", 
      ylab = "", xlab = "Days of Rainfall",
      panel.first = grid(col = "cornsilk3"), 
      yaxt = "n")
-axis(side = 2, at= -1.5:1.5)
+axis(side = 2, at= c(-1,0,1), labels = c("-1", "0", "1"))
 title("Precipitation", adj = 0)
 dev.off()
 
@@ -202,6 +205,83 @@ axis(side = 2, at= -1.5:1.5)
 title("Precipitation", adj = 0)
 dev.off()
 
+#### Significance of Temperature and Precipitation ####
+# Load monthly data
+monthly = read_csv("../Results/GAM_monthly.csv")
+
+# Remove datasets with more than 90% zero inflation and keep only relevant columns
+monthly = monthly %>% 
+  filter(z_inflation_pct <= 90 & !is.na(Multi_AIC)) %>%
+  select(Species, Location, Multi_SignifVariables)
+
+
+# Add a column for genus
+monthly = monthly %>%  
+  add_column(genus = sub("\\.", "", str_match(monthly$Species, pattern = "^\\w*\\."))) 
+
+# Adjust "A" and "C" genus names
+monthly$genus = sub("^A$", "Aedes", monthly$genus)
+monthly$genus = sub("^C$", "Culex", monthly$genus)
+
+# Change NAs in SignifVariables to Neither
+monthly$Multi_SignifVariables = replace(monthly$Multi_SignifVariables, 
+                                        is.na(monthly$Multi_SignifVariables), "Neither")
+
+# Change both temp and precip to "Both"
+monthly$Multi_SignifVariables = replace(monthly$Multi_SignifVariables, 
+                                        nchar(monthly$Multi_SignifVariables) > 7, "Both")
+
+# Convert significant variables to factor and put in order
+monthly$Multi_SignifVariables = factor(monthly$Multi_SignifVariables, 
+                                       levels  = c("temp", "precip", "Both", "Neither"))
+
+ggplot(monthly, aes(x = Multi_SignifVariables, fill = Multi_SignifVariables)) + 
+  geom_bar() + coord_flip(expand = F) + ylab("Number of Datasets") + xlab("Significant Variables") +
+  scale_fill_manual(values=c("sandybrown", "turquoise4", "hotpink4", "grey50"), 
+                    labels = c("Temperature", "Precipitation", "Both", "Neither"), 
+                    name = "Significant Variables") + 
+  scale_x_discrete(labels = c("Neither", "P", "T", "Both")) + theme_bw() 
+  #scale_fill_discrete()
+  #theme(legend.text = element_text())
+
+ggplot(monthly, aes(x = genus, fill = Multi_SignifVariables)) + 
+  geom_bar(position = position_dodge2(width = 2, preserve = "single")) + coord_flip(expand = F) + 
+  ylab("Number of Datasets") + xlab("Genus") +
+  scale_fill_manual(values=c("sandybrown", "turquoise4", "hotpink4", "grey50"), 
+                  labels = c("Temperature", "Precipitation", "Both", "Neither"), 
+                  name = "Significant Variables") + theme_bw() + 
+  theme(legend.position = c(0.8, 0.6))
+
+# Find species which occur in all five locations
+focal = monthly %>%
+  group_by(Species) %>% filter(n() > 4)
+
+# Find species which occur in 4 locations
+focal2 = monthly %>%
+  group_by(Species) %>% filter(n() == 4)
+
+
+my_labels = gsub("\\.", " ", unique(focal$Species))
+my_labels[10:11] = c("Culex pipiens**", "Aedes atlanticus**")
+ggplot(focal, aes(x = Species, fill = Multi_SignifVariables)) + 
+  geom_bar(position = position_dodge2(width = 2, preserve = "single")) + coord_flip(expand = F) + ylab("Number of Datasets") + xlab("Genus") +
+  scale_fill_manual(values=c("sandybrown", "turquoise4", "hotpink4", "grey50"), 
+                    labels = c("Temperature", "Precipitation", "Both", "Neither"), 
+                    name = "Significant Variables") + theme_bw() + 
+  theme(legend.position = "right", axis.text.y = element_text(face = "italic"), 
+        plot.subtitle = element_text("** species complex")) +
+  scale_x_discrete(labels = my_labels)
+
+png("../Images/significance_by_species2.png", height = 6, width = 10,units = "in", res = 800)
+my_labels = gsub("\\.", " ", unique(focal2$Species))
+ggplot(focal2, aes(x = Species, fill = Multi_SignifVariables)) + 
+  geom_bar(position = position_dodge2(width = 2, preserve = "single")) + coord_flip(expand = F) + ylab("Number of Datasets") + xlab("Genus") +
+  scale_fill_manual(values=c("sandybrown", "turquoise4", "hotpink4", "grey50"), 
+                    labels = c("Temperature", "Precipitation", "Both", "Neither"), 
+                    name = "Significant Variables") + theme_bw() + 
+  theme(legend.position = "right", axis.text.y = element_text(face = "italic")) +
+  scale_x_discrete(labels = my_labels)
+dev.off()
 
 #### Comparing AR Plot ####
 

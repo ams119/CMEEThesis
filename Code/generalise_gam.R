@@ -10,7 +10,7 @@ library("tidyverse")
 source("gam_functions.R")
 
 # Load the monthly data output
-output = read.csv("../Results/GAM2_monthly.csv", header = T, stringsAsFactors = F)
+output = read.csv("../Results/GAM_monthly.csv", header = T, stringsAsFactors = F)
 
 # Load time series data for each location and store in list
 

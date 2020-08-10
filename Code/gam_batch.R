@@ -72,7 +72,7 @@ for(i in 1:ncol(files)){
   output_df  = bind_rows(output_list)
   
   # Save as csv
-  write.csv(output_df, file = paste0("../Results/GAM2_", scale, ".csv"), row.names = F)
+  write.csv(output_df, file = paste0("../Results/GAM_", scale, ".csv"), row.names = F)
   
   
 }
