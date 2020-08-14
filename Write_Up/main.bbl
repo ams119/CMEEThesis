@@ -9,6 +9,11 @@
  (2020).
 \newblock {Mosquito-Borne Disease Surveillance}.
 
+\bibitem[Amarasekare and Savage, 2012]{Amarasekare2012}
+Amarasekare, P. and Savage, V. (2012).
+\newblock {A framework for elucidating the temperature dependence of fitness}.
+\newblock {\em American Naturalist}, 179(2):178--191.
+
 \bibitem[Barrera and Medialdea, 1996]{Barrera1996}
 Barrera, R. and Medialdea, V. (1996).
 \newblock {Development time and resistance to starvation of mosquito larvae}.
@@ -21,11 +26,37 @@ Beck-Johnson, L.~M., Nelson, W.~A., Paaijmans, K.~P., Read, A.~F., Thomas,
   and the potential for malaria transmission}.
 \newblock {\em PLoS ONE}, 8(11).
 
+\bibitem[Cator et~al., 2020]{Cator2020}
+Cator, L.~J., Johnson, L.~R., Mordecai, E.~A., {El Moustaid}, F., Smallwood,
+  T.~R., LaDeau, S.~L., Johansson, M.~A., Hudson, P.~J., Boots, M., Thomas,
+  M.~B., Power, A.~G., and Pawar, S. (2020).
+\newblock {The Role of Vector Trait Variation in Vector-Borne Disease
+  Dynamics}.
+\newblock {\em Frontiers in Ecology and Evolution}, 8(July).
+
+\bibitem[Chase and Knight, 2003]{Chase2003}
+Chase, J.~M. and Knight, T.~M. (2003).
+\newblock {Drought-induced mosquito outbreaks in wetlands}.
+\newblock {\em Ecology Letters}, 6(11):1017--1024.
+
+\bibitem[Chaves et~al., 2013]{Chaves2013}
+Chaves, L.~F., Higa, Y., Lee, S.~H., Jeong, J.~Y., Heo, S.~T., Kim, M.,
+  Minakawa, N., and Lee, K.~H. (2013).
+\newblock {Environmental Forcing Shapes Regional House Mosquito Synchrony in a
+  Warming Temperate Island}.
+\newblock {\em Environmental Entomology}, 42(4):605--613.
+
 \bibitem[Dominici et~al., 2002]{Dominici2002}
 Dominici, F., McDermott, A., Zeger, S.~L., and Samet, J.~M. (2002).
 \newblock {On the use of generalized additive models in time-series studies of
   air pollution and health}.
 \newblock {\em American Journal of Epidemiology}, 156(3):193--203.
+
+\bibitem[Greven and Kneib, 2010]{Greven2010}
+Greven, S. and Kneib, T. (2010).
+\newblock {On the behaviour of marginal and conditional AIC in linear mixed
+  models}.
+\newblock {\em Biometrika}, 97(4):773--789.
 
 \bibitem[Gubler, 1998]{Gubler1998}
 Gubler, D.~J. (1998).
@@ -72,6 +103,13 @@ Li, Y., Su, X., Zhou, G., Zhang, H., Puthiyakunnon, S., Shuai, S., Cai, S., Gu,
   mosquitoes}.
 \newblock {\em Parasites {\&} Vectors}, 9(1):446.
 
+\bibitem[Lowe et~al., 2013]{Lowe2013}
+Lowe, R., Bailey, T.~C., Stephenson, D.~B., Jupp, T.~E., Graham, R.~J.,
+  Barcellos, C., and Carvalho, M.~S. (2013).
+\newblock {The development of an early warning system for climate-sensitive
+  disease risk with a focus on dengue epidemics in Southeast Brazil}.
+\newblock {\em Statistics in Medicine}, 32(5):864--883.
+
 \bibitem[Magbity and Lines, 2002]{MagbityLines2002}
 Magbity, E. and Lines, J. (2002).
 \newblock {Spatial and temporal distribution of Anopheles gambiae s.l.
@@ -79,10 +117,30 @@ Magbity, E. and Lines, J. (2002).
   mosquito sampling routines}.
 \newblock {\em Bulletin of Entomological Research}, 92(6):483--488.
 
+\bibitem[Marini et~al., 2016]{Marini2016}
+Marini, G., Poletti, P., Giacobini, M., Pugliese, A., Merler, S., and
+  Ros{\`{a}}, R. (2016).
+\newblock {The role of climatic and density dependent factors in shaping
+  mosquito population dynamics:The case of culex pipiens in northwestern
+  Italy}.
+\newblock {\em PLoS ONE}, 11(4):1--15.
+
 \bibitem[Marra and Wood, 2011]{Marra2011}
 Marra, G. and Wood, S.~N. (2011).
 \newblock {Practical variable selection for generalized additive models}.
 \newblock {\em Computational Statistics and Data Analysis}, 55(7):2372--2387.
+
+\bibitem[Mordecai et~al., 2019]{Mordecai2019}
+Mordecai, E.~A., Caldwell, J.~M., Grossman, M.~K., Lippi, C.~A., Johnson,
+  L.~R., Neira, M., Rohr, J.~R., Ryan, S.~J., Savage, V., Shocket, M.~S.,
+  Sippy, R., {Stewart Ibarra}, A.~M., Thomas, M.~B., and Villena, O. (2019).
+\newblock {Thermal biology of mosquito-borne disease}.
+\newblock {\em Ecology Letters}, 22(10):1690--1708.
+
+\bibitem[Nelder and Wedderburn, 1972]{Nelder1972}
+Nelder, J. and Wedderburn, R. (1972).
+\newblock {Generalized Linear Models}.
+\newblock {\em Journal of the Royal Statistical Society}, 135(3):370--384.
 
 \bibitem[Paaijmans et~al., 2007]{Paaijmans2007}
 Paaijmans, K.~P., Wandago, M.~O., Githeko, A.~K., and Takken, W. (2007).
@@ -125,11 +183,30 @@ Sedda, L., Lucas, E.~R., Djogb{\'{e}}nou, L.~S., Edi, A. V.~C., Egyir-Yawson,
   standardization: an example from malaria mosquito surveillance}.
 \newblock {\em Journal of The Royal Society Interface}, 16(153):20180941.
 
-\bibitem[Shaman and Day, 2007]{Shaman2007}
-Shaman, J. and Day, J.~F. (2007).
-\newblock {Reproductive Phase Locking of Mosquito Populations in Response to
-  Rainfall Frequency}.
-\newblock {\em PLoS ONE}, 2(3):e331.
+\bibitem[Seneviratne et~al., 2012]{Seneviratne2012}
+Seneviratne, S.~I., Nicholls, N., Easterling, D., Goodess, C.~M., Kanae, S.,
+  Kossin, J., Luo, Y., Marengo, J., {Mc Innes}, K., Rahimi, M., Reichstein, M.,
+  Sorteberg, A., Vera, C., Zhang, X., Rusticucci, M., Semenov, V., Alexander,
+  L.~V., Allen, S., Benito, G., Cavazos, T., Clague, J., Conway, D.,
+  Della-Marta, P.~M., Gerber, M., Gong, S., Goswami, B.~N., Hemer, M., Huggel,
+  C., {Van den Hurk}, B., Kharin, V.~V., Kitoh, A., {Klein Tank}, A.~M., Li,
+  G., Mason, S., {Mc Guire}, W., {Van Oldenborgh}, G.~J., Orlowsky, B., Smith,
+  S., Thiaw, W., Velegrakis, A., Yiou, P., Zhang, T., Zhou, T., and Zwiers,
+  F.~W. (2012).
+\newblock {Changes in climate extremes and their impacts on the natural
+  physical environment}.
+\newblock In {Field, C.B., V. Barros, T.F. Stocker, D. Qin, D.J. Dokken, K.L.
+  Ebi, M.D. Mastrandrea, K.J. Mach, G.-K. Plattner, S.K. Allen,M. Tignor} and
+  Midgley, P., editors, {\em Managing the Risks of Extreme Events and Disasters
+  to Advance Climate Change Adaptation: Special Report of the Intergovernmental
+  Panel on Climate Change}, chapter~3, pages 109--230. Cambridge University
+  Press, Cambridge, UK, and New York, NY, USA.
+
+\bibitem[Shaman et~al., 2002]{Shaman2002}
+Shaman, J., Day, J.~F., and Stieglitz, M. (2002).
+\newblock {Drought-induced amplification of Saint Louis encephalitis virus,
+  Florida}.
+\newblock {\em Emerging Infectious Diseases}, 8(6):575--580.
 
 \bibitem[Tomerini et~al., 2011]{Tomerini2011}
 Tomerini, D.~M., Dale, P.~E., and Sipe, N. (2011).
@@ -151,6 +228,18 @@ Vazquez-Prokopec, G.~M., Chaves, L.~F., Ritchie, S.~A., Davis, J., and Kitron,
 \newblock {Unforeseen Costs of Cutting Mosquito Surveillance Budgets}.
 \newblock {\em PLoS Neglected Tropical Diseases}, 4(10):e858.
 
+\bibitem[Wang et~al., 2011]{Wang2011}
+Wang, J., Ogden, N.~H., and Zhu, H. (2011).
+\newblock {The Impact of Weather Conditions on Culex pipiens and Culex restuans
+  (Diptera: Culicidae) Abundance: A Case Study in Peel Region}.
+\newblock {\em Journal of Medical Entomology}, 48(2):468--475.
+
+\bibitem[Wood et~al., 2016]{Wood2016}
+Wood, S.~N., Pya, N., and S{\"{a}}fken, B. (2016).
+\newblock {Smoothing Parameter and Model Selection for General Smooth Models}.
+\newblock {\em Journal of the American Statistical Association},
+  111(516):1548--1563.
+
 \bibitem[Xu et~al., 2017]{Xu2017}
 Xu, L., Stige, L.~C., Chan, K.~S., Zhou, J., Yang, J., Sang, S., Wang, M.,
   Yang, Z., Yan, Z., Jiang, T., Lu, L., Yue, Y., Liu, X., Lin, H., Xu, J., Liu,
@@ -164,5 +253,11 @@ Yang, G.~J., Brook, B.~W., and Bradshaw, C.~J. (2009).
 \newblock {Predicting the timing and magnitude of tropical mosquito population
   peaks for maximizing control efficiency}.
 \newblock {\em PLoS Neglected Tropical Diseases}, 3(2):1--9.
+
+\bibitem[Yoo et~al., 2016]{Yoo2016}
+Yoo, E.~H., Chen, D., and Diao, C. (2016).
+\newblock {The effects of weather and environmental factors on west nile virus
+  mosquito abundance in greater toronto area}.
+\newblock {\em Earth Interactions}, 20(3).
 
 \end{thebibliography}

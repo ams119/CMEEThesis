@@ -211,9 +211,10 @@ monthly = read_csv("../Results/GAM_monthly.csv")
 
 # Remove datasets with more than 90% zero inflation and keep only relevant columns
 monthly = monthly %>% 
-  filter(z_inflation_pct <= 90 & !is.na(Multi_AIC)) %>%
-  select(Species, Location, Multi_SignifVariables)
+  filter(z_inflation_pct <= 90.0 & !is.na(Multi_DevianceExplained)) %>%
+  select(Species, Location, Multi_SignifVariables, Best_Temp, Best_Precip)
 
+cat("There are ", length(unique(monthly$Species)), " unique species in the variable comparison")
 
 # Add a column for genus
 monthly = monthly %>%  
@@ -234,23 +235,13 @@ monthly$Multi_SignifVariables = replace(monthly$Multi_SignifVariables,
 # Convert significant variables to factor and put in order
 monthly$Multi_SignifVariables = factor(monthly$Multi_SignifVariables, 
                                        levels  = c("temp", "precip", "Both", "Neither"))
+# Convert significant variables to factor and put in order
+monthly$Best_Precip = factor(monthly$Best_Precip, 
+                             levels  = c("precip_lag2", "precip_lag1", "precip_lag0"))
 
-ggplot(monthly, aes(x = Multi_SignifVariables, fill = Multi_SignifVariables)) + 
-  geom_bar() + coord_flip(expand = F) + ylab("Number of Datasets") + xlab("Significant Variables") +
-  scale_fill_manual(values=c("sandybrown", "turquoise4", "hotpink4", "grey50"), 
-                    labels = c("Temperature", "Precipitation", "Both", "Neither"), 
-                    name = "Significant Variables") + 
-  scale_x_discrete(labels = c("Neither", "P", "T", "Both")) + theme_bw() 
-  #scale_fill_discrete()
-  #theme(legend.text = element_text())
+monthly$Best_Temp = factor(monthly$Best_Temp, 
+                           levels  = c("temp_lag2", "temp_lag1", "temp_lag0"))
 
-ggplot(monthly, aes(x = genus, fill = Multi_SignifVariables)) + 
-  geom_bar(position = position_dodge2(width = 2, preserve = "single")) + coord_flip(expand = F) + 
-  ylab("Number of Datasets") + xlab("Genus") +
-  scale_fill_manual(values=c("sandybrown", "turquoise4", "hotpink4", "grey50"), 
-                  labels = c("Temperature", "Precipitation", "Both", "Neither"), 
-                  name = "Significant Variables") + theme_bw() + 
-  theme(legend.position = c(0.8, 0.6))
 
 # Find species which occur in all five locations
 focal = monthly %>%
@@ -260,28 +251,93 @@ focal = monthly %>%
 focal2 = monthly %>%
   group_by(Species) %>% filter(n() == 4)
 
+pdf("../Images/byspecies5_lag.pdf", height = 4, width = 3.4)
 
 my_labels = gsub("\\.", " ", unique(focal$Species))
 my_labels[10:11] = c("Culex pipiens**", "Aedes atlanticus**")
-ggplot(focal, aes(x = Species, fill = Multi_SignifVariables)) + 
-  geom_bar(position = position_dodge2(width = 2, preserve = "single")) + coord_flip(expand = F) + ylab("Number of Datasets") + xlab("Genus") +
-  scale_fill_manual(values=c("sandybrown", "turquoise4", "hotpink4", "grey50"), 
-                    labels = c("Temperature", "Precipitation", "Both", "Neither"), 
-                    name = "Significant Variables") + theme_bw() + 
-  theme(legend.position = "right", axis.text.y = element_text(face = "italic"), 
-        plot.subtitle = element_text("** species complex")) +
-  scale_x_discrete(labels = my_labels)
 
-png("../Images/significance_by_species2.png", height = 6, width = 10,units = "in", res = 800)
-my_labels = gsub("\\.", " ", unique(focal2$Species))
-ggplot(focal2, aes(x = Species, fill = Multi_SignifVariables)) + 
-  geom_bar(position = position_dodge2(width = 2, preserve = "single")) + coord_flip(expand = F) + ylab("Number of Datasets") + xlab("Genus") +
+temp_plot = ggplot(focal, aes(x = Species, fill = Best_Temp)) + ggtitle("Temperature Lags") +
+  geom_bar(position = position_dodge2(width = 2, preserve = "single")) + coord_flip(expand = F) + ylab("Number of Locations") + xlab("") +
+  scale_fill_manual(values=c("darkorange4", "orange2", "grey50"), 
+                    labels = c("2 months", "1 month", "No lag"), 
+                    name = "Best Lags") + theme_bw() + 
+  theme(legend.position = c(0.8,0.8), 
+        axis.text.y = element_text(face = "italic"), legend.text = element_text(size = 8),
+        plot.subtitle = element_text("** species complex"), legend.title = element_text(size = 9)) +
+  scale_x_discrete(labels = my_labels) + scale_y_continuous(limits = c(0,5))
+temp_plot
+
+precip_plot = ggplot(focal, aes(x = Species, fill = Best_Precip)) + ggtitle("Precipitation Lags") +
+  geom_bar(position = position_dodge2(width = 2, preserve = "single")) + coord_flip(expand = F) + ylab("Number of Locations") + xlab("") +
+  scale_fill_manual(values=c("steelblue4", "steelblue2", "grey50"), 
+                    labels = c("2 months", "1 month", "No lag"), 
+                    name = "Best Lags") + theme_bw() + 
+  theme(legend.position = c(0.8,0.8), 
+        axis.title.y=element_blank(),
+        axis.text.y=element_blank(),
+        axis.ticks.y=element_blank(),#element_text(face = "italic"), 
+        legend.text = element_text(size = 8),
+        legend.title = element_text(size = 9)) + scale_y_continuous(limits = c(0,5))
+precip_plot
+
+pdf("../Images/byspecies5_templags.pdf", height = 4, width = 4.3)
+temp_plot
+dev.off()
+
+pdf("../Images/byspecies5_preciplags.pdf", height = 4, width = 2.7)
+precip_plot
+dev.off()
+
+alldatasets = ggplot(alldata_monthly, aes(x = Multi_SignifVariables, y = n, fill = Multi_SignifVariables)) + 
+  geom_bar(stat = "identity") + ylab("Number of Datasets") + xlab("Signficiant\nVariables") +
+  scale_fill_manual(values=c("sandybrown", "turquoise4", "hotpink4", "grey50"), 
+                    labels = c("Temperature", "Precipitation", "Both", "Neither"), 
+                    name = "Significant Variables") + 
+  scale_x_discrete(labels = c("Temperature", "Precipitation", "Both", "Neither")) + theme_bw() + 
+  theme(legend.position = "top", legend.box = "vertical", legend.direction='vertical',
+        axis.text.x = element_blank(), legend.title = element_text(size = 9)) + 
+  scale_y_continuous(breaks = seq(0,50,10), limits = c(0,43)) +
+  geom_text(aes(label = n), position = position_dodge(0.6), vjust = -0.4, size = 3)
+
+
+# Save plot
+pdf("../Images/alldatasets_sig.pdf", height = 2.5, width = 2)
+alldatasets + theme(legend.position = "none")
+dev.off()
+
+# Extract legend from the plot, but without the margins
+tmp = ggplot_gtable(ggplot_build(alldatasets + theme(plot.margin = unit(c(0,0,0,0), "cm"))))
+leg = which(sapply(tmp$grobs, function(x) x$name) == "guide-box")
+legend = tmp$grobs[[leg]]
+
+# Save legend seperately
+pdf("../Images/legend_sig.pdf", height = 1.25, width = 1.5)
+grid.arrange(legend)
+dev.off()
+
+# Find species which occur in all five locations
+focal = monthly %>%
+  group_by(Species) %>% filter(n() > 4)
+
+# Find species which occur in 4 locations
+focal2 = monthly %>%
+  group_by(Species) %>% filter(n() == 4)
+
+pdf("../Images/byspecies5_sig.pdf", height = 4, width = 5)
+my_labels = gsub("\\.", " ", unique(focal$Species))
+my_labels[10:11] = c("Culex pipiens**", "Aedes atlanticus**")
+ggplot(focal, aes(x = Species, fill = Multi_SignifVariables)) + 
+  geom_bar(position = position_dodge2(width = 2, preserve = "single")) + coord_flip(expand = F) + ylab("Number of Locations") + xlab("") +
   scale_fill_manual(values=c("sandybrown", "turquoise4", "hotpink4", "grey50"), 
                     labels = c("Temperature", "Precipitation", "Both", "Neither"), 
                     name = "Significant Variables") + theme_bw() + 
-  theme(legend.position = "right", axis.text.y = element_text(face = "italic")) +
-  scale_x_discrete(labels = my_labels)
+  theme(legend.position = "none", #c(0.8,0.2), 
+        axis.text.y = element_text(face = "italic"), 
+        plot.subtitle = element_text("** species complex"), legend.title = element_text(size = 9)) +
+  scale_x_discrete(labels = my_labels) + scale_y_continuous(limits = c(0,5))
 dev.off()
+
+
 
 #### Comparing AR Plot ####
 
@@ -297,22 +353,26 @@ monthly = monthly[-remove,]
 
 monthly$DevDiff = monthly$MultiAR_DevianceExplained - monthly$Multi_DevianceExplained
 
-pdf("../Images/devcomp.pdf", height = 3, width = 3.2)
+
 # ggplot(monthly, aes(x = DevDiff, color = Location)) + geom_density(alpha = 1) + theme_bw() + 
 #   xlab("Difference in Deviance (%)") + xlim(0,100) + ylab("Density") 
-ggplot(monthly, aes(x = DevDiff, fill = Location)) + geom_histogram(position = "stack", breaks = seq(-5,100,5)) + theme_bw() + 
-  xlab("Difference in Deviance (%)") + ylab("Number of Datasets")  + 
-  scale_x_continuous(breaks= seq(-5 ,100,by=5), 
-                     labels = c("", 0, rep("",3), 20, rep("",3), 40, rep("",3), 60,
+all = ggplot(monthly, aes(x = DevDiff)) + geom_histogram(breaks = seq(-5,100,5), fill = "darkorchid4") + theme_bw() + 
+  xlab("Change in Deviance (%) with\nAddition of Autoregressive Term") + ylab("Number of Datasets")  + 
+  scale_x_continuous(breaks= seq(-10 ,100,by=5), 
+                     labels = c(-10, "", 0, rep("",3), 20, rep("",3), 40, rep("",3), 60,
                                 rep("",3), 80, rep("",3), 100), 
-                     limits = c(-5,100), expand = c(0,0)) +
-  scale_y_continuous(breaks = seq(0,25,5)) +
+                     limits = c(-10,100), expand = c(0,0)) +
+  scale_y_continuous(breaks = seq(0,30,5)) +
   theme(legend.position = c(0.7, 0.65), legend.title = element_text(size = 8),
         panel.grid.minor = element_blank(),
         axis.title.x = element_text(size =10), axis.title.y = element_text(size = 10),
-        legend.text = element_text(size = 7)) + 
-  scale_fill_manual(values=wes_palette(n=5, name="Darjeeling1"))
+        legend.text = element_text(size = 7), plot.margin = unit(c(0.1,0.3,0,0.1), "cm")) 
+all
+
+pdf("../Images/devcomp.pdf", height = 3, width = 3.2)
+all
 dev.off()
+
 
 median(monthly$DevDiff)
 mean(monthly$DevDiff)
@@ -327,12 +387,169 @@ counts = success %>% mutate(AIC_diff = Multi_AIC - MultiAR_AIC) %>% count(AIC_di
 counts = counts %>% add_column(Result = c("Equal", "Worse", "Better"))
 
 pdf("../Images/AICcomp.pdf", height = 3, width = 3)
-ggplot(counts, aes(x = Result, y = n)) + geom_bar(stat = "identity", fill = "grey50") + 
-  theme_bw() + ylab("Number of Datasets") + xlab("Fit of Autoregressive Model") +
-  geom_text(aes(label = sprintf("%.0f", n), y= n),  vjust = -1)+
+ggplot(counts, aes(x = Result, y = n)) + geom_bar(stat = "identity", fill = "thistle4") + 
+  theme_bw() + ylab("Number of Locations") + xlab("Relative Performance of\nAutoregressive Model") +
+  geom_text(aes(label = paste0(sprintf("%.1f", 100*n/length(!is.na(monthly$MultiAR_AIC))), "%"), y= n),  vjust = -1)+
   guides(fill=FALSE) + 
   scale_y_continuous(breaks = seq(0,100,25), limits = c(0,100)) +
   theme(panel.grid.major.x = element_blank(), 
-        axis.text.x = element_text(size = 10), axis.text.y = element_text(size = 10), text = element_text(size = 10))
+        axis.text.x = element_text(size = 10), axis.text.y = element_text(size = 10), text = element_text(size = 10),
+        plot.margin = unit(c(0.1,0.3,0,0.1), "cm"))
 dev.off()
+
+## Sandbox
+
+## Try lags plot by species
+#### Significance of Temperature and Precipitation ####
+# Load monthly data
+# monthly = read_csv("../Results/GAM_monthly.csv")
+# 
+# # Remove datasets with more than 90% zero inflation and keep only relevant columns
+# monthly = monthly %>% 
+#   filter(z_inflation_pct <= 90.0 & !is.na(Multi_DevianceExplained)) %>%
+#   select(Species, Location, Multi_SignifVariables)
+# 
+# cat("There are ", length(unique(monthly$Species)), " unique species in the variable comparison")
+# 
+# # Add a column for genus
+# monthly = monthly %>%  
+#   add_column(genus = sub("\\.", "", str_match(monthly$Species, pattern = "^\\w*\\."))) 
+# 
+# # Adjust "A" and "C" genus names
+# monthly$genus = sub("^A$", "Aedes", monthly$genus)
+# monthly$genus = sub("^C$", "Culex", monthly$genus)
+# 
+# # Change NAs in SignifVariables to Neither
+# monthly$Multi_SignifVariables = replace(monthly$Multi_SignifVariables, 
+#                                         is.na(monthly$Multi_SignifVariables), "Neither")
+# 
+# # Change both temp and precip to "Both"
+# monthly$Multi_SignifVariables = replace(monthly$Multi_SignifVariables, 
+#                                         nchar(monthly$Multi_SignifVariables) > 7, "Both")
+# 
+# # Convert significant variables to factor and put in order
+# monthly$Multi_SignifVariables = factor(monthly$Multi_SignifVariables, 
+#                                        levels  = c("temp", "precip", "Both", "Neither"))
+# 
+# alldata_monthly = monthly %>% group_by(Multi_SignifVariables) %>% tally()
+# 
+# alldatasets = ggplot(alldata_monthly, aes(x = Multi_SignifVariables, y = n, fill = Multi_SignifVariables)) + 
+#   geom_bar(stat = "identity") + ylab("Number of Locations") + xlab("Signficiant\nVariables") +
+#   scale_fill_manual(values=c("sandybrown", "turquoise4", "hotpink4", "grey50"), 
+#                     labels = c("Temperature", "Precipitation", "Both", "Neither"), 
+#                     name = "Significant Variables") + 
+#   scale_x_discrete(labels = c("Temperature", "Precipitation", "Both", "Neither")) + theme_bw() + 
+#   theme(legend.position = "top", legend.box = "vertical", legend.direction='vertical',
+#         axis.text.x = element_blank()) + 
+#   scale_y_continuous(breaks = seq(0,50,10), limits = c(0,43)) + 
+#   geom_text(aes(label = n), position = position_dodge(0.6), vjust = -0.4, size = 3)
+# 
+# 
+# # Save plot
+# pdf("../Images/alldatasets_sig.pdf", height = 2.5, width = 2)
+# alldatasets + theme(legend.position = "none")
+# dev.off()
+# 
+# 
+# # Extract legend from plot
+# tmp = ggplot_gtable(ggplot_build(alldatasets))
+# leg = which(sapply(tmp$grobs, function(x) x$name) == "guide-box")
+# legend = tmp$grobs[[leg]]
+# 
+# # Save legend seperately
+# pdf("../Images/legend_sig.pdf", height = 1.5, width = 1.5)
+# grid.arrange(legend)
+# dev.off()
+# 
+# 
+# bygenus = ggplot(monthly, aes(x = genus, fill = Multi_SignifVariables)) + 
+#   geom_bar(position = position_dodge2(width = 2, preserve = "single")) + coord_flip(expand = F) + 
+#   ylab("Number of Locations") + xlab("") +
+#   scale_fill_manual(values=c("sandybrown", "turquoise4", "hotpink4", "grey50"), 
+#                     labels = c("Temperature", "Precipitation", "Both", "Neither"), 
+#                     name = "Significant Variables") + theme_bw() + 
+#   scale_y_continuous(limits = c(0,20)) + 
+#   theme(legend.position = "none",#c(0.7, 0.8), 
+#         legend.title = element_text(size = 9))
+# bygenus
+# 
+# pdf("../Images/bygenus_sig.pdf", height = 4, width = 3.5)
+# bygenus
+# dev.off()
+# 
+# # Find species which occur in all five locations
+# focal = monthly %>%
+#   group_by(Species) %>% filter(n() > 4)
+# 
+# # Find species which occur in 4 locations
+# focal2 = monthly %>%
+#   group_by(Species) %>% filter(n() == 4)
+# 
+# pdf("../Images/byspecies5_sig.pdf", height = 5, width = 5)
+# my_labels = gsub("\\.", " ", unique(focal$Species))
+# my_labels[10:11] = c("Culex pipiens**", "Aedes atlanticus**")
+# ggplot(focal, aes(x = Species, fill = Multi_SignifVariables)) + 
+#   geom_bar(position = position_dodge2(width = 2, preserve = "single")) + coord_flip(expand = F) + ylab("Number of Locations") + xlab("") +
+#   scale_fill_manual(values=c("sandybrown", "turquoise4", "hotpink4", "grey50"), 
+#                     labels = c("Temperature", "Precipitation", "Both", "Neither"), 
+#                     name = "Significant Variables") + theme_bw() + 
+#   theme(legend.position = "none", #c(0.8,0.2), 
+#         axis.text.y = element_text(face = "italic"), 
+#         plot.subtitle = element_text("** species complex"), legend.title = element_text(size = 9)) +
+#   scale_x_discrete(labels = my_labels) + scale_y_continuous(limits = c(0,5))
+# dev.off()
+# 
+# pdf("../Images/byspecies4_sig.pdf", height = 4, width = 3.4)
+# my_labels = gsub("\\.", " ", unique(focal2$Species))
+# my_labels[6] = "Anopheles crucians**"
+# ggplot(focal2, aes(x = Species, fill = Multi_SignifVariables)) + 
+#   geom_bar(position = position_dodge2(width = 2, preserve = "single")) + coord_flip(expand = F) + ylab("Number of Locations") + xlab("") +
+#   scale_fill_manual(values=c("sandybrown", "turquoise4", "hotpink4", "grey50"), 
+#                     labels = c("Temperature", "Precipitation", "Both", "Neither"), 
+#                     name = "Significant Variables") + theme_bw() + 
+#   theme(legend.position = "none", axis.text.y = element_text(face = "italic")) +
+#   scale_x_discrete(labels = my_labels) + scale_y_continuous(limits = c(0,4), breaks = seq(0,4,1))
+# dev.off()
+
+monthly = read.csv("../Results/GAM_monthly.csv", header = T, stringsAsFactors = F)
+
+# Remove rows where either multi model did not converge
+remove = which(is.na(monthly$MultiAR_DevianceExplained) | is.na(monthly$MultiAR_DevianceExplained))
+monthly = monthly[-remove,]
+
+# Also remove monthly datasets with too much zero inflation
+remove = which(monthly$z_inflation_pct > 90)
+monthly = monthly[-remove,]
+
+
+# Hist for each location
+# Create a vector of locations
+locations = unique(monthly$Location)
+
+# Create empty list to store each location plot
+plots = vector("list", length = length(locations))
+names(plots) = locations
+
+colors = wes_palette("Royal2", n = 5, type = "discrete")
+
+# Loop through locations to make a histogram for each one
+for(i in 1:length(locations)){
+  tmp = monthly %>% filter(Location == locations[i])
+  color = colors[i]
+  plots[[i]] = ggplot(tmp, aes(x = DevDiff)) + geom_histogram(breaks = seq(-10,100,10), fill = colors[i]) + theme_bw() + 
+    xlab("Change in Deviance (%) with\nAddition of Autoregressive Term") + ylab("Number of Locations")  + ggtitle(locations[i]) + 
+    #scale_x_continuous(breaks= seq(-5 ,100,by=5), 
+    #                   labels = c("", 0, rep("",3), 20, rep("",3), 40, rep("",3), 60,
+    #                              rep("",3), 80, rep("",3), 100), 
+    #                   limits = c(-5,100), expand = c(0,0)) +
+    #scale_y_continuous(breaks = seq(0,max(tmp$),5)) +
+    theme(legend.position = c(0.7, 0.65), legend.title = element_text(size = 8),
+          panel.grid.minor = element_blank(),
+          axis.title.x = element_text(size =10), axis.title.y = element_text(size = 10),
+          legend.text = element_text(size = 7), plot.margin = unit(c(0.3,0.3,0,0.1), "cm")) + 
+    scale_y_discrete(breaks = seq(0, ))
+  
+  print(plots[[i]])
+}
+
 

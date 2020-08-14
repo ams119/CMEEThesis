@@ -13,10 +13,15 @@ files = list.files(path = "../Data/Extracted_Data/", pattern = "_TS.csv")
 # Remove Collier data- only records 1 family group
 files = files[-grep(pattern = "Collier", files)]
 
+# Create a data frame for storing which species in each location were aggregated
+morphological_aggregations = data.frame(rep(NA, length(files)), rep(NA, length(files)))
+colnames(morphological_aggregations) = c("Location", "Species")
+
 for(i in 1:length(files)){
   cat(paste("Now aggregating data for", sub(".csv", "", files[i]), "\n"))
   mapped = read.csv(paste0("../Data/Extracted_Data/", files[i]), header = T, stringsAsFactors = F)
   source("aggregation.R")
+  morphological_aggregations[i,"Location"] = locale
   write.csv(weekly, paste0("../Data/Extracted_Data/Aggregated/", locale, "_weekly.csv"), row.names = F)
   write.csv(biweekly, paste0("../Data/Extracted_Data/Aggregated/", locale, "_biweekly.csv"), row.names = F)
   write.csv(monthly, paste0("../Data/Extracted_Data/Aggregated/", locale, "_monthly.csv"), row.names = F)
@@ -98,6 +103,9 @@ for(i in 1:length(files)){
     dev.off()
   }
   
-  rm(list=setdiff(ls(), c("i", "files")))
+  rm(list=setdiff(ls(), c("i", "files", "morphological_aggregations")))
 }
 
+cat("\n Here is the summary of species in each location that were aggregated to morphological groups")
+print(morphological_aggregations)
+write.csv(morphological_aggregations, "../Results/morphological_groups.csv", row.names = F)

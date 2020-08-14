@@ -1,7 +1,7 @@
 #!/bin/env Rscript
 # Author: Anne Marie Saunders
 # Script: gam_batch.R
-# Desc: This script uses the functions from gam_functions.R and runs them iteratively on all location and temporal aggregation files. It then compiles all locations into 3 datasets of weekly, biweekly, and monthly data
+# Desc: This script uses the functions from gam_functions.R and runs them iteratively on all location and temporal aggregation files. It then compiles all locations into 3 ts_datasets of weekly, biweekly, and monthly ts_data
 # Arguments: 
 # Date: 07/28/20
 
@@ -32,25 +32,25 @@ for(i in 1:ncol(files)){
   # Loop through each location in this temporal scale
   for(j in 1:nrow(files)){
     
-    # Read in dataset
-    data = read.csv(paste0(path, files[j,i]), header = T, stringsAsFactors = F)
+    # Read in ts_dataset
+    ts_data = read.csv(paste0(path, files[j,i]), header = T, stringsAsFactors = F)
     
     # Extract a vector of all species at this location. Column numbers change based on temporal scale.
     # if(scale == 'weekly'){
-    #   species = colnames(data[10:(dim(data)[2]-4)])
+    #   species = colnames(ts_data[10:(dim(ts_data)[2]-4)])
     # }
     # 
     # if(scale == 'biweekly' | scale == 'monthly'){
-    #   species = colnames(data[10:(dim(data)[2]-3)])
+    #   species = colnames(ts_data[10:(dim(ts_data)[2]-3)])
     # }
     
-    species = colnames(data[10:(dim(data)[2]-3)])
+    species = colnames(ts_data[10:(dim(ts_data)[2]-3)])
     
     # Create vectors identifying the lags at this temporal scale
     lags = make_laglists(scale = scale)
     
     # Create a data frame of lagged meteorological values
-    lag_table = make_lag_table(temp = data$temp_mean, precip = data$precip_days, lags = lags)
+    lag_table = make_lag_table(temp = ts_data$temp_mean, precip = ts_data$precip_days, lags = lags)
     
     # Create empty output matrix
     output = make_output(lags = lags, species = species)
@@ -59,10 +59,10 @@ for(i in 1:ncol(files)){
     output$Location = locations[j]
     
     # Fit univariate models and store in this output table
-    output = fit_univariate_GAMs(data = data, output = output, lags = lags, lag_table = lag_table, species = species, scale = scale)
+    output = fit_univariate_GAMs(ts_data = ts_data, output = output, lags = lags, lag_table = lag_table, species = species, scale = scale)
     
     # Fit multivariate models and store in this output table
-    output = fit_multivariate_GAMs(data = data, output = output, lags = lags, lag_table = lag_table, species = species, scale = scale)
+    output = fit_multivariate_GAMs(ts_data = ts_data, output = output, lags = lags, lag_table = lag_table, species = species, scale = scale)
     
     # Append this output table to the total output list for this time scale
     output_list[[j]] = output
@@ -72,7 +72,7 @@ for(i in 1:ncol(files)){
   output_df  = bind_rows(output_list)
   
   # Save as csv
-  write.csv(output_df, file = paste0("../Results/GAM_", scale, ".csv"), row.names = F)
+  write.csv(output_df, file = paste0("../Results/GAM2_", scale, ".csv"), row.names = F)
   
   
 }

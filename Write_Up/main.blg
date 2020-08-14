@@ -1,54 +1,52 @@
 This is BibTeX, Version 0.99d (TeX Live 2017/Debian)
 Capacity: max_strings=100000, hash_size=100000, hash_prime=85009
 The top-level auxiliary file: main.aux
-White space in argument---line 10 of file main.aux
- : \citation{Trawinski2008,Li
- :                            2019Wang2011,Yoo2016}
-I'm skipping whatever remains of this command
 The style file: apalike.bst
 Database file #1: ../../../Dropbox/BibFiles/Thesis.bib.bib
 Warning--to sort, need author or key in WHOreport
 Warning--to sort, need author or key in DiseaseSurveillance
 Warning--empty author in WHOreport
-You've used 26 entries,
+Name 1 in "{Field, C.B., V. Barros, T.F. Stocker, D. Qin, D.J. Dokken, K.L. Ebi, M.D. Mastrandrea, K.J. Mach, G.-K. Plattner, S.K. Allen,M. Tignor}, and P.M. Midgley" has a comma at the end for entry Seneviratne2012
+while executing---line 1098 of file apalike.bst
+You've used 39 entries,
             1935 wiz_defined-function locations,
-            673 strings with 10270 characters,
-and the built_in function-call counts, 11865 in all, are:
-= -- 1113
-> -- 679
-< -- 10
-+ -- 244
-- -- 244
-* -- 1162
-:= -- 2104
-add.period$ -- 77
-call.type$ -- 26
-change.case$ -- 253
-chr.to.int$ -- 26
-cite$ -- 31
-duplicate$ -- 355
-empty$ -- 718
-format.name$ -- 282
-if$ -- 2218
+            763 strings with 14561 characters,
+and the built_in function-call counts, 19721 in all, are:
+= -- 1822
+> -- 1271
+< -- 15
++ -- 464
+- -- 464
+* -- 1971
+:= -- 3496
+add.period$ -- 117
+call.type$ -- 39
+change.case$ -- 427
+chr.to.int$ -- 39
+cite$ -- 44
+duplicate$ -- 549
+empty$ -- 1113
+format.name$ -- 521
+if$ -- 3672
 int.to.chr$ -- 1
 int.to.str$ -- 0
-missing$ -- 24
-newline$ -- 132
-num.names$ -- 72
-pop$ -- 193
+missing$ -- 37
+newline$ -- 197
+num.names$ -- 113
+pop$ -- 342
 preamble$ -- 1
-purify$ -- 252
+purify$ -- 426
 quote$ -- 0
-skip$ -- 267
+skip$ -- 414
 stack$ -- 0
-substring$ -- 775
-swap$ -- 24
-text.length$ -- 0
+substring$ -- 1235
+swap$ -- 47
+text.length$ -- 2
 text.prefix$ -- 0
 top$ -- 0
-type$ -- 156
+type$ -- 234
 warning$ -- 3
-while$ -- 87
+while$ -- 138
 width$ -- 0
-write$ -- 336
+write$ -- 507
 (There was 1 error message)

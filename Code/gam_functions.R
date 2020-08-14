@@ -60,7 +60,7 @@ make_output = function(lags, species){
   
   # Create desired column names
   columns = c("Species", lags$temp, lags$precip, "nr_total_obs", "nr_bestfit_obs", "nr_nonzero_obs", 
-              "z_inflation_pct", "Best_Temp", "Best_Precip", "Multi_DevianceExplained", "Multi_AIC", 
+              "z_inflation_pct", "Best_Temp", "AIC_wt_temp", "Best_Precip", "AIC_wt_precip", "Multi_DevianceExplained", "Multi_AIC", 
               "Multi_MAE", "Multi_NMAE", "Multi_MB", "Multi_Folds","Multi_SignifVariables", "MultiAR_DevianceExplained", 
               "MultiAR_AIC", "MultiAR_MAE", "MultiAR_NMAE", "MultiAR_MB", "MultiAR_Folds","MultiAR_SignifVariables")
   
@@ -169,6 +169,9 @@ fit_multivariate_GAMs = function(ts_data, output, lags, lag_table, species, scal
     # Record the zero inflation of this dataset with this best fit lag
     output$z_inflation_pct[i] = round(sum(vars$abundance -1  == 0)/output$nr_bestfit_obs[i]*100)
     
+    # Calculate the akaike weights of the best fit temperature and precipitation lags
+    output = akaike_weight(output_data = output, lags = lags, i = i)
+    
     # Max number of basis splines is = to the number of unique data points (discrete days of rainfall) 
     # Thus max k (number of knots) is equal to nr of unique values + 1. 
     # Default will be 10, but datasets with fewer unique values 9 than this will be adjusted accordingly
@@ -190,6 +193,11 @@ fit_multivariate_GAMs = function(ts_data, output, lags, lag_table, species, scal
       output$Multi_NMAE[i] = cv_scores[2]
       output$Multi_MB[i] = cv_scores[3]
       output$Multi_Folds[i] = cv_scores[4]
+      
+      # Plot
+      png(filename = paste0("../Results/GAM_Plots/", scale, output$Location[i], species[i], ".png"), height = 900, width = 900, units = 'px')
+      plot(multi_gam, rug = TRUE, page = 1, residuals = T, ylim = c(range(log(vars$abundance))[1], range(log(vars$abundance))[2]), main = paste(scale, output$Location[i], species[i]))
+      dev.off()
     }
   
     # Fit autoregressive multivariate model where smooth terms can be penalized out
@@ -208,10 +216,6 @@ fit_multivariate_GAMs = function(ts_data, output, lags, lag_table, species, scal
       output$MultiAR_MB[i] = cv_scores[3]
       output$MultiAR_Folds[i] = cv_scores[4]
       
-      # Plot
-      png(filename = paste0("../Results/GAM_Plots/", scale, output$Location[i], species[i], ".png"), height = 900, width = 900, units = 'px')
-      plot(multiAR_gam, rug = TRUE, shift = coef(multiAR_gam)[1], page = 1, residuals = T, ylim = c(range(log(vars$abundance))[1], range(log(vars$abundance))[2]), main = paste(scale, output$Location[i], species[i]))
-      dev.off()
     }
   }
   
@@ -287,6 +291,26 @@ k_fold_cross_validate = function(vars, precip_k, type, nr_folds){
   # Return a vector of the MAE, NMAE, MB, and number of folds used in averaging
   return(c(round(mean(MAE, na.rm = T), 3), round(mean(NMAE, na.rm = T), 3), round(mean(MB, na.rm = T), 3), sum(!is.na(MAE))))
   
+}
+
+akaike_weight = function(output_data, lags, i){
+  # Find just the Akaike weight of the best fit model
+  # Find the numerator: for best fit lag, delta AIC = 0.  exp(-1/2 delta AIC). 
+  num = exp(-1/2 * 0) # is equal to 1
+  
+  # Find the temperature denominator: sum of exp(-1/2 delta AIC) for each lag
+  denom = sum(exp(-1/2 * (output_data[i,which(colnames(output_data) %in% lags$temp)] - min(output_data[i,which(colnames(output_data) %in% lags$temp)]))))
+  
+  # Store in table
+  output_data$AIC_wt_temp[i] = round(num/denom, 3) *100
+  
+  # Find the temperature denominator: sum of exp(-1/2 delta AIC)
+  denom = sum(exp(-1/2 * (output_data[i,which(colnames(output_data) %in% lags$precip)] - min(output_data[i,which(colnames(output_data) %in% lags$precip)]))))
+  
+  # Store in table
+  output_data$AIC_wt_precip[i] = round(num/denom, 3) *100
+  
+  return(output_data)
 }
 
 # library(mgcv)

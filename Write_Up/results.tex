@@ -1,39 +1,12 @@
 \section{Results}
 
+Each temporal resolution contained 161 datasets of unique species and location combinations in each temporal resolution. 50 weekly, 42 bimonthly, and 32 monthly datasets were removed that where less than 10\% of the data was non-zero. Time series of temperature, precipitation, and abundance data for two sample datasets can be found in Fig \ref{fig: ts_plots}. 
 
+%\subsection{Lag Selection}
+%Selection by AIC of the best fit temperature lags in univariate models of mosquito abundance  (Equation \ref{eq: univariateT}) revealed that temperature in the contemporary time period ($l_T = 0$) was most frequently the best fit lag across all temporal resolutions. For precipitation models (Equation \ref{eq: univariateP}), lags of one and two weeks at the weekly scale were nearly equally most frequent (selected in 14 and 13 datasets, respectively). At the bimonthly scale, best fit lags of zero lags were most frequent but were favoured in only one more dataset than precipitation with one half month lag (31 and 30 datasets, respectively). At the monthly scale, the contemporary month was most frequently the best fit lag.
+
+% Multivariable partial dependencies
 \begin{figure}[h!]
-
-		\begin{minipage}[]{.48\textwidth}
-			\includegraphics[height = 3in, width=3.2in]{../Images/temp_ts.pdf}
-			
-			\hspace{4.3cm}\textbf{A.}\\
-		\end{minipage}
-		\begin{minipage}[]{.52\textwidth}
-			\includegraphics[height = 3in, width=3.4in]{../Images/precip_ts.pdf}
-			
-			\hspace{4.4cm}\textbf{B.}\\
-		\end{minipage}
-	
-	
-		\begin{minipage}[]{.5\textwidth}
-			\includegraphics[height = 3in, width=3.2in]{../Images/aedes_abun_ts.pdf}
-			
-			\hspace{4.3cm}\textbf{C.}\\
-		\end{minipage}
-		\begin{minipage}[]{.5\textwidth}
-			\includegraphics[height = 3in, 			width=3.2in]{../Images/culex_abun_ts.pdf}
-			
-			\hspace{4.5cm}\textbf{D.}\\
-		\end{minipage}
-		
-	\label{fig: ts_plots}
-	\caption{Time series data of temperature, precipitation, and two vector species from Manatee County, Florida, 2012-2016. Data shown here are aggregated at the weekly scale. In \textbf{A.}, average daily maximum temperature per week shows regular seasonality with a range of about 15 \degree C. In \textbf{B.}, precipitation is very frequent during during a summer rainy season. This is common in all locations. \textbf{C.} and \textbf{D.} show patterns of abundance for two vector species, \textit{Aedes albopictus} and \textit{Culex nigripalpus}. Abundance datasets were non-continuous over winter periods where abundances are assumed to be low so traps are not employed.}
-
-\end{figure}
-
-%2. partial dependency plot of multivariate GAM of a sample species 
-
-\begin{figure}
 	\begin{minipage}[]{\textwidth}
 		\centering
 		\includegraphics[height = 3in, width=6in]{../Images/multi_plotAQ.pdf}
@@ -43,121 +16,177 @@
 		\hspace{5.2cm}\textbf{A.}
 		\hspace{7cm}\textbf{B.}
 	\end{minipage}
-	\caption{Sample of multivariate model fitting (Equation \ref{eq: multivariate1}) showing the partial dependency of \textit{Anopheles quadrimaculatus} abundance in Lee County, Florida on temperature and precipitation (Equation \ref{eq: multivariate1}) at the monthly temporal aggregation. Both temperature and precipitation are significant and best fit at a lag of two months.}
-	\label{fig: 3Dmulti}
-
+	\caption{Sample of multivariate model fitting  showing the partial dependency of \textit{Anopheles quadrimaculatus} abundance in Lee County, Florida on temperature and precipitation at the monthly temporal aggregation. Both temperature and precipitation are significant and best fit at a lag of two months.}
+	\label{fig: multivar}
 \end{figure}
 
-%3. Table comparing deviance explained of different temporal resolutions
-
-\begin{table}[h!]
-\begin{center}
-\begin{tabularx}{.8\textwidth}{| L{0.5}  C{0.5}  C{.5}  C{0.5} | }
-	\hline
-	\multicolumn{4}{|l|}{Median Deviance Explained at Various Temporal Resolutions}\\
-	\hline
-	County & Weekly & Bimonthly & Monthly \\
-	\hline
-	Lee & 37.7\% & 45.8\% & *52.2\% \\
-	Manatee & 30.2\% & 35.5\% & *40.1\% \\
-	Orange & 26.2\% & 29.0\% & *35.0\% \\
-	Saint Johns & 13.0\% & *25.9\% & 12.6\% \\
-	Walton & 31.7\% & 40.2\% & *49.9\% \\
-	\hline
-	All Counties & 28.6\% & 33.0\% & *37.9\% \\
-	\hline
-	%\multicolumn{4}{l}{\small *marks the best-performing temporal scale in each row} \\
-	
-\end{tabularx}
-\caption{Deviance explained by the best fit multivariate model of temperature and precipitation for each dataset summarised by the median value at each location and temporal resolution. Median was used because the distribution of deviance explained was left skewed. The best-performing temporal resolution in each row is marked with an asterisk.}
-\label{tab: bestresdevexplained}
-\end{center}
-\end{table}
-
-\begin{table}[h!]
-\begin{center}
-	\begin{tabularx}{.8\textwidth}{| L{0.5}  C{0.5}  C{.5}  C{0.5} | }
-		\hline
-		\multicolumn{4}{|l|}{Median MAE at Various Temporal Resolutions}\\
-		\hline
-		County & Weekly & Bimonthly & Monthly \\
-		\hline
-		Lee & *3.6 & 9.66 & 11.87 \\
-		Manatee & 1.04 & 0.92 & *0.90 \\
-		Orange & 0.50 & 0.44 & *0.43 \\
-		Saint Johns & 0.20 & 0.20 & 0.20 \\
-		Walton & 0.26 & 0.22 & *0.19 \\
-		\hline
-		All Counties & *0.76 & 0.83 & 0.78 \\
-		\hline
+% Time series plots
+\begin{figure}[h!]
+	\begin{minipage}[]{.48\textwidth}
+		\includegraphics[height = 3in, width=3.2in]{../Images/temp_ts.pdf}
 		
-	\end{tabularx}
-
-	\caption{This table is an alternative to Table \ref{tab: bestresdevexplained}. Deviance is a relative measure that summarises the percent of deviance of the dataset that is explained by the model. MAE (Mean Absolute Error), on the other hand, is an absolute measure that can be interpreted as the average error in the mosquitoes predicted for each dataset. It is non-directional. I chose MAE over RMSE because RMSE would be larger for datasets with more data points (weekly level), fit nonwithstanding. This info will be in methods. The real caption will mirror the caption of the alternative Deviance Explained table. %Here, the median of MAE is used because the distribution of MAE is left-skewed.   
-	}
-	\label{tab: bestresMAE}
+		\hspace{4.3cm}\textbf{A.}\\
+	\end{minipage}
+	\begin{minipage}[]{.52\textwidth}
+		\includegraphics[height = 3in, width=3.4in]{../Images/precip_ts.pdf}
+		
+		\hspace{4.4cm}\textbf{B.}\\
+	\end{minipage}
 	
-\end{center}
-\end{table}
+	
+	\begin{minipage}[]{.5\textwidth}
+		\includegraphics[height = 3in, width=3.2in]{../Images/aedes_abun_ts.pdf}
+		
+		\hspace{4.3cm}\textbf{C.}\\
+	\end{minipage}
+	\begin{minipage}[]{.5\textwidth}
+		\includegraphics[height = 3in, 			width=3.2in]{../Images/culex_abun_ts.pdf}
+		
+		\hspace{4.5cm}\textbf{D.}\\
+	\end{minipage}
+	
+	\caption{Time series data of temperature, precipitation, and two vector species from Manatee County, Florida, 2012-2016. Data shown here are aggregated at the monthly scale. In \textbf{A.}, average daily maximum temperature per week shows regular seasonality with a range of about 15 \degree C. In \textbf{B.}, precipitation is very frequent during during a summer rainy season. This is common in all locations. \textbf{C.} and \textbf{D.} show patterns of abundance for two vector species, \textit{Aedes albopictus} and \textit{Culex nigripalpus}. Abundance datasets were non-continuous over winter periods where abundances are assumed to be low so traps are not employed. These missing data points were removed from datasets prior to analysis.}
+	\label{fig: ts_plots}
+\end{figure}
 
+\subsection{Which level of temporal resolution of temperature and precipitation data is best able to predict mosquito abundances?}
 
+The fit of multivariate models (Fig \ref{fig: multivar}) of temperature and abundance at best fit lags were compared across weekly, bimonthly, and monthly resolutions (Table \ref{tab: bestresdevexplained}) using MAE and deviance explained. 111 out of the original 161 datasets were used for this comparison. The fifty datasets that were removed had fewer than 10\% non-zero data points or did not converge to a multivariate model due to a lack of sufficient data in at least one of the temporal resolutions. In all locations besides St. Johns, monthly aggregated datasets had a higher median deviance explained than the median deviance explained at weekly and bimonthly resolutions. Three out of five locations had the lowest median MAE at the monthly resolution, indicating that monthly datasets had tended to have less prediction error than other resolutions. St Johns datasets had equal median MAE at every resolution, while Lee datasets had the lowest median error at the weekly resolution. Because monthly datasets could explain the most deviance in four out of five locations, and had the lowest median MAE in three out of five locations, this resolution was used for the rest of the analysis.
+
+% MAE table
 \begin{table}[h!]
 	\begin{center}
-		\caption{Significance of temperature and precipitation in seven major vector species across Florida locations according to a multivariate GAM (Equation \ref{eq: multivariate1}) constructed with the best fit lags of each variable at a monthly resolution. Each species was present in every location. Significance is marked with by the presence of a T for temperature and P for precipitation. Total locations with significant temperature and precipitation are summed for each species}
-		\begin{tabularx}{\textwidth}{| L{0.25} | C{0.25}  C{.25}  C{0.25} C{0.25} C{.25}  C{0.25} | }
+		\begin{tabularx}{.9\textwidth}{| L{0.5}  C{0.5}  C{.5}  C{0.5} | }
 			\hline
-			%\multicolumn{7}{|l|}{Significance of Temperature and Precipitation Across Locations}\\
-			%\hline
-			 \textbf{Locations}& \small{\textit{Aedes\textsuperscript{1}}} & \textit{\small Aedes\textsuperscript{2}} & %\textit{\small Aedes\textsuperscript{3}} &
-			 \textit{\small Anopheles\textsuperscript{1}} & \textit{\small Culex\textsuperscript{1}} & \textit{\small Culex\textsuperscript{2}} & \textit{\small Culiseta\textsuperscript{1}} \\\hline
-			 
-			 %\textbf{Locations} &&&&&&& \\
-			 Lee & \textcolor{white}{T}\quad P & \textcolor{white}{T}\quad P %& T\quad P 
-			 & T\quad P & T\quad \textcolor{white}{P} & T\quad P & T\quad P \\
-			 
-			 Manatee & T\quad \textcolor{white}{P} & T\quad P & T\quad P %& T\quad \textcolor{white}{P} 
-			 & T\quad \textcolor{white}{P} &  T\quad P &T\quad \textcolor{white}{P} \\
-			 
-			 Orange & T\quad P & T\quad \textcolor{white}{P} 
-			 %& T\quad \textcolor{white}{P} 
-			 & T\quad \textcolor{white}{P} & T\quad \textcolor{white}{P} &  T\quad P &\textcolor{white}{T}\quad P \\
-			 
-			 St. Johns & T\quad P & \textcolor{white}{T}\quad P %& T\quad P 
-			 &  & T\quad P 
-			 &  \textcolor{white}{T}\quad P &\textcolor{white}{T}\quad P \\
-			 
-			 Walton & T\quad P & T\quad P &% & 
-			 & T\quad \textcolor{white}{P} & T\quad \textcolor{white}{P} & T\quad P \\\hline
-			 
-			 \textbf{Total P} & \textcolor{white}{T}\quad 4 &  \textcolor{white}{T}\quad 4 & %\textcolor{white}{T}\quad 3 &
-			 \textcolor{white}{T}\quad 1 & \textcolor{white}{T}\quad 1 &
-			 \textcolor{white}{T}\quad 4 &
-			 \textcolor{white}{T}\quad 4 \\\hline
-			 
-			 \textbf{Total T} & 4
-			 \quad \textcolor{white}{P} & 3 \quad \textcolor{white}{P} %& 4 \quad \textcolor{white}{P} 
-			 & 3 \quad \textcolor{white}{P} & 5 \quad \textcolor{white}{P} & 4 \quad \textcolor{white}{P} & 3 \quad \textcolor{white}{P} \\\hline
-			 
-			 \multicolumn{7}{l}{}\\
-			 
-			 \multicolumn{7}{l}{\textit{Aedes\textsuperscript{1} = Aedes atlanticus tormentor morphological group; Aedes\textsuperscript{2} = Aedes albopictus;}}\\
-			 
-			 \multicolumn{7}{l}{\textit{Anopheles\textsuperscript{1} = Anopheles quadrimaculatus; Culex\textsuperscript{1} = Culex pipiens morphological group;}}\\
-			 
-			 \multicolumn{7}{l}{\textit{Culex\textsuperscript{2} = Culex nigripalpus; Culiseta\textsuperscript{1} = Culiseta melanura}} \\
+			\multicolumn{4}{|l|}{Median Deviance Explained and Median MAE at Various Temporal Resolutions}\\
+			\hline
+			County & Weekly & Bimonthly & Monthly \\
+			\hline
+			Lee & 37.7\% (3.60) & 45.8\% (9.66)& 52.2\% (11.87)\\
+			Manatee & 30.2\% (1.04)& 35.5\% (0.92)& 40.1\% (0.90)\\
+			Orange & 26.2\% (0.50)& 29.0\% (0.44)& 35.0\% (0.43)\\
+			St. Johns & 13.0\% (0.20)& *25.9\% (0.20)& 12.6\% (0.20)\\
+			Walton & 31.7\% (0.26)& 40.2\% (0.22)& 49.9\% (0.19)\\
+			\hline
+			All Counties & 28.6\% (0.76)& 33.0\% (0.83)& 37.9\% (0.78)\\
+			\hline
+			%\multicolumn{4}{l}{\small *marks the best-performing temporal scale in each row} \\
 			
 		\end{tabularx}
-		
-		\label{tab: compare_sites}
+		\caption{Deviance explained and MAE by the best fit multivariate model of temperature and precipitation for each dataset summarised by the median value at each location and temporal resolution. MAE is in parentheses. Median was used because the distribution of deviance explained and MAE was left skewed.}
+		\label{tab: bestresdevexplained}
 	\end{center}
 \end{table}
 
-%5. Plot showing effect of autoregressive term. Also include in words what the AIC difference was between AR and non-AR model
+\subsection{How consistent are best fit temporal lags and the influence of temperature and precipitation on mosquito abundance across locations?}
+
+I used corrected AIC selection in univariate models of temperature and precipitation to find the best fit lags of temperature and precipitation for each dataset. Temperature in the contemporary time period ($l_T = 0$) was most frequently the best fit lag across all temporal resolutions. For precipitation models (Equation \ref{eq: univariateP}), lags of one and two weeks at the weekly scale were nearly equally most frequent (selected in 14 and 13 datasets, respectively). At the bimonthly scale, best fit lags of zero lags were most frequent but were favoured in only one more dataset than precipitation with one half month lag (31 and 30 datasets, respectively). At the monthly scale, the contemporary month was most frequently the best fit lag.
+
+In order to assess the consistency of best-fit meteorological model characteristics in individual species across locations, I narrowed my monthly dataset to eleven species that occurred in all five locations and examined the frequency of best-fit lags and significant variables in each species. Nine out of eleven species (81.8\%) had single temperature lag that was preferred in a majority of locations (Fig \ref{fig: acrosslocation}A.). Only one species, \textit{Psorophora ciliata}, had consistent best fit lags for temperature across all locations. Eight of the eleven species had a precipitation lag that was best fit for a majority of the locations, but only 1 species, \textit{Aedes infirmatus}, had a single lag length consistently chosen across all locations (Fig \ref{fig: acrosslocation}B.).
+
+Across 128 monthly datasets with sufficient non-zero values and convergence in a multivariate model of abundance, models with significance in both temperature and precipitation was slightly more common than other combinations of variables. Variable categories were sorted by number of datasets where only temperature (25.8\%), only precipitation (25.0\%), both variables (30.5\%), or neither variable (18.8\%) was significant (Fig \ref{fig: acrosslocation}C.). In the focal eleven species, there were no species with a single category of significant predictors consistent across locations. Eight out of eleven species (72.7\%), however, had a single category of significant predictors in at least a majority of locations.  
 
 
 
-\begin{figure}[b]
+% Old Significance figure with genus
+\begin{comment}
+
+\begin{figure}
 	
+	\begin{minipage}{\textwidth}
+		\hspace{.1\textwidth}
+		\textbf{\Large  \textcolor{white}{A.} \hspace{.5\textwidth}B.}
+	\end{minipage}
+	\begin{minipage}{.5\textwidth}
+		\begin{center}
+			\includegraphics[width=1.5in, height=1.5in]{../Images/legend_sig.pdf}
+		\end{center}
+		\vspace{1cm}
+		\hspace{.2\textwidth}\textbf{\Large A.}
+		
+		\includegraphics[width=3in, height=1.5in]{../Images/alldatasets_sig.pdf}
+	\end{minipage}
+	\begin{minipage}{.5\textwidth}
+		\includegraphics[width=3.5in, height=4in]{../Images/bygenus_sig.pdf}
+	\end{minipage}
+	
+	\begin{minipage}{\textwidth}
+		\hspace{.1\textwidth}
+		\textbf{\Large  C.\hspace{.5\textwidth}D.}
+	\end{minipage}
+	\begin{minipage}{.5\textwidth}
+		\includegraphics[height=4in, width=3.4in]{../Images/byspecies4_sig.pdf}
+	\end{minipage}
+	\begin{minipage}{.5\textwidth}
+		\includegraphics[height=4in, width=3.4in]{../Images/byspecies5_sig.pdf}
+	\end{minipage}
+	\caption{Significance of meteorological variables in multivariate GAMs of mosquito abundance. "Precipitation" describes datasets with only precipitation as a significant predictor while "Temperature" describes datasets with only temperature as a significant predictor. \textbf{A.} shows the significances of each variable across 128 monthly datasets. In \textbf{B.}, species are sorted by genus and significance of meteorological variables is shown. Genus groupings often contain multiple datasets of the same species at different locations. In \textbf{C.} and \textbf{D.}, species-level significance are shown in 23 species that were present in four or five, respectively, of the five studied locations.}
+	\label{fig: significance}
+\end{figure}
+\end{comment}
+
+
+% Table I worked so hard for
+\begin{comment}
+
+\begin{table}[h!]
+\begin{center}
+\caption{Significance of temperature and precipitation in seven major vector species across Florida locations according to a multivariate GAM  constructed with the best fit lags of each variable at a monthly resolution. Each species was present in every location. Significance is marked with by the presence of a T for temperature and P for precipitation. Total locations with significant temperature and precipitation are summed for each species}
+\begin{tabularx}{\textwidth}{| L{0.25} | C{0.25}  C{.25}  C{0.25} C{0.25} C{.25}  C{0.25} | }
+\hline
+%\multicolumn{7}{|l|}{Significance of Temperature and Precipitation Across Locations}\\
+%\hline
+\textbf{Locations}& \small{\textit{Aedes\textsuperscript{1}}} & \textit{\small Aedes\textsuperscript{2}} & %\textit{\small Aedes\textsuperscript{3}} &
+\textit{\small Anopheles\textsuperscript{1}} & \textit{\small Culex\textsuperscript{1}} & \textit{\small Culex\textsuperscript{2}} & \textit{\small Culiseta\textsuperscript{1}} \\\hline
+
+%\textbf{Locations} &&&&&&& \\
+Lee & \textcolor{white}{T}\quad P & \textcolor{white}{T}\quad P %& T\quad P 
+& T\quad P & T\quad \textcolor{white}{P} & T\quad P & T\quad P \\
+
+Manatee & T\quad \textcolor{white}{P} & T\quad P & T\quad P %& T\quad \textcolor{white}{P} 
+& T\quad \textcolor{white}{P} &  T\quad P &T\quad \textcolor{white}{P} \\
+
+Orange & T\quad P & T\quad \textcolor{white}{P} 
+%& T\quad \textcolor{white}{P} 
+& T\quad \textcolor{white}{P} & T\quad \textcolor{white}{P} &  T\quad P &\textcolor{white}{T}\quad P \\
+
+St. Johns & T\quad P & \textcolor{white}{T}\quad P %& T\quad P 
+&  & T\quad P 
+&  \textcolor{white}{T}\quad P &\textcolor{white}{T}\quad P \\
+
+Walton & T\quad P & T\quad P &% & 
+& T\quad \textcolor{white}{P} & T\quad \textcolor{white}{P} & T\quad P \\\hline
+
+\textbf{Total P} & \textcolor{white}{T}\quad 4 &  \textcolor{white}{T}\quad 4 & %\textcolor{white}{T}\quad 3 &
+\textcolor{white}{T}\quad 1 & \textcolor{white}{T}\quad 1 &
+\textcolor{white}{T}\quad 4 &
+\textcolor{white}{T}\quad 4 \\\hline
+
+\textbf{Total T} & 4
+\quad \textcolor{white}{P} & 3 \quad \textcolor{white}{P} %& 4 \quad \textcolor{white}{P} 
+& 3 \quad \textcolor{white}{P} & 5 \quad \textcolor{white}{P} & 4 \quad \textcolor{white}{P} & 3 \quad \textcolor{white}{P} \\\hline
+
+\multicolumn{7}{l}{}\\
+
+\multicolumn{7}{l}{\textit{Aedes\textsuperscript{1} = Aedes atlanticus tormentor morphological group; Aedes\textsuperscript{2} = Aedes albopictus;}}\\
+
+\multicolumn{7}{l}{\textit{Anopheles\textsuperscript{1} = Anopheles quadrimaculatus; Culex\textsuperscript{1} = Culex pipiens morphological group;}}\\
+
+\multicolumn{7}{l}{\textit{Culex\textsuperscript{2} = Culex nigripalpus; Culiseta\textsuperscript{1} = Culiseta melanura}} \\
+
+\end{tabularx}
+
+\label{tab: compare_sites}
+\end{center}
+\end{table}
+\end{comment}
+
+\subsection{How does incorporation of an autoregressive term affect the predictive ability of temperature and precipitation driven models of mosquito abundance?}
+
+I used relative comparison of deviance explained and corrected AIC to understand the change in multivariate model fits with the addition of an autoregressive term of lagged abundance (Equation \ref{eq: multivariate2}). From 129 monthly datasets, 8 were removed that failed to converge in either multivariate model. As expected, the autoregressive term tended to improve model fit with a mean change in deviance explained of +16.7\% and median change in deviance explained of +10.9\% across all locations. Four datasets had a decrease in deviance explained with incorporation of an autoregressive term (range of [-2.1\%, -0.2\%]). Surprisingly, according to selection through corrected AIC, almost a third of datasets (31.4\%) were equally or better fit by the model with only meteorological predictors.
+
+% AR versus non AR
+\begin{figure}[h!]
 	\begin{minipage}{.5\textwidth}
 		\centering
 		\includegraphics[width=3.2in, height=3in]{../Images/devcomp.pdf}
@@ -167,11 +196,48 @@
 		\includegraphics[width=3in, height=3in]{../Images/AICcomp.pdf}
 	\end{minipage}
 	\begin{minipage}{\textwidth}
+		\vspace{.25cm}
 		\hspace{.25\textwidth}
 		\textbf{A.}
-		\hspace{.5\textwidth}
+		\hspace{.47\textwidth}
 		\textbf{B.}
 	\end{minipage}
-	\caption{Comparison of the fit of autoregressive versus non-autoregressive meteorological models of mosquito abundance for each monthly dataset (Equations \ref{eq: multivariate1} and \ref{eq: multivariate2}, respectively). After removing 8 datasets where the autoregressive model did not converge, 121 datasets were compared. In \textbf{A.} a histogram of the difference in deviance explained between the autoregressive and non-autoregressive model for each dataset is shown. Mean change in deviance explained with the incorporation of an autoregressive term was \textbf{+18.7\%} across all locations. Four datasets had a decrease (range of [-2.1\%, -0.2\%]) in deviance explained with incorporation of an autoregressive term. In \textbf{B.}, the number of datasets where the autoregressive model was a better, equal, and worse fit than the non-autoregressive model is shown. Models were selected using AIC. AIC differences of less than 2 were considered to be equally best fit \citep{JOHNSON2004101} 
+	\caption{Comparison of the fit of autoregressive versus non-autoregressive meteorological models of mosquito abundance for each monthly dataset. After removing 8 datasets where the autoregressive model did not converge, 121 datasets were compared. \textbf{A.} is a histogram of the relative change in deviance explained with the incorporation of an autoregressive term to the multivariate model for each dataset. Four datasets had a decrease (range of [-2.1\%, -0.2\%]) in deviance explained with incorporation of an autoregressive term. In \textbf{B.}, the number of datasets where the autoregressive model was a better, equal, and worse fit than the non-autoregressive model is shown. 
 	}
+\end{figure}
+
+% New significance figure with lags
+\begin{figure}
+	\begin{minipage}{\textwidth}
+		\hspace{.1\textwidth}
+		\textbf{\Large  A.\hspace{.5\textwidth}B.}
+	\end{minipage}
+	\begin{minipage}{.65\textwidth }%4.3in}
+		\includegraphics[height=4in, width=4.3in, left ]{../Images/byspecies5_templags.pdf}
+	\end{minipage}
+	\begin{minipage}{2.7in}
+		\includegraphics[height=4in, width=2.7in]{../Images/byspecies5_preciplags.pdf}
+	\end{minipage}
+	\vspace{1cm}
+	
+	\begin{minipage}{\textwidth}
+		\hspace{.1\textwidth}
+		\textbf{\Large  \hspace{.47\textwidth}D.}
+	\end{minipage}
+	\begin{minipage}{.3\textwidth}
+		%\centering
+		\includegraphics[width=1.5in, height=1.25in]{../Images/legend_sig.pdf}
+		
+		%\vspace{.4cm}
+		%\hspace{.1\textwidth}
+		\textbf{ \Large C.}
+		\includegraphics[width=2in, height=2.5in]{../Images/alldatasets_sig.pdf}
+	\end{minipage}
+	\begin{minipage}{.7\textwidth}
+		\includegraphics[height=4in, width=5in]{../Images/byspecies5_sig.pdf}
+	\end{minipage}
+	
+	\caption{Frequency of best fit lags and significant variables across locations for monthly datasets. Morphological groups are marked with asterisks. In \textbf{A.} and \textbf{B.}, frequency of best fit temperature and precipitation lags chosen by corrected AIC from univariate models of abundance are shown for eleven species that were present in all locations. \textbf{C.} shows the frequency of significant predictors for 128 abundance datasets fit with multivariate models of temperature and precipitation. In \textbf{D.}, the eleven species are shown with the frequency of significant variables in datasets across all locations.}
+	\label{fig: acrosslocation}
+	
 \end{figure}

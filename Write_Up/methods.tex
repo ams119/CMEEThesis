@@ -8,7 +8,7 @@ Each location contained multiple trap sites. A variety of trap types were used, 
 
 %In order to account for discrepancies in data entry between true zero count instances and NA values in abundance data, I set abundance for each species to zero where at least one mosquito of any species had been caught at the same trap on the same day. 
 
-I averaged species-specific count data in each location and at weekly, biweekly, and monthly temporal resolutions. This transformed integer count values to averaged indicators of county-level abundance and allowed me to account for frequent variation in the number of traps deployed for each location. I aggregated species that are morphologically indistinguishable from one another according to the \textbf{ontology used by VectorBase- FIXME CITE/REFERENCE} (\textbf{list in SI}). I then removed species that had only zero or NA abundance values. Species counts that were identified only to the genus or family level were also removed. After this processing, I had 163 datasets of unique species and location combinations aggregated at weekly, biweekly, and monthly resolutions). Table \ref{Tab:Locs} summarises the results of this processing at my five focal locations.
+I averaged species-specific count data in each location and at weekly, biweekly, and monthly temporal resolutions. This transformed integer count values to averaged indicators of county-level abundance and allowed me to account for frequent variation in the number of traps deployed at each location. I aggregated species that are morphologically indistinguishable from one another according to the \textbf{ontology used by VectorBase- FIXME CITE/REFERENCE} (\textbf{list in SI}). I then removed datasets where less than 10\% of the data points were greater than zero. Species counts that were identified only to the genus or family level were also removed. After this processing, I had 161 datasets of unique species and location combinations aggregated at weekly, biweekly, and monthly resolutions). Table \ref{Tab:Locs} summarises the results of this processing at my five focal locations.
 
 \begin{center}
 	\begin{tabularx}{7in}{ | L{0.5} | C{0.5} | C{0.5} | C{0.5} |}
@@ -30,9 +30,11 @@ Temperature and precipitation datasets were obtained from the NOAA Climate Data 
 
 \subsection{Data Pre-Processing}
 
-I spatially and temporally aggregated maximum temperature data by averaging both at county-level and at weekly, biweekly, and monthly time scales. Consequently, temperature in this study refers to the average maximum daily temperature across respective temporal scales.  \textbf{FIXME explain why choice of max temp vs average, min, etc}
+I spatially and temporally aggregated maximum temperature data by averaging both at county-level and at weekly, biweekly, and monthly time scales. Consequently, temperature in this study refers to the average maximum daily temperature across respective temporal scales. Multiple temperature indices, including minimum, maxium, and average temperatures have all been shown to be significant drivers of mosquito abundances \citep{Chaves2013, Roiz2014, Xu2017}. Maximum temperature was chosen to capture the maximum extreme of ambient temperatures mosquitoes were exposed to as high temperatures can have detrimental effects on adult survival \citep{Marini2016}
 
-Number of days of rainfall has been shown to be a more effective predictor of mosquito-borne disease incidence than cumulative precipitation \citep{Xu2017}. This is likely due to the maintenance of humid conditions over time with frequent rainfall. Humidity has been independently assessed as a significant predictor of abundance dynamics \citep{Trawinski2008}, and so this representation of precipitation may capture both humidity and precipitation effects. With this in mind, I aggregated precipitation to weekly, biweekly, and monthly scales by summing the number of days in each temporal period with non-zero cumulative precipitation. Consequently precipitation as I will further refer to it refers to a discrete number of days of rainfall, with a maximum of 7, 14, or 31 dependent on temporal scale. Finally, I removed rows of data with missing values in any response or explanatory variables. 
+Number of days of rainfall has been shown to be a more effective predictor of mosquito-borne disease incidence than cumulative precipitation \citep{Xu2017}. This is likely due to the maintenance of humid conditions over time with frequent rainfall. Humidity has been independently assessed as a significant predictor of abundance dynamics \citep{Trawinski2008}, and so this representation of precipitation may capture both humidity and precipitation effects. With this in mind, I aggregated precipitation to weekly, biweekly, and monthly scales by summing the number of days in each temporal period with non-zero cumulative precipitation. Consequently precipitation as I will further refer to it refers to a discrete number of days of rainfall, with a maximum of 7, 16, or 31 days dependent on temporal scale. 
+
+In order to investigate the effect of autoregressive predictors of abundance, I created an explanatory variable of abundance by shifting the continuous time series of response abundance by a lag of one time period; this was one week, bimonth, or month in each respective aggregation. Finally, I removed rows of data with missing values in any response or explanatory variables. By the end of this pre-processing, I had obtained three different temporally aggregated groups of equivalent species and location specific datasets. Each dataset contained explanatory variables of temperature, precipitation, and lagged abundance, as well as response variable abundance, at weekly, bimonthly, and monthly time scales.
 
 
 \subsection{Model Structure}
@@ -69,29 +71,46 @@ In Equation \ref{eq: multivariate2}, $V_{t-1}$ is the abundance one time step pr
 
 \subsection{Model Selection and Evaluation}
 
-Models \ref{eq: univariateT} and \ref{eq: univariateP} were used to determine the best-fit lags of temperature and precipitation for each dataset at each temporal aggregation. At the weekly and biweekly scale, lags between zero and six weeks were considered. At the monthly scale, lags between zero and two months were considered. Best-fit lags for each temporal scale were chosen by finding the minimum Akaike's Information Criterion (AIC) value among models fit with each possible lag length. 
+Models \ref{eq: univariateT} and \ref{eq: univariateP} were used to determine the best-fit lags of temperature and precipitation for each dataset at each temporal aggregation. At the weekly scale, lags of zero to twelve weeks were considered. At the bimonthly and monthly scales, lags were considered between zero, one, and two months. Because, on average, zero to two months is approximately the same number of days as zero to twelve weeks, this allowed equivalent time periods to be considered at each temporal scale. This wide range of lags were tested in order to avoid making strict assumptions about the relationship of meteorological variables with abundance and to account for wide variation in mosquito development time \citep{Barrera1996, Beck-Johnson2013} Best-fit lags for each temporal scale were chosen by finding the minimum corrected Akaike's Information Criterion (AIC) value among models fit with each possible lag length. 
 
 \begin{equation}
 	AIC = -2ln[L(\hat{\theta_{p}}|y)] + 2p
 	\label{eq: AIC}
 \end{equation}
 
-\begin{figure}
-	\centering
-	\includegraphics[height = 2in, width= 5 in]{../Images/Lags.pdf}
-	\caption{Lags of temperature ($l_T$) and precipitation ($l_P$) considered at each temporal resolution. The numbers in each box represent the values of $l_T$ and $l_P$. A two month lag, for example, would include data from two to three months prior or, on average, about 61 to 91 days prior. The most equivalent weekly lags (lags 9 through 12) contain data from 63 to 91 days prior. A wide range of lags were tested for model selection in order to avoid making strict assumptions about the relationship of meteorological variables with abundance and to account for wide variation in mosquito development time \citep{Barrera1996, Beck-Johnson2013}}
-	\label{fig:lags}
-\end{figure}
+%\begin{figure}
+%	\centering
+%	\includegraphics[height = 2in, width= 5 in]{../Images/Lags.pdf}
+%	\caption{Lags of temperature ($l_T$) and precipitation ($l_P$) considered at each temporal resolution. The numbers in each box represent the values of $l_T$ and $l_P$. A two month lag, for example, would include data from two to three months prior or, on average, about 61 to 91 days prior. The most equivalent weekly lags (lags 9 through 12) contain data from 63 to 91 days prior. A wide range of lags were tested for model selection in order to avoid making strict assumptions about the relationship of meteorological variables with abundance and to account for wide variation in mosquito development time \citep{Barrera1996, Beck-Johnson2013}}
+%	\label{fig:lags}
+%\end{figure}
 
 
 
-AIC is a method for determining the likelihood of a given model while penalizing model complexity \citep{JOHNSON2004101}. 
+AIC (Equation \ref{eq: AIC}) determines the likelihood of a given model while penalizing model complexity \citep{JOHNSON2004101}. Models that maximise both fit and simplicity are selected by choosing the model with the lowest AIC score. Corrected AIC fulfils the same goals as AIC, but uses likelihoods relevant to GAM models and corrects the over-selection of complex models that is typical of AIC methods for GAMs \citep{Greven2010, Wood2016}. 
+The Akaike weight of each best fit model was calculated in order to indicate the confidence in this lag as compared to other univariate lagged models. Once best-fit lags of meteorological variables for each dataset and temporal scale were determined, these lags were incorporated into multivariate models \ref{eq: multivariate1} and \ref{eq: multivariate2}. 
 
-The Akaike weight of each best fit model was calculated in order to indicate the confidence in this lag as compared to other univariate lagged models. 
 
-\textbf{FIXME- I have just realized that this is an inappropriate use of AIC. These univariate models are not nested and are based on different datasets- different lagged meteorological data. I should actually use GCV- generalized cross validation}.
+In order to compare equivalent datasets across resolutions, datasets were removed from each temporal aggregation that lacked matching datasets at other temporal resolutions due to filtering for at least 10\% non-zero values. Mean Absolute Error (MAE, Equation \ref{eq: MAE}) and deviance explained were used to compare the performance of lagged models at different temporal resolutions.  Deviance explained is a relative measure that compares the likelihood of the proposed model to the likelihood of a saturated model with a parameter for each term and has a functionality equivalent to R\textsuperscript{2} for non-Gaussian distribution families, such as the Gamma distribution that was used in this study \citep{Nelder1972}. MAE (Mean Absolute Error) is an absolute measure that can be interpreted as the average error in the number of mosquitoes predicted for each dataset. Because it is non-directional, I also calculated mean bias (MB, Equation \ref{eq: MB}) to understand the overall under and overestimation of the data by the fitted model. MAE and mean bias for each dataset were found through cross validation.  In equations \ref{eq: MAE} and \ref{eq: MB}, $N$ is the number of data points and $O_i$ and $P_i$ are observed and predicted points, respectively. 
 
-Once best-fit lags of meteorological variables for each dataset and temporal scale were determined, these lags were incorporated into multivariate models \ref{eq: multivariate1} and \ref{eq: multivariate2}. The generalized cross-validation (GCV) score and deviance explained of these multivariate models were compared. 
+\begin{equation}
+MAE = \frac{1}{N}\sum{|O_i - P_i|}
+\label{eq: MAE}
+\end{equation}
+
+\begin{equation}
+MB = \frac{1}{N}\sum{(O_i - P_i)}
+\label{eq: MB}
+\end{equation}
+
+After finding the temporal resolution that best described the data, datasets at this temporal resolution was used for further analysis on comparison of variable significance and comparison of autoregressive and non-autoregressive models.%I chose MAE over RMSE because RMSE would be larger for datasets with more data points. This would make comparisons across equivalent datasets at different temporal resolutions favour higher resolution data, fit notwithstanding.
+
+Significance of temperature and precipitation in multivariate models of mosquito abundance (Equation \ref{eq: multivariate1}) were compared across all datasets, between genus groups, and within species. Covariates were considered significant if smooth functions had p values of less than 0.05. %\citep{Wood2013}
+
+Corrected AIC and deviance explained were used to compare the performance of the autoregressive and non-autoregressive models for each dataset. Relative change in deviance explained between the two multivariate models was be found through differencing. Comparison of model fit was assessed also by finding the minimum corrected AIC between the two models. Models with differences in AIC of less than two were considered to be equally best fit \citep{JOHNSON2004101}.
+
+
+
 
 %GCV is a form of cross-validation procedure which quantifies the predictive capability of a model \citep{Chaves2019}. 
 

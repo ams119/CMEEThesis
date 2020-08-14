@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.18 (TeX Live 2017/Debian) (preloaded format=pdflatex 2020.5.9)  10 AUG 2020 17:43
+This is pdfTeX, Version 3.14159265-2.6-1.40.18 (TeX Live 2017/Debian) (preloaded format=pdflatex 2020.5.9)  13 AUG 2020 23:31
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -428,6 +428,56 @@ Package: subcaption 2016/05/22 v1.1-161 Sub-captions (AR)
 \c@subfigure=\count92
 \c@subtable=\count93
 )
+(/usr/share/texlive/texmf-dist/tex/latex/adjustbox/adjustbox.sty
+Package: adjustbox 2012/05/21 v1.0 Adjusting TeX boxes (trim, clip, ...)
+
+(/usr/share/texlive/texmf-dist/tex/latex/xkeyval/xkeyval.sty
+Package: xkeyval 2014/12/03 v2.7a package option processing (HA)
+
+(/usr/share/texlive/texmf-dist/tex/generic/xkeyval/xkeyval.tex
+(/usr/share/texlive/texmf-dist/tex/generic/xkeyval/xkvutils.tex
+\XKV@toks=\toks19
+\XKV@tempa@toks=\toks20
+)
+\XKV@depth=\count94
+File: xkeyval.tex 2014/12/03 v2.7a key=value parser (HA)
+))
+(/usr/share/texlive/texmf-dist/tex/latex/adjustbox/adjcalc.sty
+Package: adjcalc 2012/05/16 v1.1 Provides advanced setlength with multiple back
+-ends (calc, etex, pgfmath)
+)
+(/usr/share/texlive/texmf-dist/tex/latex/adjustbox/trimclip.sty
+Package: trimclip 2012/05/16 v1.0 Trim and clip general TeX material
+
+(/usr/share/texlive/texmf-dist/tex/latex/collectbox/collectbox.sty
+Package: collectbox 2012/05/17 v0.4b Collect macro arguments as boxes
+\collectedbox=\box27
+)
+\tc@llx=\dimen125
+\tc@lly=\dimen126
+\tc@urx=\dimen127
+\tc@ury=\dimen128
+Package trimclip Info: Using driver 'tc-pdftex.def'.
+
+(/usr/share/texlive/texmf-dist/tex/latex/adjustbox/tc-pdftex.def
+File: tc-pdftex.def 2012/05/13 v1.0 Clipping driver for pdftex
+))
+\adjbox@Width=\dimen129
+\adjbox@Height=\dimen130
+\adjbox@Depth=\dimen131
+\adjbox@Totalheight=\dimen132
+
+(/usr/share/texlive/texmf-dist/tex/latex/ifoddpage/ifoddpage.sty
+Package: ifoddpage 2016/04/23 v1.1 Conditionals for odd/even page detection
+\c@checkoddpage=\count95
+)
+(/usr/share/texlive/texmf-dist/tex/latex/varwidth/varwidth.sty
+Package: varwidth 2009/03/30 ver 0.92;  Variable-width minipages
+\@vwid@box=\box28
+\sift@deathcycles=\count96
+\@vwid@loff=\dimen133
+\@vwid@roff=\dimen134
+))
 (/usr/share/texlive/texmf-dist/tex/latex/base/fixltx2e.sty
 Package: fixltx2e 2016/12/29 v2.1a fixes to LaTeX (obsolete)
 Applying: [2015/01/01] Old fixltx2e package on input line 46.
@@ -443,31 +493,35 @@ Package: natbib 2010/09/13 8.31b (PWD, AO)
 \bibhang=\skip45
 \bibsep=\skip46
 LaTeX Info: Redefining \cite on input line 694.
-\c@NAT@ctr=\count94
+\c@NAT@ctr=\count97
 )
+(/usr/share/texlive/texmf-dist/tex/latex/comment/comment.sty
+\CommentStream=\write3
+
+Excluding comment 'comment')
 (/usr/share/texlive/texmf-dist/tex/latex/lineno/lineno.sty
 Package: lineno 2005/11/02 line numbers on paragraphs v4.41
-\linenopenalty=\count95
-\output=\toks19
-\linenoprevgraf=\count96
-\linenumbersep=\dimen125
-\linenumberwidth=\dimen126
-\c@linenumber=\count97
-\c@pagewiselinenumber=\count98
-\c@LN@truepage=\count99
-\c@internallinenumber=\count100
-\c@internallinenumbers=\count101
-\quotelinenumbersep=\dimen127
-\bframerule=\dimen128
-\bframesep=\dimen129
-\bframebox=\box27
+\linenopenalty=\count98
+\output=\toks21
+\linenoprevgraf=\count99
+\linenumbersep=\dimen135
+\linenumberwidth=\dimen136
+\c@linenumber=\count100
+\c@pagewiselinenumber=\count101
+\c@LN@truepage=\count102
+\c@internallinenumber=\count103
+\c@internallinenumbers=\count104
+\quotelinenumbersep=\dimen137
+\bframerule=\dimen138
+\bframesep=\dimen139
+\bframebox=\box29
 LaTeX Info: Redefining \\ on input line 3056.
 )
 (/usr/share/texlive/texmf-dist/tex/latex/tools/array.sty
 Package: array 2016/10/06 v2.4d Tabular extension package (FMi)
-\col@sep=\dimen130
-\extrarowheight=\dimen131
-\NC@list=\toks20
+\col@sep=\dimen140
+\extrarowheight=\dimen141
+\NC@list=\toks22
 \extratabsurround=\skip47
 \backup@length=\skip48
 )
@@ -479,13 +533,13 @@ Package: ltxtable 1995/12/11 v0.2 longtable/tabularx merge (DPC)
 
 (/usr/share/texlive/texmf-dist/tex/latex/tools/tabularx.sty
 Package: tabularx 2016/02/03 v2.11 `tabularx' package (DPC)
-\TX@col@width=\dimen132
-\TX@old@table=\dimen133
-\TX@old@col=\dimen134
-\TX@target=\dimen135
-\TX@delta=\dimen136
-\TX@cols=\count102
-\TX@ftn=\toks21
+\TX@col@width=\dimen142
+\TX@old@table=\dimen143
+\TX@old@col=\dimen144
+\TX@target=\dimen145
+\TX@delta=\dimen146
+\TX@cols=\count105
+\TX@ftn=\toks23
 )
 (/usr/share/texlive/texmf-dist/tex/latex/tools/longtable.sty
 Package: longtable 2014/10/28 v4.11 Multi-page Table package (DPC)
@@ -493,17 +547,17 @@ Package: longtable 2014/10/28 v4.11 Multi-page Table package (DPC)
 \LTright=\skip50
 \LTpre=\skip51
 \LTpost=\skip52
-\LTchunksize=\count103
-\LTcapwidth=\dimen137
-\LT@head=\box28
-\LT@firsthead=\box29
-\LT@foot=\box30
-\LT@lastfoot=\box31
-\LT@cols=\count104
-\LT@rows=\count105
-\c@LT@tables=\count106
-\c@LT@chunks=\count107
-\LT@p@ftn=\toks22
+\LTchunksize=\count106
+\LTcapwidth=\dimen147
+\LT@head=\box30
+\LT@firsthead=\box31
+\LT@foot=\box32
+\LT@lastfoot=\box33
+\LT@cols=\count107
+\LT@rows=\count108
+\c@LT@tables=\count109
+\c@LT@chunks=\count110
+\LT@p@ftn=\toks24
 ))
 (/usr/share/texlive/texmf-dist/tex/latex/xcolor/xcolor.sty
 Package: xcolor 2016/05/11 v2.12 LaTeX color extensions (UK)
@@ -515,10 +569,10 @@ Package xcolor Info: Driver file: pdftex.def on input line 225.
 
 (/usr/share/texlive/texmf-dist/tex/latex/colortbl/colortbl.sty
 Package: colortbl 2012/02/13 v1.0a Color table columns (DPC)
-\everycr=\toks23
+\everycr=\toks25
 \minrowclearance=\skip53
 )
-\rownum=\count108
+\rownum=\count111
 Package xcolor Info: Model `cmy' substituted by `cmy0' on input line 1348.
 Package xcolor Info: Model `hsb' substituted by `rgb' on input line 1352.
 Package xcolor Info: Model `RGB' extended on input line 1364.
@@ -531,18 +585,18 @@ Package xcolor Info: Model `wave' substituted by `hsb' on input line 1371.
 ) (./main.aux)
 \openout1 = `main.aux'.
 
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 66.
-LaTeX Font Info:    ... okay on input line 66.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 66.
-LaTeX Font Info:    ... okay on input line 66.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 66.
-LaTeX Font Info:    ... okay on input line 66.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 66.
-LaTeX Font Info:    ... okay on input line 66.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 66.
-LaTeX Font Info:    ... okay on input line 66.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 66.
-LaTeX Font Info:    ... okay on input line 66.
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 67.
+LaTeX Font Info:    ... okay on input line 67.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 67.
+LaTeX Font Info:    ... okay on input line 67.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 67.
+LaTeX Font Info:    ... okay on input line 67.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 67.
+LaTeX Font Info:    ... okay on input line 67.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 67.
+LaTeX Font Info:    ... okay on input line 67.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 67.
+LaTeX Font Info:    ... okay on input line 67.
 
 *geometry* driver: auto-detecting
 *geometry* detected driver: pdftex
@@ -580,17 +634,17 @@ LaTeX Font Info:    ... okay on input line 66.
 
 (/usr/share/texlive/texmf-dist/tex/context/base/mkii/supp-pdf.mkii
 [Loading MPS to PDF converter (version 2006.09.02).]
-\scratchcounter=\count109
-\scratchdimen=\dimen138
-\scratchbox=\box32
-\nofMPsegments=\count110
-\nofMParguments=\count111
-\everyMPshowfont=\toks24
-\MPscratchCnt=\count112
-\MPscratchDim=\dimen139
-\MPnumerator=\count113
-\makeMPintoPDFobject=\count114
-\everyMPtoPDFconversion=\toks25
+\scratchcounter=\count112
+\scratchdimen=\dimen148
+\scratchbox=\box34
+\nofMPsegments=\count113
+\nofMParguments=\count114
+\everyMPshowfont=\toks26
+\MPscratchCnt=\count115
+\MPscratchDim=\dimen149
+\MPnumerator=\count116
+\makeMPintoPDFobject=\count117
+\everyMPtoPDFconversion=\toks27
 ) (/usr/share/texlive/texmf-dist/tex/latex/oberdiek/epstopdf-base.sty
 Package: epstopdf-base 2016/05/15 v2.6 Base part for package epstopdf
 
@@ -650,58 +704,52 @@ Package caption Info: longtable package is loaded.
 Package: ltcaption 2013/06/09 v1.4-94 longtable captions (AR)
 )
 Package caption Info: End \AtBeginDocument code.
-LaTeX Info: Redefining \celsius on input line 66.
-Package gensymb Info: Faking symbols for \degree and \celsius on input line 66.
+LaTeX Info: Redefining \celsius on input line 67.
+Package gensymb Info: Faking symbols for \degree and \celsius on input line 67.
 
 
 
 Package gensymb Warning: Not defining \perthousand.
 
-LaTeX Info: Redefining \ohm on input line 66.
-Package gensymb Info: Using \Omega for \ohm on input line 66.
+LaTeX Info: Redefining \ohm on input line 67.
+Package gensymb Info: Using \Omega for \ohm on input line 67.
 
 Package gensymb Warning: Not defining \micro.
 
 LaTeX Font Info:    External font `cmex10' loaded for size
-(Font)              <12> on input line 71.
+(Font)              <12> on input line 72.
 LaTeX Font Info:    External font `cmex10' loaded for size
-(Font)              <8> on input line 71.
+(Font)              <8> on input line 72.
 LaTeX Font Info:    External font `cmex10' loaded for size
-(Font)              <6> on input line 71.
+(Font)              <6> on input line 72.
 [1
 
 {/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map}] [1] [1] (./main.toc
 LaTeX Font Info:    External font `cmex10' loaded for size
 (Font)              <10.95> on input line 1.
 )
-\tf@toc=\write3
-\openout3 = `main.toc'.
+\tf@toc=\write4
+\openout4 = `main.toc'.
 
 
 [1
 
 
-] (./introduction.tex
-
-Package natbib Warning: Citation `Li 2019Wang2011' on page 1 undefined on input
- line 13.
-
-
-Package natbib Warning: Citation `Yoo2016' on page 1 undefined on input line 13
-.
-
-[1]
-<../Images/arboviralcases.pdf, id=24, 433.62pt x 289.08pt>
+] (./introduction.tex [1]
+<../Images/arboviralcases.pdf, id=23, 433.62pt x 289.08pt>
 File: ../Images/arboviralcases.pdf Graphic file (type pdf)
 <use ../Images/arboviralcases.pdf>
-Package pdftex.def Info: ../Images/arboviralcases.pdf  used on input line 38.
+Package pdftex.def Info: ../Images/arboviralcases.pdf  used on input line 41.
 (pdftex.def)             Requested size: 433.63878pt x 289.09251pt.
 
 
 LaTeX Font Warning: Font shape `OT1/cmr/bx/sc' undefined
-(Font)              using `OT1/cmr/bx/n' instead on input line 40.
+(Font)              using `OT1/cmr/bx/n' instead on input line 43.
 
-[2 <../Images/arboviralcases.pdf>]) [3] (./methods.tex
+
+LaTeX Warning: `h' float specifier changed to `ht'.
+
+[2]) [3 <../Images/arboviralcases.pdf>] (./methods.tex
 Underfull \hbox (badness 10000) in alignment at lines 22--22
 [][][][] 
  []
@@ -711,139 +759,171 @@ Overfull \hbox (22.19313pt too wide) in paragraph at lines 22--22
  [] 
  []
 
-[4] [5] [6]
-<../Images/Lags.pdf, id=56, 578.16pt x 216.81pt>
-File: ../Images/Lags.pdf Graphic file (type pdf)
-<use ../Images/Lags.pdf>
-Package pdftex.def Info: ../Images/Lags.pdf  used on input line 81.
-(pdftex.def)             Requested size: 361.3491pt x 144.54735pt.
-) [7 <../Images/Lags.pdf>] (./results.tex
-<../Images/temp_ts.pdf, id=79, 325.215pt x 289.08pt>
-File: ../Images/temp_ts.pdf Graphic file (type pdf)
-<use ../Images/temp_ts.pdf>
-Package pdftex.def Info: ../Images/temp_ts.pdf  used on input line 7.
-(pdftex.def)             Requested size: 231.27147pt x 216.80946pt.
-
-Underfull \hbox (badness 10000) in paragraph at lines 9--10
-
- []
-
-<../Images/precip_ts.pdf, id=80, 325.215pt x 289.08pt>
-File: ../Images/precip_ts.pdf Graphic file (type pdf)
-<use ../Images/precip_ts.pdf>
-Package pdftex.def Info: ../Images/precip_ts.pdf  used on input line 12.
-(pdftex.def)             Requested size: 245.72191pt x 216.80946pt.
-
-Underfull \hbox (badness 10000) in paragraph at lines 14--15
-
- []
-
-
-Overfull \hbox (2.43332pt too wide) in paragraph at lines 6--16
-[]$[]$ $[]$ 
- []
-
-<../Images/aedes_abun_ts.pdf, id=81, 325.215pt x 289.08pt>
-File: ../Images/aedes_abun_ts.pdf Graphic file (type pdf)
-<use ../Images/aedes_abun_ts.pdf>
-Package pdftex.def Info: ../Images/aedes_abun_ts.pdf  used on input line 19.
-(pdftex.def)             Requested size: 231.27147pt x 216.80946pt.
-
-Underfull \hbox (badness 10000) in paragraph at lines 21--22
-
- []
-
-<../Images/culex_abun_ts.pdf, id=82, 325.215pt x 289.08pt>
-File: ../Images/culex_abun_ts.pdf Graphic file (type pdf)
-<use ../Images/culex_abun_ts.pdf>
-Package pdftex.def Info: ../Images/culex_abun_ts.pdf  used on input line 24.
-(pdftex.def)             Requested size: 231.27147pt x 216.80946pt.
-
-Underfull \hbox (badness 10000) in paragraph at lines 26--27
-
- []
-
-
-Overfull \hbox (2.43333pt too wide) in paragraph at lines 18--28
-[]$[]$ $[]$ 
- []
-
-<../Images/multi_plotAQ.pdf, id=83, 578.16pt x 289.08pt>
+[4] [5] [6] [7]) [8] (./results.tex
+<../Images/multi_plotAQ.pdf, id=62, 578.16pt x 289.08pt>
 File: ../Images/multi_plotAQ.pdf Graphic file (type pdf)
 <use ../Images/multi_plotAQ.pdf>
-Package pdftex.def Info: ../Images/multi_plotAQ.pdf  used on input line 39.
+Package pdftex.def Info: ../Images/multi_plotAQ.pdf  used on input line 12.
 (pdftex.def)             Requested size: 433.61893pt x 216.80946pt.
+<../Images/temp_ts.pdf, id=63, 325.215pt x 289.08pt>
+File: ../Images/temp_ts.pdf Graphic file (type pdf)
+<use ../Images/temp_ts.pdf>
+Package pdftex.def Info: ../Images/temp_ts.pdf  used on input line 26.
+(pdftex.def)             Requested size: 231.27147pt x 216.80946pt.
 
-LaTeX Warning: `!h' float specifier changed to `!ht'.
+Underfull \hbox (badness 10000) in paragraph at lines 28--29
+
+ []
+
+<../Images/precip_ts.pdf, id=64, 325.215pt x 289.08pt>
+File: ../Images/precip_ts.pdf Graphic file (type pdf)
+<use ../Images/precip_ts.pdf>
+Package pdftex.def Info: ../Images/precip_ts.pdf  used on input line 31.
+(pdftex.def)             Requested size: 245.72191pt x 216.80946pt.
+
+Underfull \hbox (badness 10000) in paragraph at lines 33--34
+
+ []
 
 
-LaTeX Warning: `!h' float specifier changed to `!ht'.
+Overfull \hbox (2.43332pt too wide) in paragraph at lines 25--35
+[]$[]$ $[]$ 
+ []
+
+<../Images/aedes_abun_ts.pdf, id=65, 325.215pt x 289.08pt>
+File: ../Images/aedes_abun_ts.pdf Graphic file (type pdf)
+<use ../Images/aedes_abun_ts.pdf>
+Package pdftex.def Info: ../Images/aedes_abun_ts.pdf  used on input line 38.
+(pdftex.def)             Requested size: 231.27147pt x 216.80946pt.
+
+Underfull \hbox (badness 10000) in paragraph at lines 40--41
+
+ []
+
+<../Images/culex_abun_ts.pdf, id=66, 325.215pt x 289.08pt>
+File: ../Images/culex_abun_ts.pdf Graphic file (type pdf)
+<use ../Images/culex_abun_ts.pdf>
+Package pdftex.def Info: ../Images/culex_abun_ts.pdf  used on input line 43.
+(pdftex.def)             Requested size: 231.27147pt x 216.80946pt.
+
+Underfull \hbox (badness 10000) in paragraph at lines 45--46
+
+ []
 
 
-Underfull \hbox (badness 10000) in alignment at lines 149--149
-[][][][][][][] 
+Overfull \hbox (2.43333pt too wide) in paragraph at lines 37--47
+[]$[]$ $[]$ 
  []
 
 
 LaTeX Warning: `!h' float specifier changed to `!ht'.
 
-<../Images/devcomp.pdf, id=84, 230.8625pt x 216.81pt>
+[9 <../Images/multi_plotAQ.pdf>]
+
+LaTeX Warning: `!h' float specifier changed to `!ht'.
+
+[10 <../Images/temp_ts.pdf> <../Images/precip_ts.pdf> <../Images/aedes_abun_ts.
+pdf> <../Images/culex_abun_ts.pdf>] [11] Excluding 'comment' comment.
+Excluding 'comment' comment.
+<../Images/devcomp.pdf, id=106, 230.8625pt x 216.81pt>
 File: ../Images/devcomp.pdf Graphic file (type pdf)
 <use ../Images/devcomp.pdf>
-Package pdftex.def Info: ../Images/devcomp.pdf  used on input line 163.
+Package pdftex.def Info: ../Images/devcomp.pdf  used on input line 192.
 (pdftex.def)             Requested size: 231.2635pt x 216.81938pt.
-<../Images/AICcomp.pdf, id=85, 216.81pt x 216.81pt>
+<../Images/AICcomp.pdf, id=107, 216.81pt x 216.81pt>
 File: ../Images/AICcomp.pdf Graphic file (type pdf)
 <use ../Images/AICcomp.pdf>
-Package pdftex.def Info: ../Images/AICcomp.pdf  used on input line 167.
+Package pdftex.def Info: ../Images/AICcomp.pdf  used on input line 196.
 (pdftex.def)             Requested size: 216.81938pt x 216.81938pt.
 
-Overfull \hbox (2.43333pt too wide) in paragraph at lines 161--176
+Overfull \hbox (2.43333pt too wide) in paragraph at lines 190--206
 []$[]$ $[]$
  []
 
-) [8 <../Images/temp_ts.pdf> <../Images/precip_ts.pdf> <../Images/aedes_abun_ts
-.pdf> <../Images/culex_abun_ts.pdf>] [9 <../Images/multi_plotAQ.pdf>] [10 <../I
-mages/devcomp.pdf> <../Images/AICcomp.pdf>] (./discussion.tex) (./main.bbl
-[11
+<../Images/byspecies5_templags.pdf, id=108, 310.15875pt x 289.08pt>
+File: ../Images/byspecies5_templags.pdf Graphic file (type pdf)
+<use ../Images/byspecies5_templags.pdf>
+Package pdftex.def Info: ../Images/byspecies5_templags.pdf  used on input line 
+216.
+(pdftex.def)             Requested size: 310.75903pt x 289.09251pt.
+<../Images/byspecies5_preciplags.pdf, id=109, 194.7275pt x 289.08pt>
+File: ../Images/byspecies5_preciplags.pdf Graphic file (type pdf)
+<use ../Images/byspecies5_preciplags.pdf>
+Package pdftex.def Info: ../Images/byspecies5_preciplags.pdf  used on input lin
+e 219.
+(pdftex.def)             Requested size: 195.13406pt x 289.09251pt.
 
-] [12
+Overfull \hbox (28.26524pt too wide) in paragraph at lines 211--222
+[]$ $[]$
+ []
 
-] [13])
+<../Images/legend_sig.pdf, id=110, 108.405pt x 90.3375pt>
+File: ../Images/legend_sig.pdf Graphic file (type pdf)
+<use ../Images/legend_sig.pdf>
+Package pdftex.def Info: ../Images/legend_sig.pdf  used on input line 229.
+(pdftex.def)             Requested size: 108.40968pt x 90.33864pt.
+<../Images/alldatasets_sig.pdf, id=111, 144.54pt x 180.675pt>
+File: ../Images/alldatasets_sig.pdf Graphic file (type pdf)
+<use ../Images/alldatasets_sig.pdf>
+Package pdftex.def Info: ../Images/alldatasets_sig.pdf  used on input line 234.
 
-Package natbib Warning: There were undefined citations.
+(pdftex.def)             Requested size: 144.54623pt x 180.67729pt.
 
-[14] (./main.aux)
+Underfull \hbox (badness 10000) in paragraph at lines 233--235
+[] \OT1/cmr/bx/n/14.4 C.
+ []
+
+<../Images/byspecies5_sig.pdf, id=112, 361.35pt x 289.08pt>
+File: ../Images/byspecies5_sig.pdf Graphic file (type pdf)
+<use ../Images/byspecies5_sig.pdf>
+Package pdftex.def Info: ../Images/byspecies5_sig.pdf  used on input line 237.
+(pdftex.def)             Requested size: 361.35463pt x 289.09251pt.
+
+Overfull \hbox (22.76831pt too wide) in paragraph at lines 237--238
+[][] 
+ []
+
+
+Overfull \hbox (2.43332pt too wide) in paragraph at lines 223--239
+[]$ $[]$ 
+ []
+
+) [12 <../Images/devcomp.pdf> <../Images/AICcomp.pdf>] [13 <../Images/byspecies
+5_templags.pdf> <../Images/byspecies5_preciplags.pdf> <../Images/legend_sig.pdf
+> <../Images/alldatasets_sig.pdf> <../Images/byspecies5_sig.pdf>]
+(./discussion.tex) (./main.bbl [14
+
+] [15
+
+] [16] [17] [18]) [19] (./main.aux)
 
 LaTeX Font Warning: Some font shapes were not available, defaults substituted.
 
  ) 
 Here is how much of TeX's memory you used:
- 5170 strings out of 494923
- 74744 string characters out of 6180743
- 169198 words of memory out of 5000000
- 8381 multiletter control sequences out of 15000+600000
- 10812 words of font info for 37 fonts, out of 8000000 for 9000
+ 5987 strings out of 494923
+ 88339 string characters out of 6180743
+ 165197 words of memory out of 5000000
+ 9158 multiletter control sequences out of 15000+600000
+ 9465 words of font info for 33 fonts, out of 8000000 for 9000
  14 hyphenation exceptions out of 8191
- 41i,15n,43p,1577b,544s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 41i,11n,61p,2123b,377s stack positions out of 5000i,500n,10000p,200000b,80000s
 </usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx10.pfb></us
 r/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx12.pfb></usr/shar
-e/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb></usr/share/texl
-ive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi6.pfb></usr/share/texlive/tex
-mf-dist/fonts/type1/public/amsfonts/cm/cmmi8.pfb></usr/share/texlive/texmf-dist
-/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/share/texlive/texmf-dist/fonts/
-type1/public/amsfonts/cm/cmr12.pfb></usr/share/texlive/texmf-dist/fonts/type1/p
-ublic/amsfonts/cm/cmr17.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/a
-msfonts/cm/cmr8.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/
-cm/cmss8.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy
-10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy8.pfb>
-</usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmti10.pfb></usr/
-share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmti7.pfb></usr/share/t
-exlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmti8.pfb>
-Output written on main.pdf (18 pages, 262759 bytes).
+e/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb></usr/share/texl
+ive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb></usr/share/texlive/te
+xmf-dist/fonts/type1/public/amsfonts/cm/cmmi6.pfb></usr/share/texlive/texmf-dis
+t/fonts/type1/public/amsfonts/cm/cmmi8.pfb></usr/share/texlive/texmf-dist/fonts
+/type1/public/amsfonts/cm/cmr10.pfb></usr/share/texlive/texmf-dist/fonts/type1/
+public/amsfonts/cm/cmr12.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/
+amsfonts/cm/cmr17.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfont
+s/cm/cmr8.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cms
+y10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy8.pfb
+></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmti10.pfb>
+Output written on main.pdf (23 pages, 253497 bytes).
 PDF statistics:
- 197 PDF objects out of 1000 (max. 8388607)
- 139 compressed objects within 2 object streams
+ 218 PDF objects out of 1000 (max. 8388607)
+ 152 compressed objects within 2 object streams
  0 named destinations out of 1000 (max. 500000)
- 46 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 66 words of extra memory for PDF output out of 10000 (max. 10000000)
 

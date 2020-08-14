@@ -33,22 +33,6 @@ allspecs =
   dplyr::summarise(Specimens.collected = sum(Specimens.collected, na.rm = T), real = mean(real, na.rm = T)) %>%
   dplyr::arrange(date, Latitudes, Longitudes)
 
-# # Find where at least some species had specimens collected and set these values to True
-# allspecs$real = allspecs$Specimens.collected > 0 # where SC = NA, this will = NA so:
-# allspecs$real[which(is.na(allspecs$real))] = FALSE 
-# 
-# # Keep only real and columns needed for join
-# to_join = allspecs[,-c(4:7)]
-# 
-# # Join this to mapped data frame
-#allspecs2 = dplyr::left_join(allspecs, mapped, by = c("date", "Latitudes", "Longitudes"))
-# 
-# # First set all NA values to zero
-# mapped$Specimens.collected[is.na(mapped$Specimens.collected)] = 0
-# 
-# # But on days where no samples were taken, set all zeroes to NA: likely to have zero species collected and NA for year 
-# mapped$Specimens.collected = replace(mapped$Specimens.collected, mapped$real == FALSE & is.na(mapped$Year), NA)
-
 
 # Create a data frame with each species as column instead of in rows. 
 ### Add species specific columns to trap counts ###
@@ -119,25 +103,33 @@ amd_spec = c("Anopheles.messeae", "Anopheles.daciae")
 amd_morphs = grep(paste(amd_spec, collapse = "|"), colnames(allspecs))
 
 
-# If these species are present, create a morphological group column that is the mean of these groups
+# If these species are present, create a morphological group column that is the mean of these groups and add name to species list
 if(length(cp_morphs > 0)){
   allspecs$C.pipiens.morphological.group = rowMeans(allspecs[,cp_morphs], na.rm = T)
+  species = c(species, "C.pipiens.morphological.group")
 }
 
 
 if(length(aat_morphs > 0)){
   allspecs$A.atlanticus.tormentor.morphological.group = rowMeans(allspecs[,aat_morphs], na.rm = T)
+  species = c(species, "A.atlanticus.tormentor.morphological.group")
 }
 
 if(length(amd_morphs > 0)){
   allspecs$A.messeae.daciae.morphological.group = rowMeans(allspecs[,amd_morphs], na.rm = T)  
+  species = c(species, "A.messeae.daciae.morphological.group")
 }
 
 # If any morphs were present, remove the species that have been averaged to a morphological group
 if(length(amd_morphs) + length(aat_morphs) + length(cp_morphs) > 0 ){
+  # Add the name of the species to the morphological groups list
+  morphological_aggregations$Species[i] = str_c(colnames(allspecs)[c(amd_morphs, aat_morphs, cp_morphs)], collapse = ", ")
+  
+  # Now remove the columns from the dataframe
   allspecs = allspecs[, -c(amd_morphs, aat_morphs, cp_morphs)]
-  # Also remove these species from the species list: this is offset by 8 from the columns
-  species = species[-(c(amd_morphs, aat_morphs, cp_morphs) - 8)] 
+
+  # Only keep species that still have a column in the dataframe in the species list
+  species = species[which(species %in% colnames(allspecs))]
 }
 
 

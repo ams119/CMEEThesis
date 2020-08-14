@@ -9,13 +9,14 @@
 \usepackage{titlesec}
 \usepackage{caption}
 \usepackage{subcaption}
-%\usepackage[dvipsnames]{xcolor} % text color
+\usepackage[export]{adjustbox} % adjust figure position
 \usepackage{fixltx2e} % subscripts in text
 \usepackage{natbib} %check out citation styles: https://www.economics.utoronto.ca/osborne/latex/BIBTEX.HTM
 \setcounter{secnumdepth}{0} %removes numbering from all sections and levels below
 \setlength{\parindent}{4em}
 \usepackage{setspace}
 \doublespacing
+\usepackage{comment}
 \usepackage[left]{lineno}
 \usepackage{array}
 \usepackage{gensymb} % For degree symbol
@@ -48,7 +49,7 @@
 %{0em} % distance between numbering and subtitle
 %{} % anything to appear between # and title
 
-\titleformat{\subsection}{\normalfont\bfseries\large}{}{0pt}{}
+\titleformat{\subsection}{\normalfont\bfseries\normalsize}{}{0pt}{}
 
 \title{Put Title Here} 
 
@@ -89,7 +90,7 @@ This is the abstract
 
 \pagebreak %also try \newpage
 
-\begin{linenumbers}
+%\begin{linenumbers}
 \input{introduction.tex}
 \pagebreak
 
@@ -102,7 +103,7 @@ This is the abstract
 \clearpage
 \input{discussion.tex}
 
-\end{linenumbers}
+%\end{linenumbers}
 
 \bibliographystyle{apalike}
 \bibliography{../../../Dropbox/BibFiles/Thesis.bib}
