@@ -5,9 +5,20 @@
 \newblock {Global vector control response 2017–2030}.
 \newblock Technical report, World Health Organization, Geneva.
 
+\bibitem[Flo, 2017]{FloridaHealth2017}
+ (2017).
+\newblock {Zika Incident Response Playbook}.
+\newblock Technical report, Florida Department of Health.
+
 \bibitem[Dis, 2020]{DiseaseSurveillance}
  (2020).
 \newblock {Mosquito-Borne Disease Surveillance}.
+
+\bibitem[Ahumada et~al., 2004]{Ahumada2004}
+Ahumada, J.~A., Lapointe, D., and Samuel, M.~D. (2004).
+\newblock {Modeling the population dynamics of Culex quinquefasciatus (Diptera:
+  Culicidae), along an elevational gradient in Hawaii}.
+\newblock {\em Journal of Medical Entomology}, 41(6):1157--1170.
 
 \bibitem[Amarasekare and Savage, 2012]{Amarasekare2012}
 Amarasekare, P. and Savage, V. (2012).
@@ -25,6 +36,13 @@ Beck-Johnson, L.~M., Nelson, W.~A., Paaijmans, K.~P., Read, A.~F., Thomas,
 \newblock {The effect of temperature on Anopheles mosquito population dynamics
   and the potential for malaria transmission}.
 \newblock {\em PLoS ONE}, 8(11).
+
+\bibitem[Cailly et~al., 2012]{Cailly2012}
+Cailly, P., Tran, A., Balenghien, T., L'Ambert, G., Toty, C., and Ezanno, P.
+  (2012).
+\newblock {A climate-driven abundance model to assess mosquito control
+  strategies}.
+\newblock {\em Ecological Modelling}, 227:7--17.
 
 \bibitem[Cator et~al., 2020]{Cator2020}
 Cator, L.~J., Johnson, L.~R., Mordecai, E.~A., {El Moustaid}, F., Smallwood,
@@ -45,6 +63,30 @@ Chaves, L.~F., Higa, Y., Lee, S.~H., Jeong, J.~Y., Heo, S.~T., Kim, M.,
 \newblock {Environmental Forcing Shapes Regional House Mosquito Synchrony in a
   Warming Temperate Island}.
 \newblock {\em Environmental Entomology}, 42(4):605--613.
+
+\bibitem[Chuang et~al., 2012]{Chuang2012}
+Chuang, T.~W., Ionides, E.~L., Knepper, R.~G., Stanuszek, W.~W., Walker, E.~D.,
+  and Wilson, M.~L. (2012).
+\newblock {Cross-correlation map analyses show weather variation influences on
+  mosquito abundance patterns in saginaw County, Michigan, 19892005}.
+\newblock {\em Journal of Medical Entomology}, 49(4):851--858.
+
+\bibitem[Connelly et~al., 2014]{Connelly2014}
+Connelly, C.~R., Bolles, E., Culbert, D., Devalerio, J., Do-Nahoe, M., Gabel,
+  K., Jordi, R., Mclaughlin, J., Neal, A., Scal-Era, S., Toro, E., and Walter,
+  J. (2014).
+\newblock {Florida Resident's Guide to Mosquito Control Integrated Pest
+  Management for Mosquito Reduction Around Homes and Neighborhoods}.
+\newblock Technical report, Florida Department of Health.
+
+\bibitem[{Da Cruz Ferreira} et~al., 2017]{DaCruzFerreira2017}
+{Da Cruz Ferreira}, D.~A., Degener, C.~M., {De Almeida Marques-Toledo}, C.,
+  Bendati, M.~M., Fetzer, L.~O., Teixeira, C.~P., and Eiras, {\'{A}}.~E.
+  (2017).
+\newblock {Meteorological variables and mosquito monitoring are good predictors
+  for infestation trends of Aedes aegypti, the vector of dengue, chikungunya
+  and Zika}.
+\newblock {\em Parasites and Vectors}, 10(1):1--11.
 
 \bibitem[Dominici et~al., 2002]{Dominici2002}
 Dominici, F., McDermott, A., Zeger, S.~L., and Samet, J.~M. (2002).
@@ -68,6 +110,12 @@ Gubler, D.~J. (2001).
 \newblock {Prevention and control of tropical diseases in the 21st century:
   Back to the field}.
 \newblock {\em American Journal of Tropical Medicine and Hygiene}, 65(1).
+
+\bibitem[Jian et~al., 2014]{Jian2014}
+Jian, Y., Silvestri, S., Brown, J., Hickman, R., and Marani, M. (2014).
+\newblock {The temporal spectrum of adult mosquito population fluctuations:
+  Conceptual and modeling implications}.
+\newblock {\em PLoS ONE}, 9(12):1--21.
 
 \bibitem[Johnson and Omland, 2004]{JOHNSON2004101}
 Johnson, J.~B. and Omland, K.~S. (2004).

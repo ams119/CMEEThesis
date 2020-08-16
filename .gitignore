@@ -4,11 +4,12 @@
 *e784096*
 *o784096*
 */Extracted_Data/*
-*/precip/*
-*/tmax/*
+*/precip/*.csv
+*/precip/*.nc
+*/tmax/*.csv
+*/tmax/*.nc
 *vectdyn_fulldata.csv
 *counts*.csv
 */AggByLocation/*
 */Sandbox/*
-*/GAM_Plots/*
-*/GLM_Plots/*
+*/Results/*

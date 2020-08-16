@@ -22,6 +22,7 @@
 \usepackage{gensymb} % For degree symbol
 \usepackage{ltxtable}
 \usepackage[table]{xcolor} 
+\usepackage{amsmath, amssymb} % for expectation
 \arrayrulecolor{gray}
 \newcolumntype{L}[1]{>{\hsize=#1\hsize\raggedright\arraybackslash}X}
 \newcolumntype{C}[1]{>{\hsize=#1\hsize\centering\arraybackslash}X}
@@ -29,6 +30,9 @@
 
 % Change Figure to Fig.
 \renewcommand{\figurename}{Fig.}
+
+% Create expectation symbol
+\DeclareMathOperator{\EX}{\mathbb{E}}
 
 %Caption format
 \captionsetup{
@@ -51,7 +55,7 @@
 
 \titleformat{\subsection}{\normalfont\bfseries\normalsize}{}{0pt}{}
 
-\title{Put Title Here} 
+\title{Evaluating Statistical Modelling Methodologies of Disease Vector Abundances } 
 
 \author{Anne Marie Saunders\\
 Imperial College London\\
@@ -76,13 +80,13 @@ MSc Computational Methods in Ecology and Evolution\\}
 %\addcontentsline{toc}{section}{Declaration}
 \renewcommand{\abstractname}{Declaration}
 \begin{abstract}
-This is the declaration.
+Mosquito count data is from the VectDyn database of the VectorByte data platform. Meteorological data is from the NOAA Climate Data Online database. Meteorological data extraction from NetCDF files was adapted from protocols developed by Matthew Watts as part of the larger VectorByte project. All other data cleaning, processing, and analysis was my own work.
 \end{abstract}
 
 %\addcontentsline{toc}{section}{Abstract}
 \renewcommand{\abstractname}{Abstract}
 \begin{abstract}
-This is the abstract
+Mosquito population dynamics directly affect disease incidence. Climate-based statistical models of abundance dynamics could provide early warnings of mosquito population growth and inform public health and mosquito management strategy. Existing attempts to model the relationship of temporally lagged meteorological variables on mosquito abundances tend to focus on single species in limited geographic areas and vary in their incorporation of auto régressive terms in the model.Conclusions about appropriate temporal  lag lengths and significance of meteorological predictors are consequently highly specific and limited in their potential to inform wider reaching early warning models. The temporal resolution of these models also range from weekly to monthly time scales with little consensus on appropriate time scale of analysis. In this study I used comprehensive multi-species surveillance data from 5 Florida counties to compare the performance of temperature and precipitation based GAMs of abundance when aggregated at weekly, bimonthly, and monthly time scales. I also investigated the consistency of best fit temporal lag lengths and significance of temperature and precipitation in predicting abundance across multiple locations for the same species. Lastly I assessed the relative effect on model fit of incorporating an auto-regressive term into climate-based GAMs. I found that in most locations, models parameterised with monthly aggregated data explain the most deviance in mosquito abundance dynamics with the least absolute error. Lags and significance of meteorological drivers of mosquito abundance were commonly shared within species, but varied enough to recommend that statistical models should be location-specific. According to AIC selection, autoregressive models were, in a majority of cases, better fit than non-autoregressive models, but a substantial 31.4\% of datasets were equally or better fit by climate-only models.
 \end{abstract}
 
 \clearpage\tableofcontents %creates page without page number

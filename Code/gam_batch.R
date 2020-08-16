@@ -9,6 +9,12 @@
 source("gam_functions.R")
 library(tidyverse)
 
+# Create directory for storing GAM plots
+dir.create("../Results/GAM_Plots/")
+
+# Create directory for storing distribution histograms
+dir.create("../Results/Hist_Plots/")
+
 # List all aggregated files 
 path = "../Data/Extracted_Data/Aggregated/"
 files = list.files(path)
@@ -35,15 +41,7 @@ for(i in 1:ncol(files)){
     # Read in ts_dataset
     ts_data = read.csv(paste0(path, files[j,i]), header = T, stringsAsFactors = F)
     
-    # Extract a vector of all species at this location. Column numbers change based on temporal scale.
-    # if(scale == 'weekly'){
-    #   species = colnames(ts_data[10:(dim(ts_data)[2]-4)])
-    # }
-    # 
-    # if(scale == 'biweekly' | scale == 'monthly'){
-    #   species = colnames(ts_data[10:(dim(ts_data)[2]-3)])
-    # }
-    
+    # Identify the species names in this dataset
     species = colnames(ts_data[10:(dim(ts_data)[2]-3)])
     
     # Create vectors identifying the lags at this temporal scale
@@ -72,7 +70,7 @@ for(i in 1:ncol(files)){
   output_df  = bind_rows(output_list)
   
   # Save as csv
-  write.csv(output_df, file = paste0("../Results/GAM2_", scale, ".csv"), row.names = F)
+  write.csv(output_df, file = paste0("../Results/GAM_", scale, ".csv"), row.names = F)
   
   
 }

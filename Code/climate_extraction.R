@@ -33,14 +33,11 @@
 #   ```{r}
 
 library(tidyverse)
-library(lubridate)
-library(readr)
 library(sf)
 library(rgdal)
 library(maps)
 library(ggplot2)
 library(sp)
-
 project_crs <- "+proj=longlat +WGS84 (EPSG: 4326) +init=epsg:4326 +proj=longlat +ellps=WGS84 +datum=WGS84 +no_defs +towgs84=0,0,0"
 
 ################################################################################

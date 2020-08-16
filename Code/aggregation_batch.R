@@ -5,8 +5,6 @@
 # Arguments: 
 # Date: 04/27/20
 
-#library(gridExtra)
-
 ## Begin loop to aggregate files
 files = list.files(path = "../Data/Extracted_Data/", pattern = "_TS.csv")
 
@@ -16,6 +14,9 @@ files = files[-grep(pattern = "Collier", files)]
 # Create a data frame for storing which species in each location were aggregated
 morphological_aggregations = data.frame(rep(NA, length(files)), rep(NA, length(files)))
 colnames(morphological_aggregations) = c("Location", "Species")
+
+# Create directory for storing aggregated data files
+dir.create("../Data/Extracted_Data/Aggregated/")
 
 for(i in 1:length(files)){
   cat(paste("Now aggregating data for", sub(".csv", "", files[i]), "\n"))

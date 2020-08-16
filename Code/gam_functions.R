@@ -198,6 +198,10 @@ fit_multivariate_GAMs = function(ts_data, output, lags, lag_table, species, scal
       png(filename = paste0("../Results/GAM_Plots/", scale, output$Location[i], species[i], ".png"), height = 900, width = 900, units = 'px')
       plot(multi_gam, rug = TRUE, page = 1, residuals = T, ylim = c(range(log(vars$abundance))[1], range(log(vars$abundance))[2]), main = paste(scale, output$Location[i], species[i]))
       dev.off()
+      
+      png(filename = paste0("../Results/Hist_Plots/", scale, output$Location[i], species[i], ".png"), height = 900, width = 900, units = 'px')
+      hist(log(vars$abundance), col = "lightblue")
+      dev.off()
     }
   
     # Fit autoregressive multivariate model where smooth terms can be penalized out

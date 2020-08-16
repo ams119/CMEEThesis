@@ -10,7 +10,6 @@ library(sf)
 library(rgdal)
 library(maps)
 library(sp)
-library(readr)
 library(tidyverse)
 library(ff)
 library(ffbase)
@@ -34,9 +33,6 @@ start = Sys.time()
 df1 = read.csv.ffdf(file = "../Data/vectdyn_fulldata.csv", sep = ",", colClasses = classesswitch)
 end = Sys.time()
 end-start
-
-# Specific dataset
-#df1 = read.csv("~/Documents/Hefty_Data/dates_weird.csv", header = T, stringsAsFactors = F)
 
 # Pull out location-related columns
 Latitudes = as.numeric(levels(df1$Latitudes)[df1$Latitudes[]])

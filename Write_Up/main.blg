@@ -4,49 +4,51 @@ The top-level auxiliary file: main.aux
 The style file: apalike.bst
 Database file #1: ../../../Dropbox/BibFiles/Thesis.bib.bib
 Warning--to sort, need author or key in WHOreport
+Warning--to sort, need author or key in FloridaHealth2017
 Warning--to sort, need author or key in DiseaseSurveillance
 Warning--empty author in WHOreport
+Warning--empty author in FloridaHealth2017
 Name 1 in "{Field, C.B., V. Barros, T.F. Stocker, D. Qin, D.J. Dokken, K.L. Ebi, M.D. Mastrandrea, K.J. Mach, G.-K. Plattner, S.K. Allen,M. Tignor}, and P.M. Midgley" has a comma at the end for entry Seneviratne2012
 while executing---line 1098 of file apalike.bst
-You've used 39 entries,
+You've used 46 entries,
             1935 wiz_defined-function locations,
-            763 strings with 14561 characters,
-and the built_in function-call counts, 19721 in all, are:
-= -- 1822
-> -- 1271
+            801 strings with 16346 characters,
+and the built_in function-call counts, 22999 in all, are:
+= -- 2126
+> -- 1484
 < -- 15
-+ -- 464
-- -- 464
-* -- 1971
-:= -- 3496
-add.period$ -- 117
-call.type$ -- 39
-change.case$ -- 427
-chr.to.int$ -- 39
-cite$ -- 44
-duplicate$ -- 549
-empty$ -- 1113
-format.name$ -- 521
-if$ -- 3672
++ -- 542
+- -- 542
+* -- 2295
+:= -- 4086
+add.period$ -- 138
+call.type$ -- 46
+change.case$ -- 503
+chr.to.int$ -- 46
+cite$ -- 54
+duplicate$ -- 641
+empty$ -- 1294
+format.name$ -- 605
+if$ -- 4275
 int.to.chr$ -- 1
 int.to.str$ -- 0
-missing$ -- 37
-newline$ -- 197
-num.names$ -- 113
-pop$ -- 342
+missing$ -- 42
+newline$ -- 232
+num.names$ -- 131
+pop$ -- 405
 preamble$ -- 1
-purify$ -- 426
+purify$ -- 500
 quote$ -- 0
-skip$ -- 414
+skip$ -- 479
 stack$ -- 0
-substring$ -- 1235
-swap$ -- 47
+substring$ -- 1424
+swap$ -- 52
 text.length$ -- 2
 text.prefix$ -- 0
 top$ -- 0
-type$ -- 234
-warning$ -- 3
-while$ -- 138
+type$ -- 276
+warning$ -- 5
+while$ -- 160
 width$ -- 0
-write$ -- 507
+write$ -- 597
 (There was 1 error message)

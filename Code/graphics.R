@@ -7,27 +7,11 @@
 
 ## Import functions and libraries
 source("gam_functions.R")
-library('gratia')
 library("ggplot2")
 library("wesanderson")
 library("tidyverse")
 library("gridExtra")
-library("mgcViz")
-#library("extrafont")
 
-
-#### Create disease plot for introduction ####
-diseases = read.csv("../Data/local_arbovirus_infections.csv", header = T, stringsAsFactors = F)
-
-pdf("../Images/arboviralcases.pdf", height = 4, width = 6)
-#loadfonts(device = "postscript")
-#par(family = "LM Roman 10")
-ggplot(diseases[which(diseases$Disease != "Zika"),], aes(x = Year, y = Count, color = Disease)) + 
-  geom_line(lwd = 1, alpha = 0.5) + theme_bw() + geom_point() +
-  scale_color_manual(values=wes_palette(n=5, name="Darjeeling1")) + ylab("Cases") + 
-  theme(legend.position = c(0.2, 0.75), legend.title = element_blank(), 
-        panel.grid.major = element_blank(), panel.grid.minor = element_blank())
-dev.off()
 
 #### Create sample time series plots of temperature, precipitation, and abundance
 ts_data = read.csv("../Data/Extracted_Data/Aggregated/Manatee_monthly.csv", header = T, stringsAsFactors = F)
@@ -103,9 +87,6 @@ pdf("../Images/precip_ts.pdf", height = 4, width = 4.5)
 precip_plot
 dev.off()
 
-# pdf("../Images/ts_plots.pdf", height = 6, width = 7)
-# grid.arrange(abun_plot, temp_plot, precip_plot, ncol = 3)
-# dev.off()
 
 #### Create 2d Partial Dependency Plot of temperature and precipitation
 # Create function to fit GAM and plot
@@ -115,15 +96,6 @@ fit_multi = function(scale, locale, pick_spec, filename){
   
   # Load dataset with time series data
   ts_data = read.csv(file = paste0("../Data/Extracted_Data/Aggregated/", locale, "_", scale, ".csv"), header = T, stringsAsFactors = F)
-  
-  # Extract a vector of all species at this location. Column numbers change based on temporal scale.
-  # if(scale == 'weekly'){
-  #   species = colnames(ts_data[10:(dim(ts_data)[2]-4)])
-  # }
-  # 
-  # if(scale == 'biweekly' | scale == 'monthly'){
-  #   species = colnames(ts_data[10:(dim(ts_data)[2]-3)])
-  # }
   
   species = colnames(ts_data[10:(dim(ts_data)[2]-3)])
   
@@ -163,6 +135,7 @@ fit_multi = function(scale, locale, pick_spec, filename){
 AQ_gam = fit_multi(scale = 'monthly', locale = 'Lee', 
            pick_spec = "Anopheles.quadrimaculatus")
 
+# Save plots of the partial dependencies of temperature and precipitation
 pdf("../Images/multi_plotAQ.pdf", height = 4, width = 8)
 par(mfrow = c(1,2), mar = c(4,4,3,1))
 test = plot(AQ_gam$gam, rug = T, #shift = coef(AQ_gam$gam)[1], ylim = c(0,5),
@@ -183,27 +156,6 @@ axis(side = 2, at= c(-1,0,1), labels = c("-1", "0", "1"))
 title("Precipitation", adj = 0)
 dev.off()
 
-Aalbo = fit_multi(scale = 'monthly', locale = 'Saint_Johns', 
-           pick_spec = "Aedes.infirmatus")
-
-pdf("../Images/multi_plotAQ.pdf", height = 4, width = 8)
-par(mfrow = c(1,2), mar = c(4,4,3,1))
-plot(Aalbo, rug = FALSE, #shift = coef(multi_gam)[1],
-     seWithMean = T, select = c(1),# ylim = c(-0.5,0.5),
-     shade = T, shade.col = "orange", 
-     ylab = "Partial Dependency of Abundance", xlab = "Maximum Temperature (°C)", 
-     panel.first = grid(col = "cornsilk3"))
-title("Temperature", adj = 0)
-
-plot(Aalbo, rug = FALSE, #shift = coef(multi_gam)[1],
-     ylim = c(-1.5,1.5), seWithMean = T, select = c(2),
-     shade = T, shade.col = "lightblue", #main = "Precipitation", 
-     ylab = "", xlab = "Days of Rainfall",
-     panel.first = grid(col = "cornsilk3"), 
-     yaxt = "n")
-axis(side = 2, at= -1.5:1.5)
-title("Precipitation", adj = 0)
-dev.off()
 
 #### Significance of Temperature and Precipitation ####
 # Load monthly data
@@ -287,6 +239,8 @@ dev.off()
 pdf("../Images/byspecies5_preciplags.pdf", height = 4, width = 2.7)
 precip_plot
 dev.off()
+
+alldata_monthly = monthly %>% group_by(Multi_SignifVariables) %>% tally()
 
 alldatasets = ggplot(alldata_monthly, aes(x = Multi_SignifVariables, y = n, fill = Multi_SignifVariables)) + 
   geom_bar(stat = "identity") + ylab("Number of Datasets") + xlab("Signficiant\nVariables") +
@@ -521,6 +475,8 @@ monthly = monthly[-remove,]
 remove = which(monthly$z_inflation_pct > 90)
 monthly = monthly[-remove,]
 
+# Create a column of the differences in AIC
+monthly$DevDiff = monthly$MultiAR_DevianceExplained - monthly$Multi_DevianceExplained
 
 # Hist for each location
 # Create a vector of locations
@@ -551,5 +507,4 @@ for(i in 1:length(locations)){
   
   print(plots[[i]])
 }
-
 

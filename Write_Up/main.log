@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.18 (TeX Live 2017/Debian) (preloaded format=pdflatex 2020.5.9)  13 AUG 2020 23:31
+This is pdfTeX, Version 3.14159265-2.6-1.40.18 (TeX Live 2017/Debian) (preloaded format=pdflatex 2020.5.9)  16 AUG 2020 21:42
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -582,21 +582,89 @@ Package xcolor Info: Model `tHsb' substituted by `hsb' on input line 1368.
 Package xcolor Info: Model `HSB' substituted by `hsb' on input line 1369.
 Package xcolor Info: Model `Gray' substituted by `gray' on input line 1370.
 Package xcolor Info: Model `wave' substituted by `hsb' on input line 1371.
-) (./main.aux)
+)
+(/usr/share/texlive/texmf-dist/tex/latex/amsmath/amsmath.sty
+Package: amsmath 2017/09/02 v2.17a AMS math features
+\@mathmargin=\skip54
+
+For additional information on amsmath, use the `?' option.
+(/usr/share/texlive/texmf-dist/tex/latex/amsmath/amstext.sty
+Package: amstext 2000/06/29 v2.01 AMS text
+
+(/usr/share/texlive/texmf-dist/tex/latex/amsmath/amsgen.sty
+File: amsgen.sty 1999/11/30 v2.0 generic functions
+\@emptytoks=\toks26
+\ex@=\dimen148
+))
+(/usr/share/texlive/texmf-dist/tex/latex/amsmath/amsbsy.sty
+Package: amsbsy 1999/11/29 v1.2d Bold Symbols
+\pmbraise@=\dimen149
+)
+(/usr/share/texlive/texmf-dist/tex/latex/amsmath/amsopn.sty
+Package: amsopn 2016/03/08 v2.02 operator names
+)
+\inf@bad=\count112
+LaTeX Info: Redefining \frac on input line 213.
+\uproot@=\count113
+\leftroot@=\count114
+LaTeX Info: Redefining \overline on input line 375.
+\classnum@=\count115
+\DOTSCASE@=\count116
+LaTeX Info: Redefining \ldots on input line 472.
+LaTeX Info: Redefining \dots on input line 475.
+LaTeX Info: Redefining \cdots on input line 596.
+\Mathstrutbox@=\box34
+\strutbox@=\box35
+\big@size=\dimen150
+LaTeX Font Info:    Redeclaring font encoding OML on input line 712.
+LaTeX Font Info:    Redeclaring font encoding OMS on input line 713.
+\macc@depth=\count117
+\c@MaxMatrixCols=\count118
+\dotsspace@=\muskip10
+\c@parentequation=\count119
+\dspbrk@lvl=\count120
+\tag@help=\toks27
+\row@=\count121
+\column@=\count122
+\maxfields@=\count123
+\andhelp@=\toks28
+\eqnshift@=\dimen151
+\alignsep@=\dimen152
+\tagshift@=\dimen153
+\tagwidth@=\dimen154
+\totwidth@=\dimen155
+\lineht@=\dimen156
+\@envbody=\toks29
+\multlinegap=\skip55
+\multlinetaggap=\skip56
+\mathdisplay@stack=\toks30
+LaTeX Info: Redefining \[ on input line 2817.
+LaTeX Info: Redefining \] on input line 2818.
+)
+(/usr/share/texlive/texmf-dist/tex/latex/amsfonts/amssymb.sty
+Package: amssymb 2013/01/14 v3.01 AMS font symbols
+
+(/usr/share/texlive/texmf-dist/tex/latex/amsfonts/amsfonts.sty
+Package: amsfonts 2013/01/14 v3.01 Basic AMSFonts support
+\symAMSa=\mathgroup4
+\symAMSb=\mathgroup5
+LaTeX Font Info:    Overwriting math alphabet `\mathfrak' in version `bold'
+(Font)                  U/euf/m/n --> U/euf/b/n on input line 106.
+)) (./main.aux)
 \openout1 = `main.aux'.
 
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 67.
-LaTeX Font Info:    ... okay on input line 67.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 67.
-LaTeX Font Info:    ... okay on input line 67.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 67.
-LaTeX Font Info:    ... okay on input line 67.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 67.
-LaTeX Font Info:    ... okay on input line 67.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 67.
-LaTeX Font Info:    ... okay on input line 67.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 67.
-LaTeX Font Info:    ... okay on input line 67.
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 71.
+LaTeX Font Info:    ... okay on input line 71.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 71.
+LaTeX Font Info:    ... okay on input line 71.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 71.
+LaTeX Font Info:    ... okay on input line 71.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 71.
+LaTeX Font Info:    ... okay on input line 71.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 71.
+LaTeX Font Info:    ... okay on input line 71.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 71.
+LaTeX Font Info:    ... okay on input line 71.
 
 *geometry* driver: auto-detecting
 *geometry* detected driver: pdftex
@@ -634,17 +702,17 @@ LaTeX Font Info:    ... okay on input line 67.
 
 (/usr/share/texlive/texmf-dist/tex/context/base/mkii/supp-pdf.mkii
 [Loading MPS to PDF converter (version 2006.09.02).]
-\scratchcounter=\count112
-\scratchdimen=\dimen148
-\scratchbox=\box34
-\nofMPsegments=\count113
-\nofMParguments=\count114
-\everyMPshowfont=\toks26
-\MPscratchCnt=\count115
-\MPscratchDim=\dimen149
-\MPnumerator=\count116
-\makeMPintoPDFobject=\count117
-\everyMPtoPDFconversion=\toks27
+\scratchcounter=\count124
+\scratchdimen=\dimen157
+\scratchbox=\box36
+\nofMPsegments=\count125
+\nofMParguments=\count126
+\everyMPshowfont=\toks31
+\MPscratchCnt=\count127
+\MPscratchDim=\dimen158
+\MPnumerator=\count128
+\makeMPintoPDFobject=\count129
+\everyMPtoPDFconversion=\toks32
 ) (/usr/share/texlive/texmf-dist/tex/latex/oberdiek/epstopdf-base.sty
 Package: epstopdf-base 2016/05/15 v2.6 Base part for package epstopdf
 
@@ -704,68 +772,56 @@ Package caption Info: longtable package is loaded.
 Package: ltcaption 2013/06/09 v1.4-94 longtable captions (AR)
 )
 Package caption Info: End \AtBeginDocument code.
-LaTeX Info: Redefining \celsius on input line 67.
-Package gensymb Info: Faking symbols for \degree and \celsius on input line 67.
+LaTeX Info: Redefining \celsius on input line 71.
+Package gensymb Info: Faking symbols for \degree and \celsius on input line 71.
 
 
 
 Package gensymb Warning: Not defining \perthousand.
 
-LaTeX Info: Redefining \ohm on input line 67.
-Package gensymb Info: Using \Omega for \ohm on input line 67.
+LaTeX Info: Redefining \ohm on input line 71.
+Package gensymb Info: Using \Omega for \ohm on input line 71.
 
 Package gensymb Warning: Not defining \micro.
 
-LaTeX Font Info:    External font `cmex10' loaded for size
-(Font)              <12> on input line 72.
-LaTeX Font Info:    External font `cmex10' loaded for size
-(Font)              <8> on input line 72.
-LaTeX Font Info:    External font `cmex10' loaded for size
-(Font)              <6> on input line 72.
-[1
-
-{/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map}] [1] [1] (./main.toc
-LaTeX Font Info:    External font `cmex10' loaded for size
-(Font)              <10.95> on input line 1.
+LaTeX Font Info:    Try loading font information for U+msa on input line 76.
+(/usr/share/texlive/texmf-dist/tex/latex/amsfonts/umsa.fd
+File: umsa.fd 2013/01/14 v3.01 AMS symbols A
 )
+LaTeX Font Info:    Try loading font information for U+msb on input line 76.
+
+(/usr/share/texlive/texmf-dist/tex/latex/amsfonts/umsb.fd
+File: umsb.fd 2013/01/14 v3.01 AMS symbols B
+) [1
+
+{/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map}] [1] [1] (./main.toc)
 \tf@toc=\write4
 \openout4 = `main.toc'.
 
-
-[1
-
-
-] (./introduction.tex [1]
-<../Images/arboviralcases.pdf, id=23, 433.62pt x 289.08pt>
-File: ../Images/arboviralcases.pdf Graphic file (type pdf)
-<use ../Images/arboviralcases.pdf>
-Package pdftex.def Info: ../Images/arboviralcases.pdf  used on input line 41.
-(pdftex.def)             Requested size: 433.63878pt x 289.09251pt.
+ [1
 
 
-LaTeX Font Warning: Font shape `OT1/cmr/bx/sc' undefined
-(Font)              using `OT1/cmr/bx/n' instead on input line 43.
-
-
-LaTeX Warning: `h' float specifier changed to `ht'.
-
-[2]) [3 <../Images/arboviralcases.pdf>] (./methods.tex
-Underfull \hbox (badness 10000) in alignment at lines 22--22
+] (./introduction.tex [1] [2]) [3] (./methods.tex [4]
+Underfull \hbox (badness 10000) in alignment at lines 23--23
 [][][][] 
  []
 
 
-Overfull \hbox (22.19313pt too wide) in paragraph at lines 22--22
+Overfull \hbox (22.19313pt too wide) in paragraph at lines 23--23
  [] 
  []
 
-[4] [5] [6] [7]) [8] (./results.tex
-<../Images/multi_plotAQ.pdf, id=62, 578.16pt x 289.08pt>
+
+LaTeX Font Warning: Font shape `OT1/cmr/bx/sc' undefined
+(Font)              using `OT1/cmr/bx/n' instead on input line 24.
+
+[5] [6] [7] [8]) [9] (./results.tex
+<../Images/multi_plotAQ.pdf, id=57, 578.16pt x 289.08pt>
 File: ../Images/multi_plotAQ.pdf Graphic file (type pdf)
 <use ../Images/multi_plotAQ.pdf>
 Package pdftex.def Info: ../Images/multi_plotAQ.pdf  used on input line 12.
 (pdftex.def)             Requested size: 433.61893pt x 216.80946pt.
-<../Images/temp_ts.pdf, id=63, 325.215pt x 289.08pt>
+<../Images/temp_ts.pdf, id=58, 325.215pt x 289.08pt>
 File: ../Images/temp_ts.pdf Graphic file (type pdf)
 <use ../Images/temp_ts.pdf>
 Package pdftex.def Info: ../Images/temp_ts.pdf  used on input line 26.
@@ -775,7 +831,7 @@ Underfull \hbox (badness 10000) in paragraph at lines 28--29
 
  []
 
-<../Images/precip_ts.pdf, id=64, 325.215pt x 289.08pt>
+<../Images/precip_ts.pdf, id=59, 325.215pt x 289.08pt>
 File: ../Images/precip_ts.pdf Graphic file (type pdf)
 <use ../Images/precip_ts.pdf>
 Package pdftex.def Info: ../Images/precip_ts.pdf  used on input line 31.
@@ -790,7 +846,7 @@ Overfull \hbox (2.43332pt too wide) in paragraph at lines 25--35
 []$[]$ $[]$ 
  []
 
-<../Images/aedes_abun_ts.pdf, id=65, 325.215pt x 289.08pt>
+<../Images/aedes_abun_ts.pdf, id=60, 325.215pt x 289.08pt>
 File: ../Images/aedes_abun_ts.pdf Graphic file (type pdf)
 <use ../Images/aedes_abun_ts.pdf>
 Package pdftex.def Info: ../Images/aedes_abun_ts.pdf  used on input line 38.
@@ -800,7 +856,7 @@ Underfull \hbox (badness 10000) in paragraph at lines 40--41
 
  []
 
-<../Images/culex_abun_ts.pdf, id=66, 325.215pt x 289.08pt>
+<../Images/culex_abun_ts.pdf, id=61, 325.215pt x 289.08pt>
 File: ../Images/culex_abun_ts.pdf Graphic file (type pdf)
 <use ../Images/culex_abun_ts.pdf>
 Package pdftex.def Info: ../Images/culex_abun_ts.pdf  used on input line 43.
@@ -818,96 +874,96 @@ Overfull \hbox (2.43333pt too wide) in paragraph at lines 37--47
 
 LaTeX Warning: `!h' float specifier changed to `!ht'.
 
-[9 <../Images/multi_plotAQ.pdf>]
+[10 <../Images/multi_plotAQ.pdf>]
 
 LaTeX Warning: `!h' float specifier changed to `!ht'.
 
-[10 <../Images/temp_ts.pdf> <../Images/precip_ts.pdf> <../Images/aedes_abun_ts.
-pdf> <../Images/culex_abun_ts.pdf>] [11] Excluding 'comment' comment.
+[11 <../Images/temp_ts.pdf> <../Images/precip_ts.pdf> <../Images/aedes_abun_ts.
+pdf> <../Images/culex_abun_ts.pdf>] [12] Excluding 'comment' comment.
 Excluding 'comment' comment.
-<../Images/devcomp.pdf, id=106, 230.8625pt x 216.81pt>
+<../Images/devcomp.pdf, id=100, 230.8625pt x 216.81pt>
 File: ../Images/devcomp.pdf Graphic file (type pdf)
 <use ../Images/devcomp.pdf>
-Package pdftex.def Info: ../Images/devcomp.pdf  used on input line 192.
+Package pdftex.def Info: ../Images/devcomp.pdf  used on input line 194.
 (pdftex.def)             Requested size: 231.2635pt x 216.81938pt.
-<../Images/AICcomp.pdf, id=107, 216.81pt x 216.81pt>
+<../Images/AICcomp.pdf, id=101, 216.81pt x 216.81pt>
 File: ../Images/AICcomp.pdf Graphic file (type pdf)
 <use ../Images/AICcomp.pdf>
-Package pdftex.def Info: ../Images/AICcomp.pdf  used on input line 196.
+Package pdftex.def Info: ../Images/AICcomp.pdf  used on input line 198.
 (pdftex.def)             Requested size: 216.81938pt x 216.81938pt.
 
-Overfull \hbox (2.43333pt too wide) in paragraph at lines 190--206
+Overfull \hbox (2.43333pt too wide) in paragraph at lines 192--208
 []$[]$ $[]$
  []
 
-<../Images/byspecies5_templags.pdf, id=108, 310.15875pt x 289.08pt>
+<../Images/byspecies5_templags.pdf, id=102, 310.15875pt x 289.08pt>
 File: ../Images/byspecies5_templags.pdf Graphic file (type pdf)
 <use ../Images/byspecies5_templags.pdf>
 Package pdftex.def Info: ../Images/byspecies5_templags.pdf  used on input line 
-216.
+218.
 (pdftex.def)             Requested size: 310.75903pt x 289.09251pt.
-<../Images/byspecies5_preciplags.pdf, id=109, 194.7275pt x 289.08pt>
+<../Images/byspecies5_preciplags.pdf, id=103, 194.7275pt x 289.08pt>
 File: ../Images/byspecies5_preciplags.pdf Graphic file (type pdf)
 <use ../Images/byspecies5_preciplags.pdf>
 Package pdftex.def Info: ../Images/byspecies5_preciplags.pdf  used on input lin
-e 219.
+e 221.
 (pdftex.def)             Requested size: 195.13406pt x 289.09251pt.
 
-Overfull \hbox (28.26524pt too wide) in paragraph at lines 211--222
+Overfull \hbox (28.26524pt too wide) in paragraph at lines 213--224
 []$ $[]$
  []
 
-<../Images/legend_sig.pdf, id=110, 108.405pt x 90.3375pt>
+<../Images/legend_sig.pdf, id=104, 108.405pt x 90.3375pt>
 File: ../Images/legend_sig.pdf Graphic file (type pdf)
 <use ../Images/legend_sig.pdf>
-Package pdftex.def Info: ../Images/legend_sig.pdf  used on input line 229.
+Package pdftex.def Info: ../Images/legend_sig.pdf  used on input line 231.
 (pdftex.def)             Requested size: 108.40968pt x 90.33864pt.
-<../Images/alldatasets_sig.pdf, id=111, 144.54pt x 180.675pt>
+<../Images/alldatasets_sig.pdf, id=105, 144.54pt x 180.675pt>
 File: ../Images/alldatasets_sig.pdf Graphic file (type pdf)
 <use ../Images/alldatasets_sig.pdf>
-Package pdftex.def Info: ../Images/alldatasets_sig.pdf  used on input line 234.
+Package pdftex.def Info: ../Images/alldatasets_sig.pdf  used on input line 236.
 
 (pdftex.def)             Requested size: 144.54623pt x 180.67729pt.
 
-Underfull \hbox (badness 10000) in paragraph at lines 233--235
+Underfull \hbox (badness 10000) in paragraph at lines 235--237
 [] \OT1/cmr/bx/n/14.4 C.
  []
 
-<../Images/byspecies5_sig.pdf, id=112, 361.35pt x 289.08pt>
+<../Images/byspecies5_sig.pdf, id=106, 361.35pt x 289.08pt>
 File: ../Images/byspecies5_sig.pdf Graphic file (type pdf)
 <use ../Images/byspecies5_sig.pdf>
-Package pdftex.def Info: ../Images/byspecies5_sig.pdf  used on input line 237.
+Package pdftex.def Info: ../Images/byspecies5_sig.pdf  used on input line 239.
 (pdftex.def)             Requested size: 361.35463pt x 289.09251pt.
 
-Overfull \hbox (22.76831pt too wide) in paragraph at lines 237--238
+Overfull \hbox (22.76831pt too wide) in paragraph at lines 239--240
 [][] 
  []
 
 
-Overfull \hbox (2.43332pt too wide) in paragraph at lines 223--239
+Overfull \hbox (2.43332pt too wide) in paragraph at lines 225--241
 []$ $[]$ 
  []
 
-) [12 <../Images/devcomp.pdf> <../Images/AICcomp.pdf>] [13 <../Images/byspecies
+) [13 <../Images/devcomp.pdf> <../Images/AICcomp.pdf>] [14 <../Images/byspecies
 5_templags.pdf> <../Images/byspecies5_preciplags.pdf> <../Images/legend_sig.pdf
 > <../Images/alldatasets_sig.pdf> <../Images/byspecies5_sig.pdf>]
-(./discussion.tex) (./main.bbl [14
+(./discussion.tex) (./main.bbl [15
 
-] [15
+] [16
 
-] [16] [17] [18]) [19] (./main.aux)
+] [17] [18] [19]) [20] (./main.aux)
 
 LaTeX Font Warning: Some font shapes were not available, defaults substituted.
 
  ) 
 Here is how much of TeX's memory you used:
- 5987 strings out of 494923
- 88339 string characters out of 6180743
- 165197 words of memory out of 5000000
- 9158 multiletter control sequences out of 15000+600000
- 9465 words of font info for 33 fonts, out of 8000000 for 9000
+ 6890 strings out of 494923
+ 98551 string characters out of 6180743
+ 178653 words of memory out of 5000000
+ 10027 multiletter control sequences out of 15000+600000
+ 12006 words of font info for 45 fonts, out of 8000000 for 9000
  14 hyphenation exceptions out of 8191
- 41i,11n,61p,2123b,377s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 41i,11n,61p,2160b,384s stack positions out of 5000i,500n,10000p,200000b,80000s
 </usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx10.pfb></us
 r/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx12.pfb></usr/shar
 e/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb></usr/share/texl
@@ -919,11 +975,12 @@ public/amsfonts/cm/cmr12.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/
 amsfonts/cm/cmr17.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfont
 s/cm/cmr8.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cms
 y10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy8.pfb
-></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmti10.pfb>
-Output written on main.pdf (23 pages, 253497 bytes).
+></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmti10.pfb></usr
+/share/texlive/texmf-dist/fonts/type1/public/amsfonts/symbols/msbm10.pfb>
+Output written on main.pdf (24 pages, 259173 bytes).
 PDF statistics:
- 218 PDF objects out of 1000 (max. 8388607)
- 152 compressed objects within 2 object streams
+ 215 PDF objects out of 1000 (max. 8388607)
+ 149 compressed objects within 2 object streams
  0 named destinations out of 1000 (max. 500000)
- 66 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 61 words of extra memory for PDF output out of 10000 (max. 10000000)
 

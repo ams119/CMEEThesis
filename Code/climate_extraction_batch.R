@@ -11,6 +11,9 @@ fddata = read.csv("../Data/fdcounts_cleaned.csv", header = T, stringsAsFactors =
 # Create vector of locations
 counties = unique(fddata$Locations)
 
+# Create folder to store extracted time series
+dir.create("../Data/Extracted_Data/")
+
 # Extract climate for each location and save time series as csv
 for(p in 1:length(counties)){
   vector_abun = fddata[fddata$Locations == counties[p],]
