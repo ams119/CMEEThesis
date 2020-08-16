@@ -21,15 +21,12 @@ GNU General Public License v3.0
 
 The following packages and versions were used in this repository:
 
-tidyverse (1.3.0): for data manipulation <br/><br/>
-ggplot2 (3.3.2); gridExtra (2.3); wesanderson (0.3.6): for data visualisation <br/><br/>
-sf (0.9.1); sp (1.4.1); rgdal (1.4.8); maps (3.3.0); raster (3.0.12); tmap (3.0); tmaptools (3.0): for manipulation of spatial data <br/><br/>
-
-RNetCDF (2.1.1); for manipulating CDF files of meteorological data <br/><br/>
-
-ff (2.2.14); ffbase (0.12.8): for working with very large (7.2 GB) abundance dataset <br/><br/>
-
-mgcv (1.8.31): used for GAM fitting<br/><br/>
+* tidyverse (1.3.0): for data manipulation <br/><br/>
+* ggplot2 (3.3.2); gridExtra (2.3); wesanderson (0.3.6): for data visualisation <br/><br/>
+* sf (0.9.1); sp (1.4.1); rgdal (1.4.8); maps (3.3.0); raster (3.0.12); tmap (3.0); tmaptools (3.0): for manipulation of spatial data <br/><br/>
+* RNetCDF (2.1.1); for manipulating CDF files of meteorological data <br/><br/>
+* ff (2.2.14); ffbase (0.12.8): for working with very large (7.2 GB) abundance dataset <br/><br/>
+* mgcv (1.8.31): used for GAM fitting<br/><br/>
 
 ****
 ## Directory Map
@@ -37,10 +34,10 @@ mgcv (1.8.31): used for GAM fitting<br/><br/>
 Maximum Daily Temperature and Daily Precipitation data is provided by NOAA/OAR/ESRL PSD, Boulder, Colorado, USA from their website. 
 
 Temperature data should be downloaded as netCDF files from ftp://ftp.cdc.noaa.gov/Datasets/cpc_global_temp/
-and stored in Data/tmax/
+and stored in a directory called Data/tmax/
 
 Precipitation  data should be downloaded as netCDF files from ftp://ftp.cdc.noaa.gov/Datasets/cpc_global_precip/
-and stored in Data/precip/
+and stored in a directory called Data/precip/
 
 Abundance data was sourced from the VectDyn database, which is part of the VectorByte data platform (www.vectorbyte.org). The dataset used in this project can be accessed [here](ww) and should be stored in Data/
 
