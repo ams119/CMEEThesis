@@ -2,7 +2,7 @@
  # Meteorological Drivers of Mosquito Abundance
 This repository contains all the scripts necessary in building my 2020 thesis project. This thesis was undertaken to fulfill the requirements of my MSc Computational Methods in Ecology and Evolution course at Imperial College London. 
 
-My aim is that all data manipulation, analysis, and compilation of all relevant presentations and reports is fully reproducible. This goal will be met with various success along the project's development. 
+My aim is that all data manipulation and analysis is fully reproducible. This goal will likely be met with various success along the project's development. 
 
 All code was written and tested with R 3.6.3
 
@@ -22,7 +22,7 @@ GNU General Public License v3.0
 The following packages and versions were used in this repository:
 
 * tidyverse (1.3.0): for data manipulation <br/><br/>
-* ggplot2 (3.3.2); gridExtra (2.3); wesanderson (0.3.6): for data visualisation <br/><br/>
+* ggplot2 (3.3.2): for data visualisation <br/><br/>
 * sf (0.9.1); sp (1.4.1); rgdal (1.4.8); maps (3.3.0); raster (3.0.12); tmap (3.0); tmaptools (3.0): for manipulation of spatial data <br/><br/>
 * RNetCDF (2.1.1); for manipulating CDF files of meteorological data <br/><br/>
 * ff (2.2.14); ffbase (0.12.8): for working with very large (7.2 GB) abundance dataset <br/><br/>
@@ -46,18 +46,7 @@ Abundance data was sourced from the VectDyn database, which is part of the Vecto
 
 * **Data**: Should contain gantt.csv and have precip, temp, and abundance datasets stored here as detailed above. Will be populated with pre-processed data when code is run
 
-* **Results**; Will be populated with analysis csvs and data visualisations when code is run. Should be empty as all contents are included in .gitignore to avoid exceeding github storage thresholds
-
-* **Notebooks**: Contains jupyter notebooks detailing project progress, results exploration, and notes.
-
-* **Proposal**: Contains files for producing written project proposal
-
-* **Write_Up**: contains files for producing written dissertation report
-
-* **Proposal_Presentation**: contains files for producing lab proposal presentation
-
-* **Images**: contains images produced for deliverables as well as images for notebooks
-
+* **Results**; Will be populated with analysis csvs and data visualisations when code is run. Contains jupyter notebook of project results exploration.
 
 ****
 ## Code Files
@@ -81,8 +70,6 @@ Code should be run in the listed order or by running the shell script run_projec
 * \*gam_functions.R: defines functions needed for GAM fitting
 
 * gam_batch.R: runs gam_functions.R iteratively for each location and temporal scale
-
-* graphics.R: produces graphics for project write-up.
 
 ****
 ## Acknowledgements
