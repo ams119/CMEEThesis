@@ -1,0 +1,16 @@
+Item,Activity,Project element,Start,End
+1,Proposal,Writing,2020.03.30,2020.04.05
+2,Introduction,Writing,2020.04.06,2020.04.12
+3,Map Meteorology to Locations,Data Manipulation,2020.04.01,2020.04.19
+4,Abundances by Week to Locations,Data Manipulation,2020.04.20,2020.04.26
+5,No Lag Model Fitting,Modeling,2020.04.27,2020.05.03
+6,Lagged Modeling Fitting,Modeling,2020.05.04,2020.05.17
+7,Interpolate Data,Data Manipulation,2020.05.18,2020.05.24
+8,Exam 2,Exam,2020.05.25,2020.06.14
+9,Fit Interpolated Data,Modeling,2020.06.15,2020.06.28
+10,Cross Validation,Cross Validation,2020.06.29,2020.07.19
+11,Methods,Writing,2020.04.01,2020.07.19
+12,Results,Writing,2020.07.20,2020.07.26
+13,Discussion,Writing,2020.07.27,2020.08.02
+14,Editing,Writing,2020.08.03,2020.08.27
+15,Viva Prep,Viva,2020.08.28,2020.09.14
