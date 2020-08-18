@@ -13,7 +13,7 @@ library(tidyverse)
 dir.create("../Results/GAM_Plots/")
 
 # Create directory for storing distribution histograms
-dir.create("../Results/Hist_Plots/")
+dir.create("../Results/Fit_Plots/")
 
 # List all aggregated files 
 path = "../Data/Extracted_Data/Aggregated/"
@@ -24,7 +24,7 @@ locations = sort(c("Manatee", "Lee", "Walton", "Saint_Johns", "Orange"))
 files = files[grep(pattern = paste(locations, collapse = "|"), x = files)]
 
 # Organize through alphebetisation into matrix by location for rows and by temporal scale for columns
-files = matrix(sort(files), nrow = length(unique(locations)), byrow = T)
+files = matrix(sort(files), nrow = length(unique(locations)), byrow = TRUE)
 
 # Loop through each temporal scale
 for(i in 1:ncol(files)){
@@ -39,7 +39,7 @@ for(i in 1:ncol(files)){
   for(j in 1:nrow(files)){
     
     # Read in ts_dataset
-    ts_data = read.csv(paste0(path, files[j,i]), header = T, stringsAsFactors = F)
+    ts_data = read.csv(paste0(path, files[j,i]), header = TRUE, stringsAsFactors = FALSE)
     
     # Identify the species names in this dataset
     species = colnames(ts_data[10:(dim(ts_data)[2]-3)])
@@ -70,7 +70,7 @@ for(i in 1:ncol(files)){
   output_df  = bind_rows(output_list)
   
   # Save as csv
-  write.csv(output_df, file = paste0("../Results/GAM_", scale, ".csv"), row.names = F)
+  write.csv(output_df, file = paste0("../Results/GAM_", scale, ".csv"), row.names = FALSE)
   
   
 }

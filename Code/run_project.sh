@@ -19,5 +19,3 @@ Rscript aggregation_batch.R
 # Fit GAMs and perform model selection and cross validation
 Rscript gam_batch.R
 
-# Produce graphics for write up
-Rscript graphics.R

@@ -17,7 +17,7 @@ library(tmap)
 library(tmaptools)
 
 # Load in a sample of the vectdyn data
-sample = read.csv("../Data/vectdyn_fulldata.csv", header = T, nrows = 500)
+sample = read.csv("../Data/vectdyn_fulldata.csv", header = TRUE, nrows = 500)
 
 # Find the classes of each column
 sampleclasses = sapply(sample, class)
@@ -86,7 +86,7 @@ fd_data = df1[df1$Locations %in% sites,]
 
 # Save as csv
 print("Saving subsetted data as csv in ../Data/")
-write.csv(fd_data, "../Data/fdcounts.csv", row.names = F)
+write.csv(fd_data, "../Data/fdcounts.csv", row.names = FALSE)
 
 
 

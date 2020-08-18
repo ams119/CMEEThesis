@@ -6,7 +6,7 @@
 # Date: 04/16/19
 
 # Read in abundace dataset
-fddata = read.csv("../Data/fdcounts_cleaned.csv", header = T, stringsAsFactors = F)
+fddata = read.csv("../Data/fdcounts_cleaned.csv", header = TRUE, stringsAsFactors = FALSE)
 
 # Create vector of locations
 counties = unique(fddata$Locations)
@@ -19,7 +19,7 @@ for(p in 1:length(counties)){
   vector_abun = fddata[fddata$Locations == counties[p],]
   source("climate_extraction.R")
   filename = paste("../Data/Extracted_Data/", locale, "_clim_TS.csv", sep = "")
-  write.csv(vector_abun_clim_time_series, file = filename, row.names = F)
+  write.csv(vector_abun_clim_time_series, file = filename, row.names = FALSE)
   rm(list=setdiff(ls(), c("p", "counties", "fddata")))
 }
 

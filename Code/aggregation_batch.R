@@ -20,12 +20,12 @@ dir.create("../Data/Extracted_Data/Aggregated/")
 
 for(i in 1:length(files)){
   cat(paste("Now aggregating data for", sub(".csv", "", files[i]), "\n"))
-  mapped = read.csv(paste0("../Data/Extracted_Data/", files[i]), header = T, stringsAsFactors = F)
+  mapped = read.csv(paste0("../Data/Extracted_Data/", files[i]), header = TRUE, stringsAsFactors = FALSE)
   source("aggregation.R")
   morphological_aggregations[i,"Location"] = locale
-  write.csv(weekly, paste0("../Data/Extracted_Data/Aggregated/", locale, "_weekly.csv"), row.names = F)
-  write.csv(biweekly, paste0("../Data/Extracted_Data/Aggregated/", locale, "_biweekly.csv"), row.names = F)
-  write.csv(monthly, paste0("../Data/Extracted_Data/Aggregated/", locale, "_monthly.csv"), row.names = F)
+  write.csv(weekly, paste0("../Data/Extracted_Data/Aggregated/", locale, "_weekly.csv"), row.names = FALSE)
+  write.csv(biweekly, paste0("../Data/Extracted_Data/Aggregated/", locale, "_biweekly.csv"), row.names = FALSE)
+  write.csv(monthly, paste0("../Data/Extracted_Data/Aggregated/", locale, "_monthly.csv"), row.names = FALSE)
   
   ### Plot ###
 
@@ -109,4 +109,4 @@ for(i in 1:length(files)){
 
 cat("\n Here is the summary of species in each location that were aggregated to morphological groups")
 print(morphological_aggregations)
-write.csv(morphological_aggregations, "../Results/morphological_groups.csv", row.names = F)
+write.csv(morphological_aggregations, "../Results/morphological_groups.csv", row.names = FALSE)

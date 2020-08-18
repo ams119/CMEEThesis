@@ -8,7 +8,7 @@
 library(tidyverse)
 
 # Commented out reading in data because this is run with aggregation_batch.R as a wrapper defining the mapped variable
-#mapped = read.csv("~/Documents/Masters_Thesis/Data/Extracted_Data/Saint_Johns_clim_TS.csv", header = T, stringsAsFactors = F)
+#mapped = read.csv("~/Documents/Masters_Thesis/Data/Extracted_Data/Saint_Johns_clim_TS.csv", header = TRUE, stringsAsFactors = FALSE)
 
 # Sort the data
 mapped = dplyr::arrange(mapped, date, Latitudes, Longitudes)
@@ -30,7 +30,7 @@ allspecs =
   mapped %>%
   dplyr::select("date", "Specimens.collected", "Latitudes", "Longitudes", "Year", "precip", "max_temp", "real") %>%
   dplyr::group_by(Latitudes, Longitudes, date, Year, precip, max_temp) %>%
-  dplyr::summarise(Specimens.collected = sum(Specimens.collected, na.rm = T), real = mean(real, na.rm = T)) %>%
+  dplyr::summarise(Specimens.collected = sum(Specimens.collected, na.rm = TRUE), real = mean(real, na.rm = TRUE)) %>%
   dplyr::arrange(date, Latitudes, Longitudes)
 
 
@@ -68,10 +68,10 @@ for(j in 1:length(species)){
     spec_counts %>% 
     group_by(Latitudes, Longitudes, date) %>% 
     dplyr::select("date", "Latitudes", "Longitudes", "Specimens.collected") %>% 
-    summarise(test = mean(Specimens.collected, na.rm = T))
+    summarise(test = mean(Specimens.collected, na.rm = TRUE))
   
   # As long as there is at least 1 non-NA, non-zero recording, assign species name to time series and join
-  if(sum(spec_counts$test, na.rm = T) != 0){
+  if(sum(spec_counts$test, na.rm = TRUE) != 0){
     
     # Change column names so that count column identifies the species
     names(spec_counts)[names(spec_counts) == 'test'] = species[j]
@@ -105,18 +105,18 @@ amd_morphs = grep(paste(amd_spec, collapse = "|"), colnames(allspecs))
 
 # If these species are present, create a morphological group column that is the mean of these groups and add name to species list
 if(length(cp_morphs > 0)){
-  allspecs$C.pipiens.morphological.group = rowMeans(allspecs[,cp_morphs], na.rm = T)
+  allspecs$C.pipiens.morphological.group = rowMeans(allspecs[,cp_morphs], na.rm = TRUE)
   species = c(species, "C.pipiens.morphological.group")
 }
 
 
 if(length(aat_morphs > 0)){
-  allspecs$A.atlanticus.tormentor.morphological.group = rowMeans(allspecs[,aat_morphs], na.rm = T)
+  allspecs$A.atlanticus.tormentor.morphological.group = rowMeans(allspecs[,aat_morphs], na.rm = TRUE)
   species = c(species, "A.atlanticus.tormentor.morphological.group")
 }
 
 if(length(amd_morphs > 0)){
-  allspecs$A.messeae.daciae.morphological.group = rowMeans(allspecs[,amd_morphs], na.rm = T)  
+  allspecs$A.messeae.daciae.morphological.group = rowMeans(allspecs[,amd_morphs], na.rm = TRUE)  
   species = c(species, "A.messeae.daciae.morphological.group")
 }
 
@@ -146,8 +146,8 @@ daily =
   group_by(date) %>%
   dplyr::select("date", "Year", "Specimens.collected", "precip", "max_temp", "real") %>%
   summarise(Year = mean(Year), precip = mean(precip), 
-              Specimens.collected = mean(Specimens.collected, na.rm = T), temp_mean = mean(max_temp), 
-              obs = sum(real, na.rm = T)) %>%
+              Specimens.collected = mean(Specimens.collected, na.rm = TRUE), temp_mean = mean(max_temp), 
+              obs = sum(real, na.rm = TRUE)) %>%
   arrange(date)
   
 # Create a column that marks whether there was (1) or was not (NaN) precip on each day
@@ -158,7 +158,7 @@ daily_species =
   allspecs %>%
   group_by(date) %>%
   dplyr::select(c(date, 9:ncol(allspecs))) %>%
-  summarize_all(mean, na.rm = T) 
+  summarize_all(mean, na.rm = TRUE) 
   
 daily = left_join(daily, daily_species, by = "date")
 
@@ -178,15 +178,15 @@ weekly <-
   group_by(date_w) %>%
   dplyr::select("date_w", "Year", "temp_mean", "precip", "Specimens.collected", "precip_days", "obs") %>%
   summarise(Year = mean(Year), precip_mean = mean(precip), precip_sd = sd(precip), 
-            Specimens.collected = mean(Specimens.collected, na.rm = T), temp_sd = sd(temp_mean, na.rm = T),
-            temp_mean = mean(temp_mean), precip_days = sum(precip_days, na.rm = T), obs = sum(obs))
+            Specimens.collected = mean(Specimens.collected, na.rm = TRUE), temp_sd = sd(temp_mean, na.rm = TRUE),
+            temp_mean = mean(temp_mean), precip_days = sum(precip_days, na.rm = TRUE), obs = sum(obs))
   
 # Add the means of each species to the weekly frame
 weekly_species = 
   daily %>%
   group_by(date_w) %>%
   dplyr::select(date_w, 8:(ncol(daily)-1)) %>% # select all the species columns and the date column
-  summarise_all(mean, na.rm = T)
+  summarise_all(mean, na.rm = TRUE)
   
 weekly = left_join(weekly, weekly_species, by = "date_w")
     
@@ -211,7 +211,7 @@ weekly$date_dw = as.Date(weekly$date_dw, format = "%Y-%U-%u")
 
 # Save csv of weekly aggregated data
 #filename = paste()
-#write.csv(weekly, filename, row.names = F)
+#write.csv(weekly, filename, row.names = FALSE)
 
 ##################################
 # Create biweekly aggregation
@@ -312,8 +312,8 @@ biweekly =
   group_by(bw_num, Year) %>%
   dplyr::select("bw_num", "Year", "temp_mean", "precip", "Specimens.collected", "precip_days", "obs") %>%
   summarise(precip_sd = sd(precip), precip_mean = mean(precip), 
-            temp_sd = sd(temp_mean), temp_mean = mean(temp_mean), precip_days = sum(precip_days, na.rm = T),
-            obs = sum(obs, na.rm = T), Specimens.collected = mean(Specimens.collected, na.rm = T), ) %>%
+            temp_sd = sd(temp_mean), temp_mean = mean(temp_mean), precip_days = sum(precip_days, na.rm = TRUE),
+            obs = sum(obs, na.rm = TRUE), Specimens.collected = mean(Specimens.collected, na.rm = TRUE), ) %>%
   arrange(Year, bw_num)
 
 # Aggregate counts to week and join
@@ -321,7 +321,7 @@ biweek_species =
   daily %>%
   group_by(bw_num, Year) %>%
   dplyr::select(c(bw_num, Year, 8:(ncol(daily)-4))) %>%
-  summarise_all(mean, na.rm = T)
+  summarise_all(mean, na.rm = TRUE)
 
 biweekly = left_join(biweekly, biweek_species, by = c("bw_num", "Year"))  
 
@@ -353,7 +353,7 @@ biweekly$temp_cv = biweekly$temp_sd/biweekly$temp_mean
 
 # Save csv of weekly aggregated data
 #filename = paste()
-#write.csv(weekly, filename, row.names = F)
+#write.csv(weekly, filename, row.names = FALSE)
 
 ######################
 # Monthly Aggregation
@@ -368,16 +368,16 @@ monthly <-
   daily %>% 
   group_by(date_m) %>%
   dplyr::select("date_m", "Year", "temp_mean", "precip", "Specimens.collected", "precip_days", "obs") %>%
-  summarise(Year = mean(Year), precip_mean = mean(precip), precip_sd = sd(precip), temp_sd = sd(temp_mean, na.rm = T),
-            temp_mean = mean(temp_mean), precip_days = sum(precip_days, na.rm = T), obs = sum(obs), 
-            Specimens.collected = mean(Specimens.collected, na.rm = T))
+  summarise(Year = mean(Year), precip_mean = mean(precip), precip_sd = sd(precip), temp_sd = sd(temp_mean, na.rm = TRUE),
+            temp_mean = mean(temp_mean), precip_days = sum(precip_days, na.rm = TRUE), obs = sum(obs), 
+            Specimens.collected = mean(Specimens.collected, na.rm = TRUE))
 
 # Aggregate counts to week and join
 monthly_species = 
   daily %>%
   group_by(date_m) %>%
   dplyr::select(date_m, 8:(ncol(daily)-5)) %>%
-  summarise_all(mean, na.rm = T)
+  summarise_all(mean, na.rm = TRUE)
 
 monthly = left_join(monthly, monthly_species, by = "date_m")
 
@@ -401,5 +401,5 @@ monthly$date_dm = as.Date(monthly$date_dm, format = "%Y-%m-%d")
 
 # Save csv of monthly aggregated data
 #filename = paste()
-#write.csv(weekly, filename, row.names = F)
+#write.csv(weekly, filename, row.names = FALSE)
 
