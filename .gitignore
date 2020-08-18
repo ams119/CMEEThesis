@@ -3,7 +3,7 @@
 *.rda
 *e784096*
 *o784096*
-/Extracted_Data/
+*/Extracted_Data/*
 */precip/*
 */tmax/*
 *vectdyn_fulldata.csv
