@@ -5,6 +5,9 @@
 # Arguments: 
 # Date: 07/28/20
 
+# Time the script
+start = Sys.time()
+
 # Load functions from gam_functions.R
 source("gam_functions.R")
 library(tidyverse)
@@ -75,4 +78,5 @@ for(i in 1:ncol(files)){
   
 }
 
-
+# Print total time this took
+Sys.time() - start
