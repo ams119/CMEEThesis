@@ -18,6 +18,9 @@ dir.create("../Results/GAM_Plots/")
 # Create directory for storing distribution histograms
 dir.create("../Results/Fit_Plots/")
 
+# Create directory for storing predicted abundance plots
+dir.create("../Results/Pred_Plots/")
+
 # List all aggregated files 
 path = "../Data/Extracted_Data/Aggregated/"
 files = list.files(path)

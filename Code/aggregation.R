@@ -198,8 +198,8 @@ weekly$temp_cv = weekly$temp_sd/weekly$temp_mean
 #weekly$Specimens.collected = replace(weekly$Specimens.collected, weekly$obs == 0, NA)
 
 # Convert character date column to date format - must create an arbitrary "day of week"
-weekly$date_dw = paste0(weekly$date_w, "-1")
-weekly$date_dw = as.Date(weekly$date_dw, format = "%Y-%U-%u")
+weekly$date = paste0(weekly$date_w, "-1")
+weekly$date = as.Date(weekly$date, format = "%Y-%U-%u")
 
 # Visualize
 # plot_w = ggplot(weekly, aes(x=date_dw, y = `Specimens.collected`/1000)) +
@@ -310,24 +310,27 @@ yrs = unique(weekly$Year)
 biweekly =
   daily %>% 
   group_by(bw_num, Year) %>%
-  dplyr::select("bw_num", "Year", "temp_mean", "precip", "Specimens.collected", "precip_days", "obs") %>%
-  summarise(precip_sd = sd(precip), precip_mean = mean(precip), 
+  dplyr::select("bw_num", "Year", "temp_mean", "precip", "Specimens.collected", "precip_days", "obs", "date") %>%
+  summarise(date = first(date), precip_sd = sd(precip), precip_mean = mean(precip), 
             temp_sd = sd(temp_mean), temp_mean = mean(temp_mean), precip_days = sum(precip_days, na.rm = TRUE),
             obs = sum(obs, na.rm = TRUE), Specimens.collected = mean(Specimens.collected, na.rm = TRUE), ) %>%
-  arrange(Year, bw_num)
+  arrange(date) %>% 
+  ungroup()
 
 # Aggregate counts to week and join
 biweek_species = 
   daily %>%
   group_by(bw_num, Year) %>%
   dplyr::select(c(bw_num, Year, 8:(ncol(daily)-4))) %>%
-  summarise_all(mean, na.rm = TRUE)
+  summarise_all(mean, na.rm = TRUE) %>% 
+  ungroup()
 
-biweekly = left_join(biweekly, biweek_species, by = c("bw_num", "Year"))  
+biweekly = left_join(biweekly, biweek_species, by = c("bw_num", "Year"))
 
-biweekly = 
-  biweekly %>% 
-  arrange(Year, bw_num)
+# Now remove biweek number- date is more useful
+biweekly = biweekly %>% 
+  select(-bw_num) %>% 
+  arrange(date)
   
 # Assign row numbers
 biweekly$ids = seq(1:nrow(biweekly))
@@ -387,8 +390,8 @@ monthly$temp_cv = monthly$temp_sd/monthly$temp_mean
 
 # Convert character date column to date format. Must arbitrarily add day of the month to make 
 # date formatting work
-monthly$date_dm = paste0(monthly$date_m, "-01")
-monthly$date_dm = as.Date(monthly$date_dm, format = "%Y-%m-%d")
+monthly$date = paste0(monthly$date_m, "-01")
+monthly$date = as.Date(monthly$date, format = "%Y-%m-%d")
 
 # Visualize
 

@@ -14,22 +14,27 @@ library(mgcv)
 # by creating autoregressive x variable and removing rows with NA values in any of the x or y variables.
 # It also prepares abundance variables for logging by adding 1. It returns adjusted temperature, 
 # precipitation, and abundance vectors as well as a new autoregressive abundance vector
-prep_variables = function(temp, precip, abundance, years){
+prep_variables = function(temp, precip, abundance, years, caldates){
   
   # Create the vector of autoregressive abundance
-  AR1 = c(NA, abundance[-length(abundance)])
+  #AR1 = c(NA, abundance[-length(abundance)])
   
   # Find NA indexes in all variables 
-  find_nas = which(is.na(AR1) | is.na(abundance) | is.na(temp) | is.na(precip))
+  #find_nas = which(is.na(AR1) | is.na(abundance) | is.na(temp) | is.na(precip))
+  find_nas = which(is.na(abundance) | is.na(temp) | is.na(precip))
   
   # remove these indexes from all variables
-  AR1 = AR1[-find_nas]
+  #AR1 = AR1[-find_nas]
+  indexes = seq(1, length(abundance), 1)[-find_nas]
   abundance = abundance[-find_nas]
   temp = temp[-find_nas]
   precip = precip[-find_nas]
   years = years[-find_nas]
+  caldates = caldates[-find_nas]
   
-  return(data.frame(abundance, temp, precip, AR1, years))
+  
+  #return(data.frame(abundance, temp, precip, AR1, years))
+  return(data.frame(abundance, temp, precip, caldates, years, indexes))
   
 }
 
@@ -58,7 +63,7 @@ make_output = function(lags, species){
   
   # Create desired column names
   columns = c("Species", lags$temp, lags$precip, "nr_total_obs", "nr_bestfit_obs", "nr_nonzero_obs", "p", 
-              "z_inflation_pct", "Best_Temp", "AIC_wt_temp", "Best_Precip", "AIC_wt_precip", "Multi_DevianceExplained", "Multi_AIC", 
+              "z_inflation_pct", "Best_Temp", "AIC_wt_temp", "Best_Precip", "AIC_wt_precip", "Multi_DevianceExplained", "Multi_AIC", "Ljung_Box",
               "Multi_MAE", "Multi_NMAE", "Multi_MB", "Multi_Blocks","Multi_SignifVariables", "MultiAR_DevianceExplained", 
               "MultiAR_AIC", "MultiAR_MAE", "MultiAR_NMAE", "MultiAR_MB", "MultiAR_Blocks","MultiAR_SignifVariables")
   
@@ -106,7 +111,8 @@ fit_univariate_GAMs = function(ts_data, output, lags, lag_table, species, scale)
   ## Fit univariate models with each species abundance vector ##
   for(i in 1:length(species)){
     
-    cat(paste0("\n*********************************************************\n\nNow evaluating univariate GAMs for species ", i, ', ', species[i], " at ", scale, " ", output$Location[i], '\n'))
+    cat(paste0("\n*********************************************************\n\nNow evaluating univariate GAMs for species ", 
+               i, ', \n', species[i], " at ", scale, " ", output$Location[i], '\n'))
     
     output$nr_total_obs[i] = sum(!is.na(ts_data[[species[i]]]), years = ts_data$Year)
     
@@ -120,7 +126,8 @@ fit_univariate_GAMs = function(ts_data, output, lags, lag_table, species, scale)
     for(j in 1:length(lags$temp)){
       
       # Prepare all x and y variables
-      vars = prep_variables(temp = lag_table[,j], precip = lag_table[,length(lags$temp) + j], abundance = ts_data[[species[i]]], years = ts_data$Year)
+      vars = prep_variables(temp = lag_table[,j], precip = lag_table[,length(lags$temp) + j], 
+                            abundance = ts_data[[species[i]]], years = ts_data$Year, caldates = ts_data$date)
       
       # Max number of knots (k) is = to the number of unique data points (discrete days of rainfall) 
       # Max number of basis functions is equal to k-1
@@ -159,13 +166,15 @@ fit_multivariate_GAMs = function(ts_data, output, lags, lag_table, species, scal
   ## Fit multiivariate models with each species abundance vector ##
   for(i in 1:length(species)){
     
-    cat(paste0("\n*********************************************************\n\nNow evaluating multivariate GAMs for species ", i, ', ', species[i], " at ", scale, " ", output$Location[i], '\n'))
+    cat(paste0("\n*********************************************************\n\nNow evaluating multivariate GAMs for species ", 
+               i, ', \n', species[i], " at ", scale, " ", output$Location[i], '\n'))
     
     # Skip datasets where we didn't calculate best fit lags
     if(isTRUE(output$z_inflation_pct[i] >= 95)){next}
     
     # Prepare x and y variables. We'll use the best fit lags of temp and precip for each species 
-    vars = prep_variables(temp = lag_table[[output$Best_Temp[i]]], precip = lag_table[[output$Best_Precip[i]]], abundance = ts_data[[species[i]]], years = ts_data$Year)
+    vars = prep_variables(temp = lag_table[[output$Best_Temp[i]]], precip = lag_table[[output$Best_Precip[i]]], 
+                          abundance = ts_data[[species[i]]], years = ts_data$Year, caldates = ts_data$date)
     
     # Record the minimum number of observations in this dataset with this best fit lag
     output$nr_bestfit_obs[i] = length(vars$abundance)
@@ -189,7 +198,8 @@ fit_multivariate_GAMs = function(ts_data, output, lags, lag_table, species, scal
     if(length(unique(vars$precip)) < 10){precip_k = length(unique(vars$precip))}
     
     # Fit non-autoregressive multivariate model where smooth terms can be penalized out
-    multi_gam = try(gam(abundance ~ s(temp, bs = 'cr', k = 10) + s(precip, k = precip_k, bs = 'cr'), data = vars, family = tw, method = "REML", select = TRUE), silent = TRUE)
+    multi_gam = try(gam(abundance ~ s(temp, bs = 'cr', k = 10) + s(precip, k = precip_k, bs = 'cr'), 
+                        data = vars, family = tw, method = "REML", select = TRUE), silent = TRUE)
     if(class(multi_gam)[1] != "try-error"){
       # Record the power index of this model
       output$p[i] = round(as.numeric(str_extract(pattern = "[0-9]\\.[0-9]*", summary(multi_gam)$family$family)), 1)
@@ -199,16 +209,21 @@ fit_multivariate_GAMs = function(ts_data, output, lags, lag_table, species, scal
       output$Multi_DevianceExplained[i] = round(100*summary(multi_gam)$dev.expl, 1)
       # Record which predictive terms are significant according p-value with alpha = 0.05
       output$Multi_SignifVariables[i] = paste0(c('temp', 'precip')[which(summary(multi_gam)$s.pv <= 0.05)], collapse = ",")
+      # Record the Ljung-Box Significance value for the residuals: if p < 0.05, residuals are autocorrelated
+      output$Ljung_Box = Box.test(multi_gam$residuals, type = "Ljung-Box")$p.value
+      
       # Perform block cross validation to get CV scores (MAE and MAAPE)
-      cv_scores = block_cross_validate(vars = vars, precip_k = precip_k, type = "nonAR")
+      # Open plot for lines drawn during cross validation
+      png(filename = paste0("../Results/Pred_Plots/", species[i], output$Location[i], scale, ".png"), height = 900, width = 900, units = 'px')
+      plot(x = as.Date(vars$caldates, "%Y-%m-%d"), y = vars$abundance, type = "l", main = paste(scale, output$Location[i], species[i], output$Multi_SignifVariables[i]))
+      cv_scores = block_cross_validate(vars = vars, precip_k = precip_k, type = "nonAR", plot = TRUE)
+      dev.off()
+      
       output$Multi_MAE[i] = cv_scores[1]
       output$Multi_NMAE[i] = cv_scores[2]
       output$Multi_MB[i] = cv_scores[3]
       output$Multi_Blocks[i] = cv_scores[4]
       
-      # Plot only if zero inflation < 90
-      
-    
       png(filename = paste0("../Results/GAM_Plots/", scale, output$Location[i], species[i], ".png"), height = 900, width = 900, units = 'px')
       plot(multi_gam, rug = TRUE, page = 1, residuals = TRUE, main = paste(scale, output$Location[i], species[i]))
       dev.off()
@@ -221,32 +236,33 @@ fit_multivariate_GAMs = function(ts_data, output, lags, lag_table, species, scal
       plot_gam_check(multi_gam)
       dev.off()
       
-      multi_gam_gamma = try(gam(abundance+1 ~ s(temp, bs = 'cr', k = 10) + s(precip, k = precip_k, bs = 'cr'), data = vars, family = Gamma(link = "log"), method = "REML", select = TRUE), silent = TRUE)
-      if(class(multi_gam_gamma)[1] != "try-error"){
-        png(filename = paste0("../Results/Fit_Plots/", scale, output$Location[i], species[i], "modelcheck_gamma.png"), height = 900, width = 900, units = 'px')
-        plot_gam_check(multi_gam_gamma)
-        dev.off()
-      }
+      # Compare to fit of gamma distribution model if desired
+      # multi_gam_gamma = try(gam(abundance+1 ~ s(temp, bs = 'cr', k = 10) + s(precip, k = precip_k, bs = 'cr'), data = vars, family = Gamma(link = "log"), method = "REML", select = TRUE), silent = TRUE)
+      # if(class(multi_gam_gamma)[1] != "try-error"){
+      #   png(filename = paste0("../Results/Fit_Plots/", scale, output$Location[i], species[i], "modelcheck_gamma.png"), height = 900, width = 900, units = 'px')
+      #   plot_gam_check(multi_gam_gamma)
+      #   dev.off()
+      # }
         
     }
   
-    # Fit autoregressive multivariate model where smooth terms can be penalized out
-    multiAR_gam = try(gam(abundance ~ s(temp, k = 10, bs = 'cr') + s(precip, k = precip_k, bs = 'cr') + s(log(AR1 + 0.000001), k = 10, bs = 'cr'), select = TRUE, data = vars, family = tw,  method = "REML"), silent = TRUE)
-    if(class(multiAR_gam)[1] != "try-error"){
-      # Record AIC of this model
-      output$MultiAR_AIC[i] = multiAR_gam$aic
-      # Record the deviance explained
-      output$MultiAR_DevianceExplained[i] = round(100*summary(multiAR_gam)$dev.expl, 1)
-      # Record which predictive terms are significant according p-value with alpha = 0.05
-      output$MultiAR_SignifVariables[i] = paste0(c('temp', 'precip', 'AR1')[which(summary(multiAR_gam)$s.pv <= 0.05)], collapse = ",")
-      # Perform k-fold cross validation to get CV scores
-      cv_scores = block_cross_validate(vars = vars,  precip_k = precip_k, type = "nonAR")
-      output$MultiAR_MAE[i] = cv_scores[1]
-      output$MultiAR_NMAE[i] = cv_scores[2]
-      output$MultiAR_MB[i] = cv_scores[3]
-      output$MultiAR_Blocks[i] = cv_scores[4]
+    # # Fit autoregressive multivariate model where smooth terms can be penalized out
+    # multiAR_gam = try(gam(abundance ~ s(temp, k = 10, bs = 'cr') + s(precip, k = precip_k, bs = 'cr') + s(log(AR1 + 0.000001), k = 10, bs = 'cr'), select = TRUE, data = vars, family = tw,  method = "REML"), silent = TRUE)
+    # if(class(multiAR_gam)[1] != "try-error"){
+    #   # Record AIC of this model
+    #   output$MultiAR_AIC[i] = multiAR_gam$aic
+    #   # Record the deviance explained
+    #   output$MultiAR_DevianceExplained[i] = round(100*summary(multiAR_gam)$dev.expl, 1)
+    #   # Record which predictive terms are significant according p-value with alpha = 0.05
+    #   output$MultiAR_SignifVariables[i] = paste0(c('temp', 'precip', 'AR1')[which(summary(multiAR_gam)$s.pv <= 0.05)], collapse = ",")
+    #   # Perform k-fold cross validation to get CV scores
+    #   cv_scores = block_cross_validate(vars = vars,  precip_k = precip_k, type = "nonAR")
+    #   output$MultiAR_MAE[i] = cv_scores[1]
+    #   output$MultiAR_NMAE[i] = cv_scores[2]
+    #   output$MultiAR_MB[i] = cv_scores[3]
+    #   output$MultiAR_Blocks[i] = cv_scores[4]
       
-    }
+    #}
   }
   
   return(output)
@@ -254,7 +270,7 @@ fit_multivariate_GAMs = function(ts_data, output, lags, lag_table, species, scal
 
 
 # Create a function to perform k fold cross validation for AR and non AR models
-block_cross_validate = function(vars, precip_k, type){
+block_cross_validate = function(vars, precip_k, type, plot){
   
   # Get vector of unique years
   yrs = unique(vars$years)
@@ -271,16 +287,15 @@ block_cross_validate = function(vars, precip_k, type){
   # Create vector to store MB explained in each test
   MB = rep(NA, nr_blocks)
   
+  # Create a counter to record how many data points are considered in the weighted average of MAE
+  pts_included = 0 
+  
   ## Do block cross validation
   for(i in 1:nr_blocks){
     
     # Split vars into test and train by iteratively choosing 1 year
     test = vars %>% filter(years == yrs[i])
     train = vars %>% filter(years != yrs[i])
-    
-    # If the test set is unusually small- less than 50% the average size of each year
-    # Do not calculate MAE with this year
-    if(nrow(test) < 0.5 * nrow(vars)/nr_blocks){next}
     
     if(type == "AR"){
       # Train AR gam model using training set
@@ -295,10 +310,19 @@ block_cross_validate = function(vars, precip_k, type){
     }
     
     if(class(gam)[1] != "try-error"){
+      # Predict on test set based on parameterisation of training set
       pred = predict.gam(gam, test, se.fit = TRUE)
       
-      # Record MAE of this test/train set in the vector
-      MAE[i] = sum(abs(exp(pred$fit) - test$abundance))/length(pred$fit)
+      # Add lines to plot if desired
+      if(plot == TRUE){
+        lines(x = as.Date(test$caldates, "%Y-%m-%d"), y = exp(pred$fit), col = "red")
+      }
+      
+      # Record contribution of this test set to the weighted average of MAE
+      MAE[i] = sum(abs(exp(pred$fit) - test$abundance)) * nrow(test)
+      
+      # Add these data points to the total number of included points in the MAE
+      pts_included = pts_included + nrow(test)
       
       # Record the mean bias
       MB[i] = sum(exp(pred$fit) - test$abundance)/length(test$abundance)
@@ -310,7 +334,7 @@ block_cross_validate = function(vars, precip_k, type){
   }
   
   # Return a vector of the MAE, NMAE, MB, and number of folds used in averaging
-  return(c(round(mean(MAE, na.rm = TRUE), 3), round(mean(NMAE, na.rm = TRUE), 3), round(mean(MB, na.rm = TRUE), 3), sum(!is.na(MAE))))
+  return(c(round(sum(MAE, na.rm = TRUE)/pts_included, 3), round(mean(NMAE, na.rm = TRUE), 3), round(mean(MB, na.rm = TRUE), 3), sum(!is.na(MAE))))
   
 }
 

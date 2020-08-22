@@ -37,7 +37,7 @@ for(i in 1:length(files)){
   
   # Weekly
   jpeg(paste0(directory, "/aallspecs_weekly.jpeg"))
-  print(ggplot(weekly, aes(x=date_dw, y = `Specimens.collected`)) +
+  print(ggplot(weekly, aes(x=date, y = `Specimens.collected`)) +
       geom_line(col = "darkgreen") + xlab("") +
       scale_x_date(date_labels = "%Y") +
       ggtitle(paste0(locale, ", all species, Weekly Mean")) +
@@ -47,21 +47,19 @@ for(i in 1:length(files)){
   
   ## Biweekly
   
-  # Create manual tick marks and axis labels
-  brks = seq(0, 27 * length(yrs), by = 27)
-  next_year = as.character(as.numeric(yrs[length(yrs)]) + 1)
+  biweekly$date_d = as.Date(biweekly$date, format = "%Y-%m-%d")
 
   jpeg(paste0(directory, "/aallspecs_biweekly.jpeg"))
-  print(ggplot(biweekly, aes(x=ids, y = `Specimens.collected`)) +
+  print(ggplot(biweekly, aes(x=date_d, y = `Specimens.collected`)) +
     geom_line(col = "blue") + xlab("") +
-    scale_x_continuous("Time", breaks = brks, labels = c(yrs, next_year)) +
+    scale_x_date(date_labels = "%Y") +
     ggtitle(paste(locale,"all species, Biweekly Mean")) +
-    theme_bw() + labs(y = "Mosquitoes Collected"))
+    theme_bw() + labs(y = "Mosquitoes Collected", x = "Time"))
   dev.off()
   
   # Monthly 
   jpeg(paste0(directory, "/aallspecs_monthly.jpeg"))
-  print(ggplot(monthly, aes(x=date_dm, y = `Specimens.collected`)) +
+  print(ggplot(monthly, aes(x=date, y = `Specimens.collected`)) +
     geom_line(col = "purple") + xlab("") +
     scale_x_date(date_labels = "%Y") +
     ggtitle(paste0(locale, " all species, Monthly Mean")) +
@@ -76,7 +74,7 @@ for(i in 1:length(files)){
     
     # Weekly
     jpeg(paste0(directory, "/", name, "_weekly.jpeg"))
-    print(ggplot(weekly, aes_string(x= "date_dw", y = name)) +
+    print(ggplot(weekly, aes_string(x= "date", y = name)) +
       geom_line(col = "darkgreen") + xlab("") +
       scale_x_date(date_labels = "%Y") +
       ggtitle(paste(locale, name, "Weekly")) +
@@ -86,16 +84,16 @@ for(i in 1:length(files)){
     
     # Bi-weekly
     jpeg(paste0(directory, "/", name, "_biweekly.jpeg"))
-    print(ggplot(biweekly, aes_string(x= "ids", y = name)) +
+    print(ggplot(biweekly, aes_string(x= biweekly$date_d, y = name)) +
       geom_line(col = "blue") + xlab("") +
-      scale_x_continuous("Time", breaks = brks, labels = c(yrs, next_year)) +
+      scale_x_date(date_labels = "%Y") +
       ggtitle(paste(locale, name, "Biweekly")) +
       theme_bw() + labs(y = "Mosquitoes Collected"))
     dev.off()
     
     # Monthly
     jpeg(paste0(directory, "/", name, "_monthly.jpeg"))
-    print(ggplot(monthly, aes_string(x="date_dm", y = name)) +
+    print(ggplot(monthly, aes_string(x="date", y = name)) +
       geom_line(col = "purple") + xlab("") +
       scale_x_date(date_labels = "%Y") +
       ggtitle(paste(locale, name, "Monthly")) +
