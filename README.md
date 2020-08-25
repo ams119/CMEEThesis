@@ -3,7 +3,7 @@ This repository contains all the scripts necessary in building my 2020 thesis pr
 
 My aim is that all data manipulation and analysis is fully reproducible. This goal will likely be met with various success along the project's development. 
 
-All code was written and tested with R 3.6.3
+All code was written and tested with R 3.6.3 on Ubuntu 18.04.5.
 
 
 ****
@@ -32,15 +32,13 @@ The following packages and versions were used in this repository:
 
 Maximum Daily Temperature and Daily Precipitation data is provided by NOAA/OAR/ESRL PSD, Boulder, Colorado, USA from their website. 
 
-Temperature data should be downloaded as netCDF files from [ftp://ftp.cdc.noaa.gov/Datasets/cpc_global_temp/
-and stored in a directory called Data/tmax/](ftp://ftp.cdc.noaa.gov/Datasets/cpc_global_temp/
-and stored in a directory called Data/tmax/)
+Temperature data should be downloaded as netCDF files from ftp://ftp.cdc.noaa.gov/Datasets/cpc_global_temp/
+and stored in a directory called Data/tmax/
 
-Precipitation  data should be downloaded as netCDF files from [ftp://ftp.cdc.noaa.gov/Datasets/cpc_global_precip/
-and stored in a directory called Data/precip/](ftp://ftp.cdc.noaa.gov/Datasets/cpc_global_precip/
-and stored in a directory called Data/precip/)
+Precipitation  data should be downloaded as netCDF files from ftp://ftp.cdc.noaa.gov/Datasets/cpc_global_precip/
+and stored in a directory called Data/precip/
 
-Abundance data was sourced from the Population Biology database, which is part of the VectorBase data platform [www.vectorbase.org](www.vectorbase.org). The dataset used in this project can be accessed [here](https://drive.google.com/file/d/13LzaOvaNRyyUYqjBty03HmXi187E0jWN/view?usp=sharing) and should be stored in Data/
+Abundance data was sourced from the Population Biology database, which is part of the VectorBase data platform [(www.vectorbase.org)](www.vectorbase.org). The dataset used in this project can be accessed [here](https://drive.google.com/file/d/13LzaOvaNRyyUYqjBty03HmXi187E0jWN/view?usp=sharing) and should be stored in Data/
 
 ### Directories:
 * **Code**: all code files
@@ -52,7 +50,7 @@ Abundance data was sourced from the Population Biology database, which is part o
 ****
 ## Code Files
 
-Code should be run in the listed order or by running the shell script run_project.sh.
+Code should be run in the listed order or by running the BASH script run_project.sh.
 
 \*scripts marked by an asterisk are not run independently but are dependencies of other scripts
 
@@ -74,6 +72,8 @@ Code should be run in the listed order or by running the shell script run_projec
 
 ****
 ## Acknowledgements
-Many thanks for the ongoing wisdom and  contribution from Samraat Pawar, Lauren Cator, Ruiyun Li, Matthew Watts, Sam Rund, and Deraj Wilson-Aggarwal. 
+Many thanks to Dr. Samraat Pawar, Dr. Lauren Cator, Dr. Ruiyun Li, Matthew Watts, Dr. Sam Rund, and Deraj Wilson-Aggarwal for their ongoing wisdom and contribution during this project. To my supervisors, Samraat, Lauren, and Ruiyun, who offered in-depth probing as my project took shape and and enthusiastically supported me through challenging times. To Matthew Watts, who kindly shared his data and coding advice, as well as his meteorological protocols, which I adapted to this project. To Sam Rund, who acted as a patient resource for my many sampling, species identification, and data quality questions. To Deraj Wilson-Aggarwal for his encouragement and advice that were so needed during some of the "growth periods" of my project. It's been a privilege to work with all of you.
+
+I owe a debt of gratitude to my friends and family who supported me logistically, morally, and academically during this remote dissertation complicated by the 2020 COVID-19 crisis. Dónal Burns, Ruth Keane, Henrique Galante, Dave Saunders, Dana Clements, Rob Daly, and the entire Daly family all went out of their way to contribute their time and resources to my success. Finally, thank you to my parents, who have had my back through thick and thin and supported my dreams no matter where in the world they've taken me. 
 
 
