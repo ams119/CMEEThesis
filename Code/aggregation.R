@@ -7,9 +7,6 @@
 
 library(tidyverse)
 
-# Commented out reading in data because this is run with aggregation_batch.R as a wrapper defining the mapped variable
-#mapped = read.csv("~/Documents/Masters_Thesis/Data/Extracted_Data/Saint_Johns_clim_TS.csv", header = TRUE, stringsAsFactors = FALSE)
-
 # Sort the data
 mapped = dplyr::arrange(mapped, date, Latitudes, Longitudes)
 
@@ -194,24 +191,10 @@ weekly = left_join(weekly, weekly_species, by = "date_w")
 weekly$precip_cv = weekly$precip_sd/weekly$precip_mean
 weekly$temp_cv = weekly$temp_sd/weekly$temp_mean
 
-# Set abun of no count weeks to NA
-#weekly$Specimens.collected = replace(weekly$Specimens.collected, weekly$obs == 0, NA)
-
 # Convert character date column to date format - must create an arbitrary "day of week"
 weekly$date = paste0(weekly$date_w, "-1")
 weekly$date = as.Date(weekly$date, format = "%Y-%U-%u")
 
-# Visualize
-# plot_w = ggplot(weekly, aes(x=date_dw, y = `Specimens.collected`/1000)) +
-#   geom_line(col = "darkgreen") + xlab("") + 
-#   scale_x_date(date_labels = "%Y") +
-#   ggtitle(paste0(locale, " Weekly")) +
-#   theme_bw() + labs(y = "Mosquitoes Collected (Thousands)",
-#                     x = "Time")
-
-# Save csv of weekly aggregated data
-#filename = paste()
-#write.csv(weekly, filename, row.names = FALSE)
 
 ##################################
 # Create biweekly aggregation
@@ -275,36 +258,8 @@ months_secondhalf = which(daily$month == 2 &
 # Assign the biweek number as month number times 2
 daily$bw_num[months_secondhalf] = daily$month[months_secondhalf] * 2
 
-# Create a column to populate with bi-week number
-#weekly$bw_num = rep(NA, nrow(weekly))
-
-# Find rows with NA dates- hopefully using date_w instead of dat_dw will fix this
-# trash = which(is.na(weekly$date_dw))
-# 
-# if(length(trash) > 0) # Examine to ensure it's irrelevant
-# { 
-#   weekly[trash,]
-# 
-#   # Get rid of this row
-#   weekly = weekly[-trash,]
-# }  
-
 # Obtain vector of unique years for later biweek plotting
 yrs = unique(weekly$Year)
-
-## Assign a bi-week number, restarting at 1 with every year
-# for(j in 1:length(yrs)){
-#   sub = which(weekly$Year == yrs[j],)
-#   nums = 1:length(sub)
-#   bi_week = ((nums - 1) %/% 2) + 1
-#   weekly$bw_num[sub] = bi_week
-# }
-
-# Assign bi-week number to sepspecs by joining through week date
-# biweekly =
-#   weekly %>% 
-#   dplyr::select(date_w, bw_num, years) %>%
-#   left_join(sepspecs, by = c("date_w"))
 
 # Aggregate by bi-week
 biweekly =
@@ -335,28 +290,9 @@ biweekly = biweekly %>%
 # Assign row numbers
 biweekly$ids = seq(1:nrow(biweekly))
 
-# Set abun of no count weeks to NA
-#biweekly$Specimens.collected = replace(biweekly$Specimens.collected, biweekly$obs == 0, NA)
-
 # Find the coefficient of variation of temp and precip
 biweekly$precip_cv = biweekly$precip_sd/biweekly$precip_mean
 biweekly$temp_cv = biweekly$temp_sd/biweekly$temp_mean
-
-# Visualize
-
-# Create manual tick marks and axis labels
-# brks = seq(0, 27 * length(yrs), by = 27)
-# next_year = as.character(as.numeric(yrs[length(yrs)]) + 1)
-# 
-# plot_bw = ggplot(biweekly, aes(x=ids, y = `Specimens.collected`/1000)) +
-#   geom_line(col = "blue") + xlab("") + 
-#   scale_x_continuous("Time", breaks = brks, labels = c(yrs, next_year)) +
-#   ggtitle(paste0(locale, " Biweekly")) +
-#   theme_bw() + labs(y = "Mosquitoes Collected (thousands)")
-
-# Save csv of weekly aggregated data
-#filename = paste()
-#write.csv(weekly, filename, row.names = FALSE)
 
 ######################
 # Monthly Aggregation
@@ -393,16 +329,5 @@ monthly$temp_cv = monthly$temp_sd/monthly$temp_mean
 monthly$date = paste0(monthly$date_m, "-01")
 monthly$date = as.Date(monthly$date, format = "%Y-%m-%d")
 
-# Visualize
 
-# plot_m = ggplot(monthly, aes(x=date_dm, y = `Specimens.collected`/1000)) +
-#   geom_line(col = "purple") + xlab("") + 
-#   scale_x_date(date_labels = "%Y") +
-#   ggtitle(paste0(locale, " Monthly")) +
-#   theme_bw() + labs(y = "Mosquitoes Collected (thousands)",
-#                    x = "Time")
-
-# Save csv of monthly aggregated data
-#filename = paste()
-#write.csv(weekly, filename, row.names = FALSE)
 

@@ -18,11 +18,20 @@ colnames(morphological_aggregations) = c("Location", "Species")
 # Create directory for storing aggregated data files
 dir.create("../Data/Extracted_Data/Aggregated/")
 
+# For each county time series
 for(i in 1:length(files)){
   cat(paste("Now aggregating data for", sub(".csv", "", files[i]), "\n"))
+  
+  # Read in the data
   mapped = read.csv(paste0("../Data/Extracted_Data/", files[i]), header = TRUE, stringsAsFactors = FALSE)
+  
+  # Aggregate for this location
   source("aggregation.R")
+  
+  # Record which morphological groups were grouped at this location
   morphological_aggregations[i,"Location"] = locale
+  
+  # Save csvs of monthly, bimonthly, and monthly data
   write.csv(weekly, paste0("../Data/Extracted_Data/Aggregated/", locale, "_weekly.csv"), row.names = FALSE)
   write.csv(biweekly, paste0("../Data/Extracted_Data/Aggregated/", locale, "_biweekly.csv"), row.names = FALSE)
   write.csv(monthly, paste0("../Data/Extracted_Data/Aggregated/", locale, "_monthly.csv"), row.names = FALSE)
@@ -107,4 +116,6 @@ for(i in 1:length(files)){
 
 cat("\n Here is the summary of species in each location that were aggregated to morphological groups")
 print(morphological_aggregations)
+
+# Save the morphological aggregations summary to results
 write.csv(morphological_aggregations, "../Results/morphological_groups.csv", row.names = FALSE)

@@ -1,9 +1,11 @@
- # Meteorological Drivers of Mosquito Abundance
+ # Predicting Vector Population Dynamics
 This repository contains all the scripts necessary in building my 2020 thesis project. This thesis was undertaken for partial fulfilment of the requirements for my MSc Computational Methods in Ecology and Evolution course at Imperial College London. 
 
 My aim is that all data manipulation and analysis is fully reproducible. This goal will likely be met with various success along the project's development. 
 
-All code was written and tested with R 3.6.3 on Ubuntu 18.04.5.
+All code was written and tested with R 3.6.3 on Ubuntu 18.04.5.   
+
+My project was undertaken to assess the predictive power and applicability of statistical models of mosquito abundances. These questions are important for the development of early warning systems that could predict disease risk and lessen the impacts of vector-borne disease. The final project report is available for download [here](https://drive.google.com/file/d/1SYFSzFekrR6Uy7e8hOwLjt19DgD2_Izy/view?usp=sharing)
 
 
 ****
@@ -72,8 +74,11 @@ Code should be run in the listed order or by running the BASH script run_project
 
 ****
 ## Acknowledgements
-Many thanks to Dr. Samraat Pawar, Dr. Lauren Cator, Dr. Ruiyun Li, Matthew Watts, Dr. Sam Rund, and Deraj Wilson-Aggarwal for their ongoing wisdom and contribution during this project. To my supervisors, Samraat, Lauren, and Ruiyun, who offered in-depth probing as my project took shape and and enthusiastically supported me through challenging times. To Matthew Watts, who kindly shared his data and coding advice, as well as his meteorological protocols, which I adapted to this project. To Sam Rund, who acted as a patient resource for my many sampling, species identification, and data quality questions. To Deraj Wilson-Aggarwal for his encouragement and advice that were so needed during some of the "growth periods" of my project. It's been a privilege to work with all of you.
+Many thanks to Dr. Samraat Pawar, Dr. Lauren Cator, Dr. Ruiyun Li, Matthew Watts, Dr. Sam Rund, and Deraj Wilson-Aggarwal for their ongoing wisdom and contribution during this project. To my supervisors, Samraat, Lauren, and Ruiyun, who offered in-depth probing as my project took shape and and enthusiastically supported me through challenging times. To Matthew Watts, who kindly shared data and coding advice. To Sam Rund, who acted as a patient resource for my many sampling, species identification, and data quality questions. To Deraj Wilson-Aggarwal for his encouragement and advice that were so needed during some of the "growth periods" of my project. It's been a privilege to work with you all.
 
-I owe a debt of gratitude to my friends and family who supported me logistically, morally, and academically during this remote dissertation complicated by the 2020 COVID-19 crisis. Dónal Burns, Ruth Keane, Henrique Galante, Dave Saunders, Dana Clements, Rob Daly, and the entire Daly family all went out of their way to contribute their time and resources to my success. Finally, thank you to my parents, who have had my back through thick and thin and supported my dreams no matter where in the world they've taken me. 
+I would also like to acknowledge the efforts of the data collectors, curators, and managers whose on-the-ground work collecting, identifying, and reporting 7GB worth of mosquitoes from trap sites made the data used for this project possible. 
+
+I owe a debt of gratitude to my friends and family who supported me logistically, morally, and academically during this dissertation as we all adapted to life during the COVID-19 crisis. Dónal Burns, Ruth Keane, Henrique Galante, Dave Saunders, Dana Clements, Rob Daly, and the entire Daly family all went out of their way to contribute their time and support to my success and well-being. Finally, thank you to my parents, who have had my back through thick and thin and supported my dreams no matter where in the world they've taken me.
+
 
 

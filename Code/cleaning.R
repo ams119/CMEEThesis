@@ -2,7 +2,7 @@
 # Author: Anne Marie Saunders
 # Script: cleaning.R
 # Desc: restrict to adult mosquitoes, reformat irregular date ranges and exclude data from uncommon trap types.
-# Arguments: ~/Documents/Hefty_Data/mosquitoAbun/fdcounts.csv
+# Arguments: ../Data/fdcounts.csv
 # Date: 04/17/20
 
 # Import libraries
